@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>MariaPoS — Windows POS software with SMS receipts, Telegram alerts & cloud sync</title>
+<meta name="description" content="MariaPoS is offline-first Windows POS software by JAAN Network, Colombo. FIFO stock, shift & till control, SMS bill receipts, Telegram sales alerts and two-way cloud sync. 7-day free trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ffffff;color:#1a1a1a;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#c62828;text-decoration:none}
+a:hover{color:#8b0000}
+h1,h2,h3,p{margin:0}
+</style>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.94);backdrop-filter:blur(8px);border-bottom:1px solid #eeeeee">
+  <nav style="max-width:1200px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <a href="#top" aria-label="MariaPoS home" style="display:block;width:170px;height:76px;overflow:hidden;position:relative">
+      <img src="assets/marialogo.png" alt="MariaPoS — Made to Bill" style="position:absolute;width:195px;left:-15px;top:-23px">
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;font-size:15px;font-weight:500">
+      <a href="#features" style="color:#1a1a1a">Features</a>
+      <a href="#pricing" style="color:#1a1a1a">Pricing</a>
+      <a href="#download" style="color:#1a1a1a">Download</a>
+      <a href="#faq" style="color:#1a1a1a">FAQ</a>
+      <a href="#trial" style="background:#c62828;color:#ffffff;padding:11px 18px;border-radius:8px;font-weight:600;white-space:nowrap" style-hover="background:#8b0000">Start free trial</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <section data-screen-label="Hero" style="max-width:1200px;margin:0 auto;padding:72px 24px 56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#c62828">Windows POS · Works offline · Syncs to the cloud</p>
+      <h1 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(38px,5vw,60px);line-height:1.06;letter-spacing:-0.02em;text-wrap:balance">Bill fast. Know exactly what's left on the shelf.</h1>
+      <p style="font-size:19px;line-height:1.55;color:#444444;max-width:520px;text-wrap:pretty">MariaPoS deducts stock FIFO on every sale, closes each cashier's shift against the till, and texts the receipt to your customer — even when the internet is down.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#trial" style="background:#c62828;color:#ffffff;padding:16px 26px;border-radius:10px;font-weight:600;font-size:17px;white-space:nowrap;flex-shrink:0;display:inline-flex" style-hover="background:#8b0000;color:#ffffff">Start 7-Day Free Trial</a>
+        <a href="#pricing" style="border:1.5px solid #1a1a1a;color:#1a1a1a;padding:15px 24px;border-radius:10px;font-weight:600;font-size:17px;white-space:nowrap;flex-shrink:0;display:inline-flex" style-hover="background:#1a1a1a;color:#ffffff">See pricing</a>
+      </div>
+      <p style="font-size:14px;color:#666666">No credit card required. Full access for 7 days.</p>
+    </div>
+
+    <div style="background:#f5f5f5;border-radius:16px;padding:18px;border:1px solid #e6e6e6">
+      <div style="background:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(0,0,0,0.25);font-size:13px">
+        <div style="background:#c62828;color:#ffffff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-weight:600">
+          <span>MariaPoS · Billing</span>
+          <span style="display:flex;gap:14px;font-weight:500;font-size:12px"><span>Shift #214 · Nimal</span><span style="background:rgba(255,255,255,0.18);padding:2px 8px;border-radius:99px">SMS left: 1,240</span></span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;min-height:300px">
+          <div style="padding:14px;border-right:1px solid #eeeeee;display:flex;flex-direction:column;gap:8px">
+            <div style="border:1px solid #dddddd;border-radius:6px;padding:8px 10px;color:#888888;font-family:'JetBrains Mono',monospace;font-size:12px">Scan barcode or search…</div>
+            <sc-for list="{{ cart }}" as="row" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid #f0f0f0">
+                <span>{{ row.name }} <span style="color:#888888">× {{ row.qty }}</span></span>
+                <span style="font-family:'JetBrains Mono',monospace">{{ row.total }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;gap:10px;background:#fafafa">
+            <div style="display:flex;justify-content:space-between;color:#666666"><span>Subtotal</span><span style="font-family:'JetBrains Mono',monospace">4,860.00</span></div>
+            <div style="display:flex;justify-content:space-between;color:#666666"><span>Discount</span><span style="font-family:'JetBrains Mono',monospace">−120.00</span></div>
+            <div style="display:flex;justify-content:space-between;font-weight:700;font-size:17px;border-top:1px solid #e0e0e0;padding-top:10px"><span>Total</span><span style="font-family:'JetBrains Mono',monospace">4,740.00</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px">
+              <span style="border:1px solid #dddddd;border-radius:6px;padding:8px;text-align:center;background:#ffffff">Cash</span>
+              <span style="border:1px solid #dddddd;border-radius:6px;padding:8px;text-align:center;background:#ffffff">Card</span>
+              <span style="border:1px solid #dddddd;border-radius:6px;padding:8px;text-align:center;background:#ffffff">Credit</span>
+              <span style="border:1px solid #dddddd;border-radius:6px;padding:8px;text-align:center;background:#ffffff">Split</span>
+            </div>
+            <label style="display:flex;gap:8px;align-items:center;color:#444444"><span style="width:14px;height:14px;border-radius:3px;background:#c62828;display:inline-block"></span>SMS receipt to 077 •••• 412</label>
+            <span style="margin-top:auto;background:#c62828;color:#ffffff;text-align:center;padding:12px;border-radius:8px;font-weight:600">Checkout · Print</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;background:#fafafa">
+    <div style="max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;gap:12px 36px;justify-content:space-between;font-size:15px;font-weight:500;color:#333333">
+      <span style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;background:#c62828;border-radius:99px"></span>7-day free trial</span>
+      <span style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;background:#c62828;border-radius:99px"></span>Works offline, syncs to the cloud</span>
+      <span style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;background:#c62828;border-radius:99px"></span>SMS receipts</span>
+      <span style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;background:#c62828;border-radius:99px"></span>Telegram sales alerts</span>
+      <span style="border:1px dashed #bbbbbb;border-radius:6px;padding:2px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#777777">PayHere badge</span>
+    </div>
+  </section>
+
+  <section data-screen-label="Connected features" style="max-width:1200px;margin:0 auto;padding:96px 24px 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:680px">
+      <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.12;letter-spacing:-0.015em;text-wrap:balance">Connected beyond the counter</h2>
+      <p style="font-size:18px;line-height:1.55;color:#444444">Three things most POS software at this price doesn't do: text the receipt, message the owner, and keep every till in sync.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
+      <article id="sms-receipts" style="border:1px solid #e6e6e6;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:14px">
+        <div style="background:#f5f5f5;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+          <div style="align-self:flex-start;background:#ffffff;border:1px solid #e3e3e3;border-radius:12px 12px 12px 4px;padding:10px 12px;line-height:1.45;max-width:240px">Thank you for shopping at Perera Stores. Bill #10482 · LKR 4,740.00 · 6 items.</div>
+          <span style="align-self:flex-end;font-family:'JetBrains Mono',monospace;font-size:11px;color:#c62828">SMS left: 1,239</span>
+        </div>
+        <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:21px">SMS bill receipts</h3>
+        <p style="line-height:1.55;color:#444444">The receipt goes to the customer's phone at checkout, ready for warranty or return lookups later. Messages draw from a prepaid SMS wallet on your license, and the cashier sees the live balance before every sale.</p>
+      </article>
+      <article id="telegram-alerts" style="border:1px solid #e6e6e6;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:14px">
+        <div style="background:#f5f5f5;border-radius:10px;padding:16px;font-size:13px">
+          <div style="background:#ffffff;border:1px solid #e3e3e3;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;line-height:1.45">
+            <span style="font-weight:600">New Order · Branch 2</span>
+            <span style="color:#555555">Rice 5kg ×2, Dhal 1kg ×1, Milk powder 400g ×1</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px">LKR 4,740.00 · 14:32</span>
+          </div>
+        </div>
+        <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:21px">Telegram order alerts</h3>
+        <p style="line-height:1.55;color:#444444">Every completed sale sends a "New Order" message with the items to the owner's Telegram. Follow each branch from your phone without opening the POS or a dashboard.</p>
+      </article>
+      <article id="cloud-sync" style="border:1px solid #e6e6e6;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:14px">
+        <div style="background:#f5f5f5;border-radius:10px;padding:16px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{ syncRows }}" as="s" hint-placeholder-count="4">
+            <div style="display:flex;justify-content:space-between;background:#ffffff;border:1px solid #e3e3e3;border-radius:6px;padding:6px 10px"><span>{{ s.label }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#2e7d32">{{ s.state }}</span></div>
+          </sc-for>
+        </div>
+        <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:21px">Two-way cloud sync</h3>
+        <p style="line-height:1.55;color:#444444">Sales never wait on the internet. When the till reconnects, sales, stock, suppliers, customers, credit and expenses sync to your cloud panel, so your data isn't stuck on one machine and every branch shows up in one place.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="features" data-screen-label="Features" style="max-width:1200px;margin:0 auto;padding:64px 24px 96px;display:flex;flex-direction:column;gap:36px">
+    <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.12;letter-spacing:-0.015em">Built around how a shop actually runs</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));border-top:1px solid #e6e6e6;border-left:1px solid #e6e6e6">
+      <sc-for list="{{ features }}" as="f" hint-placeholder-count="8">
+        <div style="padding:26px;border-right:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c62828">{{ f.num }}</span>
+          <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:18px">{{ f.title }}</h3>
+          <p style="line-height:1.55;color:#555555;font-size:15px">{{ f.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="pricing" data-screen-label="Pricing" style="background:#f5f5f5">
+    <div style="max-width:1200px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:640px">
+        <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.12;letter-spacing:-0.015em">One license. Every feature. Pick the term.</h2>
+        <p style="font-size:18px;line-height:1.55;color:#444444">All plans are single-till and include the full feature set. Longer terms cost less per year. Checkout runs securely through PayHere.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;align-items:stretch">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+          <div style="background:#ffffff;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:18px;border:{{ p.border }};position:relative">
+            <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ false }}">
+              <span style="position:absolute;top:-12px;left:32px;background:#c62828;color:#ffffff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px">{{ p.badge }}</span>
+            </sc-if>
+            <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:20px">{{ p.name }}</h3>
+            <div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:40px">{{ p.price }}</span><span style="color:#666666">{{ p.per }}</span></div>
+            <p style="color:#555555;font-size:15px">{{ p.note }}</p>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:#333333;border-top:1px solid #eeeeee;padding-top:18px">
+              <span>All billing, inventory & reporting features</span>
+              <span>Cloud sync & Telegram alerts</span>
+              <span>SMS receipts (prepaid credits)</span>
+              <span>Updates for the full term</span>
+            </div>
+            <a href="#checkout" style="margin-top:auto;text-align:center;padding:14px;border-radius:10px;font-weight:600;background:#c62828;color:#ffffff" style-hover="background:#8b0000;color:#ffffff">Buy with PayHere</a>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font-size:15px;color:#555555">Not ready to buy? <a href="#trial" style="font-weight:600">Try every feature free for 7 days</a>. Multi-till or multi-branch? <a href="#contact" style="font-weight:600">Ask us for pricing</a>.</p>
+    </div>
+  </section>
+
+  <section id="faq" data-screen-label="FAQ" style="max-width:860px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:28px">
+    <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,38px);letter-spacing:-0.015em">Questions</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #e6e6e6">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #e6e6e6">
+          <button onClick="{{ q.toggle }}" style="all:unset;cursor:pointer;width:100%;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font-family:'Poppins',sans-serif;font-weight:600;font-size:17px"><span>{{ q.q }}</span><span style="color:#c62828;font-family:'JetBrains Mono',monospace">{{ q.sign }}</span></button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+            <p style="padding:0 0 22px;line-height:1.6;color:#444444;max-width:720px">{{ q.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="trial" data-screen-label="Trial CTA" style="background:#1a1a1a;color:#ffffff">
+    <div style="max-width:1200px;margin:0 auto;padding:88px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,44px);line-height:1.1;letter-spacing:-0.015em">Run your shop on MariaPoS for 7 days, free.</h2>
+        <p style="font-size:18px;line-height:1.55;color:#d0d0d0">Full access, no credit card. One trial per business.</p>
+      </div>
+      <form onSubmit="{{ submitTrial }}" style="display:flex;flex-direction:column;gap:12px;background:#ffffff;color:#1a1a1a;padding:28px;border-radius:14px">
+        <sc-if value="{{ trialSent }}" hint-placeholder-val="{{ false }}">
+          <p style="font-weight:600;font-size:17px">Thanks — check your email for your trial login and the Windows installer.</p>
+        </sc-if>
+        <sc-if value="{{ trialForm }}" hint-placeholder-val="{{ true }}">
+          <input required="" placeholder="Business name" style="padding:14px;border:1px solid #cccccc;border-radius:8px;font:inherit;font-size:16px">
+          <input required="" type="email" placeholder="Email" style="padding:14px;border:1px solid #cccccc;border-radius:8px;font:inherit;font-size:16px">
+          <input placeholder="Phone (optional)" style="padding:14px;border:1px solid #cccccc;border-radius:8px;font:inherit;font-size:16px">
+          <button type="submit" style="all:unset;cursor:pointer;text-align:center;background:#c62828;color:#ffffff;padding:15px;border-radius:10px;font-weight:600;font-size:17px" style-hover="background:#8b0000">Start 7-Day Free Trial</button>
+        </sc-if>
+      </form>
+    </div>
+  </section>
+
+  <section id="download" style="max-width:1200px;margin:0 auto;padding:56px 24px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;border-bottom:1px solid #eeeeee">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:22px">Download for Windows</h3>
+      <p style="color:#555555">Windows 10 or later · ESC/POS receipt printers · USB barcode scanners</p>
+    </div>
+    <a href="#download" style="border:1.5px solid #1a1a1a;color:#1a1a1a;padding:13px 22px;border-radius:10px;font-weight:600;white-space:nowrap" style-hover="background:#1a1a1a;color:#ffffff">Download installer</a>
+  </section>
+</main>
+
+<footer id="contact" style="max-width:1200px;margin:0 auto;padding:48px 24px 56px;display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;font-size:14px;color:#555555">
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <span style="font-weight:600;color:#1a1a1a">JAAN Network (PVT) Ltd</span>
+    <span>46 Hudson Road, Colombo, Sri Lanka</span>
+    <a href="mailto:mariaPOS@gmail.com">mariaPOS@gmail.com</a>
+  </div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap">
+    <a href="#terms" style="color:#555555">Terms</a>
+    <a href="#privacy" style="color:#555555">Privacy</a>
+    <a href="#refunds" style="color:#555555">Refund policy</a>
+    <span>© 2026 MariaPoS</span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;currency&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;LKR&quot;,&quot;USD&quot;],&quot;default&quot;:&quot;LKR&quot;,&quot;tsType&quot;:&quot;'LKR'|'USD'&quot;}}">
+class Component extends DCLogic {
+  state = { open: 0, trialSent: false };
+  renderVals() {
+    const cur = this.props.currency ?? 'LKR';
+    const price = (lkr, usd) => cur === 'USD' ? usd : lkr;
+    const faqData = [
+      ['What happens when my license term ends?', 'MariaPoS reminds you before expiry. Renew from this site through PayHere and your license extends without reinstalling or losing data.'],
+      ['Are SMS receipts included?', 'SMS receipts draw from a prepaid SMS-credit wallet tied to your license. They are not unlimited. You can top up anytime, and the cashier always sees how many messages are left.'],
+      ['Does it work without internet?', 'Yes. Billing, stock and shifts run fully offline. The license is checked and data syncs to the cloud panel whenever the connection returns.'],
+      ['How do I move from the trial to a paid plan?', 'Buy any plan with the same account. Your trial data stays in place.'],
+      ['Can I get a refund?', 'See our refund policy for eligibility and timelines.']
+    ];
+    return {
+      cart: [
+        { name: 'Basmati rice 5kg', qty: 2, total: '3,200.00' },
+        { name: 'Red dhal 1kg', qty: 1, total: '420.00' },
+        { name: 'Milk powder 400g', qty: 1, total: '1,090.00' },
+        { name: 'Soap bar', qty: 2, total: '150.00' }
+      ],
+      syncRows: [
+        { label: 'Sales', state: 'synced' }, { label: 'Inventory', state: 'synced' },
+        { label: 'Supplier payables', state: 'synced' }, { label: 'Credit bills', state: 'synced' }
+      ],
+      features: [
+        { num: '01', title: 'Billing', body: 'Cart, barcode scanning, split payments and ESC/POS receipts, with FIFO stock deduction on every sale.' },
+        { num: '02', title: 'Shifts', body: 'Cashiers start and end shifts, so every sale is tied to a person and a session.' },
+        { num: '03', title: 'Till management', body: 'Cash-in and cash-out ledger with cash-short and excess tracking at shift close.' },
+        { num: '04', title: 'Inventory', body: 'Products, categories and low-stock highlighting, valued by batch.' },
+        { num: '05', title: 'Suppliers', body: 'Purchase orders, goods receiving with FIFO batches, supplier payables and cheque reminders.' },
+        { num: '06', title: 'Credit sales', body: 'Customer credit bills and payment tracking, alongside customer records.' },
+        { num: '07', title: 'Returns', body: 'Refunds and exchanges that restore stock to the right batch automatically.' },
+        { num: '08', title: 'Reports', body: 'Sales summary, payment methods, product-wise sales, profit & loss and inventory valuation.' },
+        { num: '09', title: 'Users & roles', body: 'Admin and cashier accounts with role-based permissions, plus expense tracking.' }
+      ],
+      plans: [
+        { name: '1-Year', price: price('LKR —', '$ —'), per: '/ year', note: 'Pay yearly, renew when you choose.', badge: '', border: '1px solid #e0e0e0' },
+        { name: '2-Year', price: price('LKR —', '$ —'), per: '/ 2 years', note: 'Lower price per year.', badge: 'Save X%', border: '2px solid #c62828' },
+        { name: '3-Year', price: price('LKR —', '$ —'), per: '/ 3 years', note: 'Lowest price per year.', badge: 'Best value', border: '1px solid #e0e0e0' }
+      ],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a, open: this.state.open === i, sign: this.state.open === i ? '−' : '+',
+        toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i }))
+      })),
+      trialSent: this.state.trialSent,
+      trialForm: !this.state.trialSent,
+      submitTrial: e => { e.preventDefault(); this.setState({ trialSent: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

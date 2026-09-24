@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Product — MariaPoS</title>
+<meta name="description" content="MariaPoS by JAAN Network, Colombo. FIFO stock, shift & till control, SMS bill receipts, Telegram sales alerts and two-way cloud sync. 7-day free trial, no credit card.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#ffffff;color:#1a1a1a;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+*{box-sizing:border-box}
+a{color:#c62828;text-decoration:none}
+a:hover{color:#8b0000}
+h1,h2,h3,p{margin:0}
+::selection{background:#c62828;color:#ffffff}
+</style>
+</helmet>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:50;padding:{{ navPad }};transition:padding .35s ease">
+  <nav style="max-width:1240px;margin:0 auto;padding:6px 8px 6px 14px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-radius:20px;border:1px solid {{ navBorder }};background:{{ navBg }};box-shadow:{{ navShadow }};backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);transition:background .35s,box-shadow .35s,border-color .35s">
+    <a href="Home.dc.html" aria-label="MariaPoS home" style="display:block;width:132px;height:58px;overflow:hidden;position:relative;flex-shrink:0;border-radius:16px;background:#ffffff;box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 4px 12px -6px rgba(0,0,0,0.18)">
+      <img src="assets/marialogo.png" alt="MariaPoS — Made to Bill" style="position:absolute;width:152px;left:-11px;top:-18px;mix-blend-mode:multiply">
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:2px;padding:4px;border-radius:14px;background:rgba(26,26,26,0.04);font-size:14.5px;font-weight:500">
+        <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="0">
+          <a href="{{ l.href }}" style="color:{{ l.color }};background:{{ l.bg }};box-shadow:{{ l.sh }};padding:8px 14px;border-radius:10px;transition:background .25s,color .25s,box-shadow .25s" style-hover="background:#ffffff;color:#c62828;box-shadow:0 2px 8px -3px rgba(0,0,0,0.15)">{{ l.label }}</a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:8px">
+      <sc-if value="{{ showPhone }}" hint-placeholder-val="{{ true }}">
+        <a href="tel:+94765933255" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;color:#1a1a1a;padding:10px 12px;border-radius:12px;font-weight:600;font-size:14.5px;transition:background .25s" style-hover="background:rgba(198,40,40,0.07);color:#c62828"><span style="width:16px;height:16px;flex-shrink:0;background:#c62828;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat"></span>076 593 3255</a>
+      </sc-if>
+      <a href="#trial" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:#c62828;color:#ffffff;padding:11px 16px;border-radius:13px;font-weight:600;font-size:14.5px;box-shadow:0 6px 18px -6px rgba(198,40,40,0.55),inset 0 1px 0 rgba(255,255,255,0.25);transition:transform .2s,background .2s,box-shadow .2s" style-hover="background:#8b0000;color:#ffffff;transform:translateY(-1px);box-shadow:0 10px 24px -8px rgba(139,0,0,0.6)">Start free trial <span style="width:15px;height:15px;flex-shrink:0;background:#ffffff;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/arrow-right.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/arrow-right.svg) center/contain no-repeat"></span></a>
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="all:unset;cursor:pointer;width:44px;height:44px;border-radius:12px;background:rgba(26,26,26,0.05);display:grid;place-items:center">
+          <span style="width:20px;height:20px;background:#1a1a1a;-webkit-mask:url({{ menuIcon }}) center/contain no-repeat;mask:url({{ menuIcon }}) center/contain no-repeat"></span>
+        </button>
+      </sc-if>
+    </div>
+  </nav>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1240px;margin:8px auto 0;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid #ececec;border-radius:20px;padding:10px;display:flex;flex-direction:column;box-shadow:0 30px 60px -30px rgba(0,0,0,0.35)">
+      <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="0">
+        <a href="{{ l.href }}" onClick="{{ closeMenu }}" style="color:#1a1a1a;padding:14px 14px;border-radius:12px;font-size:17px;font-weight:500" style-hover="background:#f6f6f6;color:#c62828">{{ l.label }}</a>
+      </sc-for>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 4px 4px">
+        <a href="tel:+94765933255" style="display:flex;justify-content:center;align-items:center;gap:8px;padding:14px;border-radius:12px;background:#1a1a1a;color:#ffffff;font-weight:600"><span style="width:16px;height:16px;flex-shrink:0;background:#ffffff;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat"></span>Call</a>
+        <a href="https://wa.me/94765933255" target="_blank" rel="noopener" style="display:flex;justify-content:center;align-items:center;gap:8px;padding:14px;border-radius:12px;background:#1faa55;color:#ffffff;font-weight:600"><span style="width:16px;height:16px;flex-shrink:0;background:#ffffff;-webkit-mask:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/whatsapp.svg) center/contain no-repeat;mask:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/whatsapp.svg) center/contain no-repeat"></span>WhatsApp</a>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<main id="top">
+  <section id="product" data-screen-label="Product showcase" style="max-width:1240px;margin:0 auto;padding:150px 24px 120px;display:flex;flex-direction:column;gap:120px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:16px;max-width:720px;margin:0 auto;text-align:center;align-items:center">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#c62828">The software</span>
+      <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(32px,4vw,50px);line-height:1.08;letter-spacing:-0.03em;text-wrap:balance">One app for the counter, the stockroom and the back office</h2>
+    </div>
+
+    <sc-for list="{{ showcase }}" as="s" hint-placeholder-count="0">
+      <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:center;flex-direction:{{ s.dir }}">
+        <div data-reveal="up" style="flex:1 1 340px;display:flex;flex-direction:column;gap:18px;max-width:460px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#c62828">{{ s.num }}</span>
+          <h3 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-0.025em">{{ s.title }}</h3>
+          <p style="font-size:17px;line-height:1.65;color:#4a4a4a;text-wrap:pretty">{{ s.body }}</p>
+          <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px">
+            <sc-for list="{{ s.points }}" as="pt" hint-placeholder-count="0">
+              <span style="display:flex;gap:10px;align-items:center;font-size:15px;color:#333333"><span style="width:18px;height:18px;border-radius:50%;background:rgba(198,40,40,0.1);display:grid;place-items:center;flex-shrink:0"><span style="width:10px;height:10px;background:#c62828;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/check.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/check.svg) center/contain no-repeat"></span></span>{{ pt }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div data-reveal="scale" style="flex:1.5 1 480px;min-width:0;position:relative">
+          <div aria-hidden="true" style="position:absolute;inset:10% 8% -6%;background:radial-gradient(ellipse,rgba(198,40,40,0.18),transparent 70%);filter:blur(30px)"></div>
+          <div style="position:relative;border-radius:18px;padding:8px;background:linear-gradient(180deg,#ffffff,#f3f3f3);border:1px solid #e6e6e6;box-shadow:0 40px 80px -40px rgba(0,0,0,0.35);overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-6px);box-shadow:0 50px 90px -40px rgba(80,0,0,0.4)">
+            <sc-if value="{{ s.hasImg }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ s.img }}" alt="{{ s.alt }}" style="display:block;width:100%;height:auto;border-radius:12px">
+            </sc-if>
+            <sc-if value="{{ s.slot }}" hint-placeholder-val="{{ true }}">
+              <div style="aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:repeating-linear-gradient(135deg,#f7f7f7 0 12px,#f0f0f0 12px 24px)">
+                <image-slot id="{{ s.slotId }}" shape="rounded" radius="12" placeholder="{{ s.placeholder }}"></image-slot>
+              </div>
+            </sc-if>
+          </div>
+          <div data-float="6000" data-amp="7" style="position:absolute;{{ s.chipPos }};background:#ffffff;border:1px solid #ececec;border-radius:12px;padding:10px 14px;font-size:13px;font-weight:600;display:flex;gap:10px;align-items:center;box-shadow:0 18px 36px -18px rgba(0,0,0,0.3)">
+            <span style="width:8px;height:8px;border-radius:50%;background:#c62828;box-shadow:0 0 0 4px rgba(198,40,40,0.15)"></span>{{ s.chip }}
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section id="trial" data-screen-label="Final CTA" style="padding:0 24px 120px">
+    <div data-reveal="scale" style="position:relative;overflow:hidden;max-width:1240px;margin:0 auto;border-radius:32px;background:#c62828;color:#ffffff;padding:clamp(40px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:48px;align-items:center">
+      <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(ellipse at 90% 0%,rgba(255,255,255,0.22),transparent 50%),radial-gradient(ellipse at 0% 100%,rgba(139,0,0,0.9),transparent 60%)"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.14) 1px,transparent 1px);background-size:20px 20px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 60%);mask-image:linear-gradient(90deg,#000,transparent 60%)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:18px">
+        <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-0.035em;text-wrap:balance">Run your shop on MariaPoS for 7 days, free.</h2>
+        <p style="font-size:18px;line-height:1.6;color:#ffe3e0">Full access, no credit card. One trial per business.</p>
+        <div id="demo" style="display:flex;gap:10px;align-items:center;font-size:15px;color:#ffffff">Prefer a walkthrough? <a href="mailto:mariaPOS@gmail.com?subject=MariaPoS%20demo" style="color:#ffffff;font-weight:600;text-decoration:underline;text-underline-offset:4px">Book a demo</a></div>
+      </div>
+      <form onSubmit="{{ submitTrial }}" style="position:relative;display:flex;flex-direction:column;gap:12px;background:#ffffff;color:#1a1a1a;padding:32px;border-radius:22px;box-shadow:0 40px 80px -30px rgba(60,0,0,0.6)">
+        <sc-if value="{{ trialSent }}" hint-placeholder-val="{{ false }}">
+          <p style="font-weight:600;font-size:17px;line-height:1.5">Thanks — check your email for your trial login and the Windows installer.</p>
+        </sc-if>
+        <sc-if value="{{ trialForm }}" hint-placeholder-val="{{ true }}">
+          <span style="font-family:'Poppins',sans-serif;font-weight:600;font-size:18px">Start your free trial</span>
+          <input required="" aria-label="Business name" placeholder="Business name" style="padding:15px 16px;border:1px solid #dcdcdc;border-radius:10px;font:inherit;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s" style-focus="border-color:#c62828;box-shadow:0 0 0 4px rgba(198,40,40,0.12)">
+          <input required="" type="email" aria-label="Email" placeholder="Email" style="padding:15px 16px;border:1px solid #dcdcdc;border-radius:10px;font:inherit;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s" style-focus="border-color:#c62828;box-shadow:0 0 0 4px rgba(198,40,40,0.12)">
+          <input aria-label="Phone" placeholder="Phone (optional)" style="padding:15px 16px;border:1px solid #dcdcdc;border-radius:10px;font:inherit;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s" style-focus="border-color:#c62828;box-shadow:0 0 0 4px rgba(198,40,40,0.12)">
+          <button type="submit" style="all:unset;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:10px;background:#1a1a1a;color:#ffffff;padding:16px;border-radius:12px;font-weight:600;font-size:17px;transition:background .25s,transform .25s" style-hover="background:#8b0000;transform:translateY(-1px)">Start 7-Day Free Trial <span style="width:18px;height:18px;background:#ffffff;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/arrow-right.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/arrow-right.svg) center/contain no-repeat"></span></button>
+        </sc-if>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer id="contact" style="background:#0c0c0c;color:#bdbdbd;position:relative;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;width:900px;height:500px;left:50%;top:-260px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(198,40,40,0.32),transparent 65%);filter:blur(24px)"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 60%);mask-image:linear-gradient(180deg,#000,transparent 60%)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:96px 24px 32px;display:flex;flex-direction:column;gap:64px">
+    <div data-reveal="up" style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:560px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#ff8a80">Talk to us</span>
+        <h2 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(32px,4.4vw,56px);line-height:1.04;letter-spacing:-0.035em;color:#ffffff;text-wrap:balance">Questions before you start? Call or message us.</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="tel:+94765933255" style="display:inline-flex;align-items:center;gap:12px;white-space:nowrap;background:#ffffff;color:#1a1a1a;padding:16px 22px;border-radius:14px;font-weight:600;font-size:16px;transition:transform .25s,box-shadow .25s" style-hover="color:#1a1a1a;transform:translateY(-2px);box-shadow:0 16px 30px -14px rgba(255,255,255,0.4)"><span style="width:18px;height:18px;flex-shrink:0;background:#c62828;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat"></span>076 593 3255</a>
+        <a href="https://wa.me/94765933255" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;white-space:nowrap;background:#1faa55;color:#ffffff;padding:16px 22px;border-radius:14px;font-weight:600;font-size:16px;transition:transform .25s,box-shadow .25s,background .25s" style-hover="color:#ffffff;background:#178f47;transform:translateY(-2px);box-shadow:0 16px 30px -14px rgba(31,170,85,0.6)"><span style="width:18px;height:18px;flex-shrink:0;background:#ffffff;-webkit-mask:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/whatsapp.svg) center/contain no-repeat;mask:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/whatsapp.svg) center/contain no-repeat"></span>WhatsApp us</a>
+      </div>
+    </div>
+    <div id="download" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center;padding:24px 28px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:linear-gradient(120deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))">
+      <div style="display:flex;gap:16px;align-items:center">
+        <span style="width:48px;height:48px;border-radius:14px;background:linear-gradient(160deg,#e53935,#8b0000);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3)"><span style="width:22px;height:22px;flex-shrink:0;background:#ffffff;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/monitor.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/monitor.svg) center/contain no-repeat"></span></span>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:'Poppins',sans-serif;font-weight:600;font-size:18px;color:#ffffff">Download MariaPoS for Windows</span>
+          <span style="font-size:14px">Windows 10+ · Touch & standard screens · Barcode scanners · Receipt printers</span>
+        </div>
+      </div>
+      <a href="#download" style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#ffffff;padding:13px 20px;border-radius:12px;font-weight:600;transition:background .25s" style-hover="background:rgba(255,255,255,0.18);color:#ffffff"><span style="width:17px;height:17px;flex-shrink:0;background:#ffffff;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/download.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/download.svg) center/contain no-repeat"></span>Download installer</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:40px">
+      <div style="display:flex;flex-direction:column;gap:14px;grid-column:span 2;min-width:0;max-width:340px">
+        <span style="display:block;width:140px;height:62px;overflow:hidden;position:relative;background:#ffffff;border-radius:14px"><img src="assets/marialogo.png" alt="MariaPoS" style="position:absolute;width:160px;left:-12px;top:-19px"></span>
+        <span style="font-size:14px;line-height:1.6">Offline-first Windows POS by JAAN Network (PVT) Ltd.</span>
+        <span style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5"><span style="width:16px;height:16px;flex-shrink:0;background:#ff8a80;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/map-pin.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/map-pin.svg) center/contain no-repeat"></span>46 Hudson Road, Colombo, Sri Lanka</span>
+        <a href="mailto:mariaPOS@gmail.com" style="display:flex;gap:10px;align-items:center;color:#ffffff;font-size:14px"><span style="width:16px;height:16px;flex-shrink:0;background:#ff8a80;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/mail.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/mail.svg) center/contain no-repeat"></span>mariaPOS@gmail.com</a>
+        <a href="tel:+94765933255" style="display:flex;gap:10px;align-items:center;color:#ffffff;font-size:14px"><span style="width:16px;height:16px;flex-shrink:0;background:#ff8a80;-webkit-mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat;mask:url(https://unpkg.com/lucide-static@0.460.0/icons/phone.svg) center/contain no-repeat"></span>076 593 3255</a>
+      </div>
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="0">
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:14px">
+          <span style="color:#ffffff;font-weight:600;font-size:14px">{{ c.title }}</span>
+          <sc-for list="{{ c.links }}" as="fl" hint-placeholder-count="0">
+            <a href="{{ fl.href }}" style="color:#bdbdbd;transition:color .2s,transform .2s;display:inline-block" style-hover="color:#ffffff;transform:translateX(3px)">{{ fl.label }}</a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div aria-hidden="true" style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(64px,15vw,210px);line-height:0.8;letter-spacing:-0.05em;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0));-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none;margin-bottom:-24px">MariaPoS</div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;font-size:13px">
+      <span>© 2026 JAAN Network (PVT) Ltd. All rights reserved.</span>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <a href="#terms" style="color:#bdbdbd" style-hover="color:#ffffff">Terms</a>
+        <a href="#privacy" style="color:#bdbdbd" style-hover="color:#ffffff">Privacy</a>
+        <a href="#refunds" style="color:#bdbdbd" style-hover="color:#ffffff">Refund policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: 0, trialSent: false, tab: 0, scrolled: false, w: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false, waTip: true };
+
+  componentDidMount() {
+    this._onScroll = () => { const s = window.scrollY > 12; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onResize);
+    this._reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._t = setTimeout(() => this.setupMotion(), 60);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onResize);
+    clearTimeout(this._t); this._io && this._io.disconnect(); this._mo && this._mo.disconnect();
+  }
+  componentDidUpdate(_, prev) { if (prev.tab !== this.state.tab) setTimeout(() => this.animateDecor(), 30); }
+
+  setupMotion() {
+    if (this._reduce) return;
+    const mobile = window.innerWidth < 760;
+    const from = { up: 'translateY(28px)', right: mobile ? 'translateY(28px)' : 'translateX(70px)', scale: 'scale(0.94)' };
+    this._from = from; this._mobile = mobile;
+    this._io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      el.style.opacity = '';
+      el.animate([{ opacity: 0, transform: from[el.dataset.reveal] || from.up, filter: 'blur(6px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }],
+        { duration: mobile ? 600 : 900, delay: +(el.dataset.delay || 0), easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' });
+      el.querySelectorAll('[data-grow]').forEach((b, i) => b.animate([{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 900, delay: 200 + i * 70, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' }));
+      this._io.unobserve(el);
+    }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    this.scan();
+    let pend = 0;
+    this._mo = new MutationObserver(() => { if (pend) return; pend = requestAnimationFrame(() => { pend = 0; this.scan(); }); });
+    this._mo.observe(document.body, { childList: true, subtree: true });
+  }
+  scan() {
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      if (el._rv) return; el._rv = true;
+      el.style.opacity = '0';
+      this._io.observe(el);
+    });
+    this.animateDecor();
+  }
+  animateDecor() {
+    if (this._reduce) return;
+    const mobile = window.innerWidth < 760;
+    document.querySelectorAll('[data-float]').forEach(el => {
+      if (el._floating) return; el._floating = true;
+      const a = (+el.dataset.amp || 8) * (mobile ? 0.5 : 1);
+      el.animate([{ transform: 'translateY(0)' }, { transform: `translateY(${-a}px)` }], { duration: +el.dataset.float || 6000, direction: 'alternate', iterations: Infinity, easing: 'ease-in-out' });
+    });
+    document.querySelectorAll('[data-pulse]').forEach(el => {
+      if (el._p) return; el._p = true;
+      el.animate([{ transform: 'scale(1)', opacity: 0.8 }, { transform: 'scale(1.9)', opacity: 0 }], { duration: 1800, delay: +el.dataset.pulse, iterations: Infinity, easing: 'ease-out' });
+    });
+    document.querySelectorAll('[data-ring]').forEach(el => {
+      if (el._r) return; el._r = true;
+      el.animate([{ transform: 'rotate(0)' }, { transform: 'rotate(-14deg)', offset: 0.04 }, { transform: 'rotate(14deg)', offset: 0.08 }, { transform: 'rotate(-10deg)', offset: 0.12 }, { transform: 'rotate(10deg)', offset: 0.16 }, { transform: 'rotate(0)', offset: 0.2 }, { transform: 'rotate(0)' }], { duration: 3200, iterations: Infinity });
+    });
+    document.querySelectorAll('[data-dash]').forEach(el => {
+      if (el._dash) return; el._dash = true;
+      el.animate([{ strokeDashoffset: 24 }, { strokeDashoffset: 0 }], { duration: 900, iterations: Infinity });
+    });
+  }
+
+  renderVals() {
+    const PAGE = 'product';
+    const I = n => `https://unpkg.com/lucide-static@0.460.0/icons/${n}.svg`;
+    const { w, tab, scrolled, open } = this.state;
+    const narrow = w < 1120;
+    const bentoCols = w < 700 ? 1 : w < 1000 ? 2 : 6;
+    const faqData = [
+      ['What happens when my license term ends?', 'MariaPoS reminds you before expiry. Renew from this site through PayHere and your license extends without reinstalling or losing data.'],
+      ['Are SMS receipts included?', 'SMS receipts draw from a prepaid SMS-credit wallet tied to your license. They are not unlimited. You can top up anytime, and the cashier always sees how many messages are left.'],
+      ['Does it work without internet?', 'Yes. Billing, stock and shifts run fully offline. The license is checked and data syncs to the cloud panel whenever the connection returns.'],
+      ['How do I move from the trial to a paid plan?', 'Buy any plan with the same account. Your trial data stays in place.'],
+      ['Can I get a refund?', 'See our refund policy for eligibility and timelines.']
+    ];
+    const tabData = [
+      { title: 'SMS bill receipts', icon: I('message-square'), body: 'The receipt goes to the customer\'s phone at checkout, ready for warranty or return lookups later. Messages draw from a prepaid SMS wallet on your license, and the cashier sees the live balance before every sale.' },
+      { title: 'Telegram order alerts', icon: I('send'), body: 'Every completed sale sends a "New Order" message with the items to the owner\'s Telegram. Follow each branch from your phone without opening the POS or a dashboard.' },
+      { title: 'Two-way cloud sync', icon: I('cloud'), body: 'Sales never wait on the internet. When the till reconnects, sales, stock, suppliers, customers, credit and expenses sync to your cloud panel, so your data isn\'t stuck on one machine.' }
+    ];
+    const bars = [38, 52, 44, 70, 58, 82, 66, 92];
+    return {
+      navBg: scrolled || this.state.menuOpen ? 'rgba(255,255,255,0.78)' : 'rgba(255,255,255,0)',
+      navShadow: scrolled ? '0 12px 32px -18px rgba(0,0,0,0.28)' : 'none',
+      navBorder: scrolled ? 'rgba(0,0,0,0.07)' : 'rgba(0,0,0,0)',
+      navPad: scrolled ? '10px 16px' : '16px 16px',
+      showPhone: w >= 1260, hwItemCols: w >= 1000 ? 4 : w >= 560 ? 2 : 1, waTip: this.state.waTip, closeWaTip: () => this.setState({ waTip: false }),
+            hwItems: [
+        ['Touch & standard screens', 'Large tap targets for touch tills. Full keyboard shortcuts and mouse support on regular monitors.', 'hand'],
+        ['Barcode scanners', 'Plug in a USB scanner and scan straight into the cart or product search.', 'scan-barcode'],
+        ['Bill printing', 'Print receipts on ESC/POS thermal printers at checkout.', 'printer'],
+        ['Barcode label printing', 'Print barcode labels for products that arrive without one.', 'tag']
+      ].map(([title, body, ic], i) => ({ title, body, icon: I(ic), delay: i * 80 })),
+      wide: !narrow, narrow, menuOpen: narrow && this.state.menuOpen,
+      menuIcon: this.state.menuOpen ? I('x') : I('menu'),
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      navLinks: [['Features', 'Features.dc.html', 'features'], ['Product', 'Product.dc.html', 'product'], ['Hardware', 'Hardware.dc.html', 'hardware'], ['Pricing', 'Pricing.dc.html', 'pricing'], ['Contact', 'Contact.dc.html', 'contact']].map(([label, href, k]) => ({ label, href, color: PAGE === k ? '#c62828' : '#333333', bg: PAGE === k ? '#ffffff' : 'transparent', sh: PAGE === k ? '0 2px 8px -3px rgba(0,0,0,0.15)' : 'none' })),
+      whyCols: w < 700 ? 1 : w < 1000 ? 2 : 3, exploreCols: w < 600 ? 1 : w < 1000 ? 2 : 4,
+      why: [
+        ['Never lose a sale to the internet', 'Billing, stock and shifts run fully offline. Everything syncs to your cloud panel when the connection returns.', 'wifi-off'],
+        ['Stock that matches the shelf', 'Every sale, return and goods receipt moves stock through FIFO batches, so counts and valuation stay accurate.', 'package'],
+        ['Cash you can account for', 'Cashiers open and close shifts. The till ledger records cash-in, cash-out and any short or excess.', 'wallet'],
+        ['Receipts on the customer\'s phone', 'Send the bill as an SMS eBill at checkout, with invoice, items, totals and balance.', 'message-square'],
+        ['Every sale on your phone', 'Telegram alerts send the owner each new order with its items, from every branch.', 'send'],
+        ['Fits the counter you already have', 'Touch or standard screens, USB barcode scanners, and bill and barcode label printers.', 'printer']
+      ].map(([title, body, ic], i) => ({ title, body, icon: I(ic), num: String(i + 1).padStart(2, '0'), delay: (i % 3) * 90 })),
+      explore: [
+        { title: 'Features', sub: 'SMS, Telegram, cloud sync & more', href: 'Features.dc.html', img: 'assets/hw-a.jpeg', alt: 'MariaPoS on a monitor with phone and receipt printer', pos: '70% 50%' },
+        { title: 'Product', sub: 'Billing and reports screens', href: 'Product.dc.html', img: 'assets/pos-billing.png', alt: 'MariaPoS billing screen', pos: '0% 0%' },
+        { title: 'Hardware', sub: 'Screens, scanners, printers', href: 'Hardware.dc.html', img: 'assets/hw-c.jpeg', alt: 'Cashier at a MariaPoS touch-screen till', pos: '55% 50%' },
+        { title: 'Pricing', sub: 'From $95.55 per year', href: 'Pricing.dc.html', img: 'assets/hw-b.jpeg', alt: 'MariaPoS staff at the counter', pos: '60% 30%' }
+      ].map((x, i) => ({ ...x, delay: i * 80 })),
+      heroTilt: w < 900 ? 'none' : 'perspective(1800px) rotateY(-9deg) rotateX(4deg)',
+      sparkBars: [30, 45, 38, 60, 52, 70, 48, 80, 66, 95].map((h, i) => ({ h: h + '%', bg: i === 9 ? '#c62828' : 'rgba(198,40,40,0.22)' })),
+      trust: [
+        ['7-day free trial', 'calendar-check'], ['No credit card required', 'credit-card'], ['Works offline', 'wifi-off'],
+        ['Cloud sync', 'cloud'], ['SMS receipts', 'message-square'], ['Telegram alerts', 'send']
+      ].map(([label, ic], i) => ({ label, icon: I(ic), delay: i * 60 })),
+      showcase: [
+        { num: '01 — POS Billing', title: 'Checkout built for the keyboard and the queue', body: 'Search by name or scan a barcode, add quick items from the favourites row, and finish the sale from the keypad. Discounts, promo codes and split payments sit next to the cart.', points: ['Shortcuts for every action (F1–F12)', 'Cash, card, credit and split payments', 'Customer phone for SMS receipts'], hasImg: true, img: 'assets/pos-billing.png', alt: 'MariaPoS POS Billing screen', slot: false, chip: 'FIFO stock deducted', chipPos: 'left:-14px;bottom:28px', dir: 'row' },
+        { num: '02 — Reports', title: 'See what sold, how it was paid and what you made', body: 'Sales, inventory, customer, shift, cashier, payment-method, expense, P&L and supplier reports, filtered by date and exportable.', points: ['Total sales, cost and net profit at a glance', 'Credit and payables outstanding', 'Product-wise revenue and profit'], hasImg: true, img: 'assets/reports.png', alt: 'MariaPoS Reports & Analytics screen', slot: false, chip: 'Net profit by date range', chipPos: 'right:-14px;bottom:28px', dir: 'row-reverse' }
+      ],
+      tabs: tabData.map((t, i) => ({ ...t, active: tab === i, select: () => this.setState({ tab: i }),
+        bg: tab === i ? 'rgba(255,255,255,0.07)' : 'transparent',
+        border: tab === i ? 'rgba(255,138,128,0.45)' : 'rgba(255,255,255,0.1)',
+        iconBg: tab === i ? '#c62828' : 'rgba(255,255,255,0.1)' })),
+      tabSms: tab === 0, tabTg: tab === 1, tabCloud: tab === 2,
+      tgMsgs: [
+        { title: 'New Order · Branch 2', items: '3 M 1*10 Plaster ×2, 4Ever Aloe Vera Gel ×1', total: '$1,200.00', dur: 5200, op: 1 },
+        { title: 'New Order · Branch 1', items: 'Empty bottle 19L ×1', total: '$1,500.00', dur: 6000, op: 0.75 },
+        { title: 'New Order · Branch 2', items: 'apple13 ×1', total: '$1,000.00', dur: 6800, op: 0.5 }
+      ],
+      branches: [{ name: 'Branch 1', state: 'Synced', top: '17.6%' }, { name: 'Branch 2', state: 'Synced', top: '50%' }, { name: 'Owner panel', state: 'Up to date', top: '82.4%' }],
+      bentoCols, spanL: bentoCols === 6 ? 4 : bentoCols, spanS: bentoCols === 6 ? 2 : 1,
+      keys: ['7', '8', '9', '4', '5', '6', '1', '2', '3'],
+      reportBars: bars.map((h, i) => ({ h: h + '%', bg: i === bars.length - 1 ? '#c62828' : 'rgba(255,255,255,0.14)' })),
+      included: ['Every billing, inventory & report feature', 'Cloud sync & Telegram alerts', 'SMS receipts (prepaid credits)', 'Updates for the full term', 'Email support'],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a, open: open === i, sign: open === i ? '−' : '+',
+        bg: open === i ? '#fbf7f7' : '#ffffff', border: open === i ? 'rgba(198,40,40,0.3)' : '#ececec',
+        toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i }))
+      })),
+      trialSent: this.state.trialSent, trialForm: !this.state.trialSent,
+      submitTrial: e => { e.preventDefault(); this.setState({ trialSent: true }); },
+      footerCols: [
+        { title: 'Product', links: [{ label: 'Features', href: 'Features.dc.html' }, { label: 'Pricing', href: 'Pricing.dc.html' }, { label: 'Download', href: '#download' }, { label: 'Free trial', href: '#trial' }] },
+        { title: 'Features', links: [{ label: 'SMS receipts', href: 'Features.dc.html#connected' }, { label: 'Telegram alerts', href: 'Features.dc.html#connected' }, { label: 'Cloud sync', href: 'Features.dc.html#connected' }, { label: 'Reports', href: 'Features.dc.html' }] },
+        { title: 'Company', links: [{ label: 'Hardware', href: 'Hardware.dc.html' }, { label: 'Contact', href: 'Contact.dc.html' }, { label: 'Book a demo', href: '#demo' }, { label: 'FAQ', href: 'Pricing.dc.html#faq' }] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
