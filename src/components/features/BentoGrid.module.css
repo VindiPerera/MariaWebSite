@@ -1,0 +1,321 @@
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 150px 24px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  max-width: 620px;
+}
+
+.intro {
+  max-width: 420px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.large {
+  grid-column: span 4;
+}
+
+.small {
+  grid-column: span 2;
+}
+
+.softIcon,
+.solidIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+}
+
+.softIcon {
+  background: rgba(198, 40, 40, 0.1);
+}
+
+.solidIcon {
+  background: var(--red);
+}
+
+.titleLarge {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.titleSmall {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+}
+
+/* ---------- Standard card ---------- */
+
+.card {
+  border-radius: 22px;
+  border: 1px solid #ebebeb;
+  background: #ffffff;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.25);
+  border-color: rgba(198, 40, 40, 0.35);
+}
+
+.body {
+  line-height: 1.6;
+  color: #555555;
+  font-size: 15px;
+}
+
+/* ---------- POS Billing ---------- */
+
+.billing {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid #ebebeb;
+  background: linear-gradient(160deg, #ffffff, #fbf5f5);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 320px;
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+
+.billing:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -30px rgba(139, 0, 0, 0.35);
+  border-color: rgba(198, 40, 40, 0.35);
+}
+
+.billingBody {
+  line-height: 1.6;
+  color: #4a4a4a;
+  max-width: 380px;
+}
+
+.keypad {
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+  width: 280px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  transform: rotate(-8deg);
+  opacity: 0.95;
+}
+
+.key {
+  background: var(--red);
+  color: #ffffff;
+  border-radius: 10px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  box-shadow: 0 8px 16px -10px rgba(139, 0, 0, 0.8);
+}
+
+/* ---------- Shifts ---------- */
+
+.ledger {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-family: var(--font-code);
+}
+
+.ledgerRow {
+  display: flex;
+  justify-content: space-between;
+  background: #f6f6f6;
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+
+.ledgerShort {
+  background: rgba(198, 40, 40, 0.08);
+  color: var(--red-dark);
+}
+
+/* ---------- Inventory ---------- */
+
+.batches {
+  margin-top: auto;
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  height: 54px;
+}
+
+.batch {
+  border-radius: 6px;
+}
+
+/* ---------- Suppliers ---------- */
+
+.pill {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--ink);
+  color: #ffffff;
+  border-radius: 99px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pillDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+/* ---------- Reports ---------- */
+
+.reports {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid #232323;
+  background: #161616;
+  color: #ffffff;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 28px;
+  align-items: end;
+  min-height: 300px;
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s;
+}
+
+.reports:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -30px rgba(139, 0, 0, 0.6);
+}
+
+.reportsGlow {
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 40, 40, 0.4), transparent 65%);
+  filter: blur(10px);
+}
+
+.reportsCopy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reportsBody {
+  line-height: 1.6;
+  color: #c9c9c9;
+}
+
+.chart {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 150px;
+}
+
+.chartBar,
+.chartBarActive {
+  flex: 1;
+  border-radius: 6px 6px 2px 2px;
+  background: rgba(255, 255, 255, 0.14);
+  transform-origin: bottom;
+}
+
+.chartBarActive {
+  background: var(--red);
+}
+
+/* ---------- Users ---------- */
+
+.roles {
+  margin-top: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.role {
+  border: 1px solid #e3e3e3;
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-size: 13px;
+}
+
+@media (max-width: 999px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .large {
+    grid-column: span 2;
+  }
+
+  .small {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 699px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .large,
+  .small {
+    grid-column: span 1;
+  }
+}

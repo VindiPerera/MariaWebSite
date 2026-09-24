@@ -1,0 +1,239 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 16px 16px;
+  transition: padding 0.35s ease;
+}
+
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 6px 8px 6px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  background: rgba(255, 255, 255, 0);
+  box-shadow: none;
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  transition:
+    background 0.35s,
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+
+.scrolled {
+  padding: 10px 16px;
+}
+
+.solid .nav {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.scrolled .nav {
+  border-color: rgba(0, 0, 0, 0.07);
+  box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.28);
+}
+
+.logo {
+  display: block;
+  width: 132px;
+  height: 58px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 4px 12px -6px rgba(0, 0, 0, 0.18);
+}
+
+.logo img {
+  position: absolute;
+  width: 152px;
+  height: auto;
+  left: -11px;
+  top: -18px;
+  mix-blend-mode: multiply;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 14px;
+  background: rgba(26, 26, 26, 0.04);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.link {
+  color: #333333;
+  background: transparent;
+  box-shadow: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+}
+
+.link:hover,
+.link.active {
+  background: #ffffff;
+  color: var(--red);
+  box-shadow: 0 2px 8px -3px rgba(0, 0, 0, 0.15);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.phone {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14.5px;
+  transition: background 0.25s;
+}
+
+.phone:hover {
+  background: rgba(198, 40, 40, 0.07);
+  color: var(--red);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  background: var(--red);
+  color: #ffffff;
+  padding: 11px 16px;
+  border-radius: 13px;
+  font-weight: 600;
+  font-size: 14.5px;
+  box-shadow:
+    0 6px 18px -6px rgba(198, 40, 40, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.cta:hover {
+  background: var(--red-dark);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -8px rgba(139, 0, 0, 0.6);
+}
+
+.menuButton {
+  all: unset;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(26, 26, 26, 0.05);
+  display: none;
+  place-items: center;
+  color: var(--ink);
+}
+
+.menuPanel {
+  max-width: var(--max-width);
+  margin: 8px auto 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #ececec;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.35);
+}
+
+.menuLink {
+  color: var(--ink);
+  padding: 14px 14px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.menuLink:hover {
+  background: #f6f6f6;
+  color: var(--red);
+}
+
+.menuActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 8px 4px 4px;
+}
+
+.menuCall,
+.menuWhatsApp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.menuCall {
+  background: var(--ink);
+}
+
+.menuWhatsApp {
+  background: var(--whatsapp);
+}
+
+.menuCall:hover,
+.menuWhatsApp:hover {
+  color: #ffffff;
+}
+
+@media (min-width: 1260px) {
+  .phone {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 1119px) {
+  .links {
+    display: none;
+  }
+
+  .menuButton {
+    display: grid;
+  }
+}
+
+@media (min-width: 1120px) {
+  .menuPanel {
+    display: none;
+  }
+}

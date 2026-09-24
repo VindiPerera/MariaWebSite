@@ -1,0 +1,128 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 24px 80px;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26, 26, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, #000 30%, transparent 80%);
+}
+
+.glow {
+  position: absolute;
+  width: 700px;
+  height: 500px;
+  left: 50%;
+  top: -200px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(198, 40, 40, 0.18), transparent 65%);
+  filter: blur(20px);
+}
+
+.inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  border-radius: 22px;
+  border: 1px solid #ebebeb;
+  background: #ffffff;
+}
+
+.linkCard {
+  color: var(--ink);
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+
+.linkCard:hover {
+  color: var(--ink);
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(198, 40, 40, 0.35);
+}
+
+.whatsAppCard:hover {
+  border-color: rgba(31, 170, 85, 0.45);
+}
+
+.card .whatsAppTile {
+  background: linear-gradient(160deg, #4ee08a, var(--whatsapp) 50%, #0b6b31);
+  box-shadow:
+    0 12px 24px -12px rgba(11, 107, 49, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+}
+
+.cardValue {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--red);
+}
+
+.whatsAppValue {
+  color: var(--whatsapp-dark);
+}
+
+.cardText {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: #444444;
+}
+
+@media (max-width: 999px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 699px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
