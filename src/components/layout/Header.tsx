@@ -30,8 +30,14 @@ export function Header() {
   return (
     <header className={headerClass}>
       <nav className={styles.nav}>
-        <Link href="/" aria-label="MariaPoS home" className={styles.logo} onClick={closeMenu}>
-          <Image src={logo} alt="MariaPoS — Made to Bill" width={152} priority />
+        <Link href="/" aria-label="MariaPoS home" className={styles.brand} onClick={closeMenu}>
+          <Image
+            src={logo}
+            alt="MariaPoS — Made to Bill"
+            height={42}
+            className={styles.brandImage}
+            priority
+          />
         </Link>
 
         <div className={styles.links}>
@@ -49,11 +55,12 @@ export function Header() {
 
         <div className={styles.actions}>
           <a href={site.phoneHref} className={styles.phone}>
-            <Phone size={16} color="var(--red)" />
-            {site.phone}
+            <Phone size={15} color="var(--red)" />
+            <span>{site.phone}</span>
           </a>
           <a href="#trial" className={styles.cta}>
-            Start free trial <ArrowRight size={15} />
+            <span>Start free trial</span>
+            <ArrowRight size={15} />
           </a>
           <button
             type="button"

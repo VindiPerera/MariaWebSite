@@ -18,9 +18,9 @@ const cards: { title: string; sub: string; href: string; img: StaticImageData; a
   },
   { title: "Product", sub: "Billing and reports screens", href: "/product", img: posBilling, alt: "MariaPoS billing screen", pos: "0% 0%" },
   {
-    title: "Hardware",
-    sub: "Screens, scanners, printers",
-    href: "/hardware",
+    title: "Hardware Ready",
+    sub: "Touchscreens, thermal printers & scanners",
+    href: "/product#hardware-ready",
     img: hwC,
     alt: "Cashier at a MariaPoS touch-screen till",
     pos: "55% 50%",

@@ -1,81 +1,241 @@
+"use client";
+
+import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import { Check } from "lucide-react";
+import { Check, CheckCircle2, ChevronRight, Cpu, Monitor, Printer, QrCode, Shield, Sparkles } from "lucide-react";
 import posBilling from "@/assets/images/pos-billing.png";
 import reports from "@/assets/images/reports.png";
+import hwA from "@/assets/images/hw-a.jpeg";
+import hwB from "@/assets/images/hw-b.jpeg";
+import hwC from "@/assets/images/hw-c.jpeg";
 import styles from "./Showcase.module.css";
 
-type Feature = {
-  num: string;
-  title: string;
-  body: string;
-  points: string[];
-  img: StaticImageData;
-  alt: string;
-  chip: string;
-  reverse: boolean;
-};
-
-const features: Feature[] = [
+const hardwareItems = [
   {
-    num: "01 — POS Billing",
-    title: "Checkout built for the keyboard and the queue",
-    body: "Search by name or scan a barcode, add quick items from the favourites row, and finish the sale from the keypad. Discounts, promo codes and split payments sit next to the cart.",
-    points: ["Shortcuts for every action (F1–F12)", "Cash, card, credit and split payments", "Customer phone for SMS receipts"],
-    img: posBilling,
-    alt: "MariaPoS POS Billing screen",
-    chip: "FIFO stock deducted",
-    reverse: false,
+    title: "Counter Touchscreens & Standard Monitors",
+    desc: "Optimized for both capacitive touchscreens and keyboard-driven standard desktop PCs. High contrast, large hit areas for fast billing.",
+    img: hwC,
+    badge: "Touch & Desktop",
   },
   {
-    num: "02 — Reports",
-    title: "See what sold, how it was paid and what you made",
-    body: "Sales, inventory, customer, shift, cashier, payment-method, expense, P&L and supplier reports, filtered by date and exportable.",
-    points: ["Total sales, cost and net profit at a glance", "Credit and payables outstanding", "Product-wise revenue and profit"],
-    img: reports,
-    alt: "MariaPoS Reports & Analytics screen",
-    chip: "Net profit by date range",
-    reverse: true,
+    title: "Thermal ESC/POS Receipt Printers",
+    desc: "Plug-and-play support for all standard 80mm and 58mm USB/Ethernet thermal printers. Custom receipt headers, Sinhala/Tamil support, and auto-cutter.",
+    img: hwA,
+    badge: "Auto-Cut & RJ11",
+  },
+  {
+    title: "1D / 2D Barcode Scanners & Cash Drawers",
+    desc: "Compatible with any handheld or hands-free omnidirectional USB barcode scanner. Direct RJ11 cash drawer trigger on bill payment.",
+    img: hwB,
+    badge: "Instant USB Scan",
   },
 ];
 
 export function Showcase() {
-  return (
-    <section id="product" className={styles.section}>
-      <div data-reveal="up" className="section-intro">
-        <span className="eyebrow">The software</span>
-        <h2 className="section-title">One app for the counter, the stockroom and the back office</h2>
-      </div>
+  const [activeTab, setActiveTab] = useState<"billing" | "reports">("billing");
 
-      {features.map((feature) => (
-        <div key={feature.num} className={`${styles.row} ${feature.reverse ? styles.reverse : ""}`}>
-          <div data-reveal="up" className={styles.copy}>
-            <span className={styles.num}>{feature.num}</span>
-            <h3 className={styles.title}>{feature.title}</h3>
-            <p className={styles.body}>{feature.body}</p>
-            <div className={styles.points}>
-              {feature.points.map((point) => (
-                <span key={point} className={styles.point}>
-                  <span className={styles.check}>
-                    <Check size={10} color="var(--red)" />
-                  </span>
-                  {point}
+  return (
+    <div className={styles.wrapper}>
+      {/* Product Hero */}
+      <section id="product" className={styles.heroSection}>
+        <div data-reveal="up" className={styles.intro}>
+          <span className="eyebrow">The Desktop Engine</span>
+          <h1 className="section-title">Built for high-traffic retail counters</h1>
+          <p className="lead">
+            MariaPoS is a native Windows desktop application with zero web lag. It runs directly on your counter PC with a local SQLite database that never stops, even during network dropouts.
+          </p>
+
+          <div className={styles.screenTabs}>
+            <button
+              type="button"
+              onClick={() => setActiveTab("billing")}
+              className={`${styles.tabBtn} ${activeTab === "billing" ? styles.tabBtnActive : ""}`}
+            >
+              <Monitor size={16} />
+              <span>01. Counter Billing Terminal</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("reports")}
+              className={`${styles.tabBtn} ${activeTab === "reports" ? styles.tabBtnActive : ""}`}
+            >
+              <Sparkles size={16} />
+              <span>02. Management &amp; P&amp;L Reports</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Tab 1: Billing Screen */}
+        {activeTab === "billing" && (
+          <div data-reveal="scale" className={styles.showcaseCard}>
+            <div className={styles.cardHeader}>
+              <div className={styles.cardHeaderLeft}>
+                <span className={styles.screenDot} />
+                <span className={styles.screenTitle}>MariaPoS · POS Billing Terminal [Shortcuts Enabled]</span>
+              </div>
+              <span className={styles.cardTag}>FIFO Auto-Deduction</span>
+            </div>
+
+            <div className={styles.imageFrame}>
+              <Image
+                src={posBilling}
+                alt="MariaPoS Counter Billing Screen"
+                className={styles.screenshot}
+                sizes="(max-width: 1200px) 100vw, 1100px"
+                priority
+              />
+            </div>
+
+            <div className={styles.highlightsGrid}>
+              <div className={styles.highlightItem}>
+                <span className={styles.highlightIcon}>
+                  <Check size={14} color="var(--red)" strokeWidth={3} />
                 </span>
-              ))}
+                <div className={styles.highlightText}>
+                  <strong>Instant Barcode Scanner Read</strong>
+                  <span>Item added to cart with zero keyboard intervention.</span>
+                </div>
+              </div>
+
+              <div className={styles.highlightItem}>
+                <span className={styles.highlightIcon}>
+                  <Check size={14} color="var(--red)" strokeWidth={3} />
+                </span>
+                <div className={styles.highlightText}>
+                  <strong>Cashier Shortcuts (F1–F12)</strong>
+                  <span>Search, hold cart, apply line discounts, and checkout in seconds.</span>
+                </div>
+              </div>
+
+              <div className={styles.highlightItem}>
+                <span className={styles.highlightIcon}>
+                  <Check size={14} color="var(--red)" strokeWidth={3} />
+                </span>
+                <div className={styles.highlightText}>
+                  <strong>Split &amp; Credit Payments</strong>
+                  <span>Accept partial cash, card swipe, and account credit on a single bill.</span>
+                </div>
+              </div>
             </div>
           </div>
+        )}
 
-          <div data-reveal="scale" className={styles.visual}>
-            <div aria-hidden="true" className={styles.glow} />
-            <div className={styles.frame}>
-              <Image src={feature.img} alt={feature.alt} className={styles.screenshot} sizes="(max-width: 1000px) 100vw, 720px" />
+        {/* Tab 2: Reports Screen */}
+        {activeTab === "reports" && (
+          <div data-reveal="scale" className={styles.showcaseCard}>
+            <div className={styles.cardHeader}>
+              <div className={styles.cardHeaderLeft}>
+                <span className={styles.screenDot} />
+                <span className={styles.screenTitle}>MariaPoS · Reports &amp; Analytics</span>
+              </div>
+              <span className={styles.cardTag}>Live Margin Valuation</span>
             </div>
-            <div data-float="6000" data-amp="7" className={`${styles.chip} ${feature.reverse ? styles.chipRight : styles.chipLeft}`}>
-              <span className={styles.chipDot} />
-              {feature.chip}
+
+            <div className={styles.imageFrame}>
+              <Image
+                src={reports}
+                alt="MariaPoS Management Reports Screen"
+                className={styles.screenshot}
+                sizes="(max-width: 1200px) 100vw, 1100px"
+              />
+            </div>
+
+            <div className={styles.highlightsGrid}>
+              <div className={styles.highlightItem}>
+                <span className={styles.highlightIcon}>
+                  <Check size={14} color="var(--red)" strokeWidth={3} />
+                </span>
+                <div className={styles.highlightText}>
+                  <strong>Product &amp; Category Profitability</strong>
+                  <span>See exact revenue, cost of goods (FIFO), and net profit per item.</span>
+                </div>
+              </div>
+
+              <div className={styles.highlightItem}>
+                <span className={styles.highlightIcon}>
+                  <Check size={14} color="var(--red)" strokeWidth={3} />
+                </span>
+                <div className={styles.highlightText}>
+                  <strong>Cashier Shift Reconciliations</strong>
+                  <span>Review every cashier&apos;s drawer balance, refunds, and short/excess log.</span>
+                </div>
+              </div>
+
+              <div className={styles.highlightItem}>
+                <span className={styles.highlightIcon}>
+                  <Check size={14} color="var(--red)" strokeWidth={3} />
+                </span>
+                <div className={styles.highlightText}>
+                  <strong>One-Click PDF / Excel Export</strong>
+                  <span>Export sales tax summaries and stock valuation for your accountant.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* Hardware Compatible Section */}
+      <section id="hardware-ready" className={styles.hardwareSection}>
+        <div className={styles.hardwareContainer}>
+          <div data-reveal="up" className={styles.intro}>
+            <span className="eyebrow">Counter Ecosystem</span>
+            <h2 className="section-title">Works with the equipment you already have</h2>
+            <p className="lead">
+              No proprietary, locked-in hardware required. MariaPoS supports standard Windows point-of-sale peripherals.
+            </p>
+          </div>
+
+          <div className={styles.hwGrid}>
+            {hardwareItems.map((item, i) => (
+              <div key={item.title} data-reveal="up" data-delay={i * 90} className={styles.hwCard}>
+                <div className={styles.hwMedia}>
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    style={{ objectFit: "cover" }}
+                  />
+                  <span className={styles.hwBadge}>{item.badge}</span>
+                </div>
+                <div className={styles.hwBody}>
+                  <h3 className={styles.hwTitle}>{item.title}</h3>
+                  <p className={styles.hwDesc}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Minimum System Requirements */}
+      <section id="requirements" className={styles.reqSection}>
+        <div data-reveal="up" className={styles.reqCard}>
+          <div className={styles.reqHeader}>
+            <Cpu size={22} color="var(--red)" />
+            <h3 className={styles.reqTitle}>System Requirements (Windows 10 / 11)</h3>
+          </div>
+          <div className={styles.reqGrid}>
+            <div className={styles.reqItem}>
+              <span className={styles.reqLabel}>Operating System</span>
+              <span className={styles.reqVal}>Windows 10, 11 (64-bit)</span>
+            </div>
+            <div className={styles.reqItem}>
+              <span className={styles.reqLabel}>Processor</span>
+              <span className={styles.reqVal}>Intel Core i3 / AMD Ryzen 3 or higher</span>
+            </div>
+            <div className={styles.reqItem}>
+              <span className={styles.reqLabel}>Memory (RAM)</span>
+              <span className={styles.reqVal}>4 GB minimum (8 GB recommended)</span>
+            </div>
+            <div className={styles.reqItem}>
+              <span className={styles.reqLabel}>Peripherals</span>
+              <span className={styles.reqVal}>Standard USB for barcode scanner &amp; printer</span>
             </div>
           </div>
         </div>
-      ))}
-    </section>
+      </section>
+    </div>
   );
 }

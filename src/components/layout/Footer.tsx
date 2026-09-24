@@ -48,9 +48,9 @@ export function Footer() {
 
         <div className={styles.grid}>
           <div className={styles.brand}>
-            <span className={styles.logo}>
-              <Image src={logo} alt="MariaPoS" width={160} />
-            </span>
+            <Link href="/" className={styles.logo} aria-label="MariaPoS">
+              <Image src={logo} alt="MariaPoS" height={38} className={styles.logoImage} />
+            </Link>
             <span>{site.tagline}</span>
             <span className={styles.address}>
               <MapPin size={16} color="var(--coral)" />

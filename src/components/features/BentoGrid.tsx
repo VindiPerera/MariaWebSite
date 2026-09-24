@@ -1,13 +1,32 @@
-import { Package, ShoppingCart, TrendingUp, Truck, Undo2, Users, Wallet, type LucideIcon } from "lucide-react";
+import {
+  Barcode,
+  Calendar,
+  CheckCircle2,
+  DollarSign,
+  FileSpreadsheet,
+  Lock,
+  Package,
+  Receipt,
+  RotateCcw,
+  ShieldCheck,
+  ShoppingCart,
+  TrendingUp,
+  Truck,
+  Undo2,
+  Users,
+  Wallet,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import styles from "./BentoGrid.module.css";
 
-const keypad = ["7", "8", "9", "4", "5", "6", "1", "2", "3"];
+const keypad = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", "00", "↵"];
 const reportBars = [38, 52, 44, 70, 58, 82, 66, 92];
 
 function SoftIcon({ icon: Icon }: { icon: LucideIcon }) {
   return (
     <span className={styles.softIcon}>
-      <Icon size={20} color="var(--red)" />
+      <Icon size={19} color="var(--red)" />
     </span>
   );
 }
@@ -15,7 +34,7 @@ function SoftIcon({ icon: Icon }: { icon: LucideIcon }) {
 function SolidIcon({ icon: Icon }: { icon: LucideIcon }) {
   return (
     <span className={styles.solidIcon}>
-      <Icon size={20} color="#ffffff" />
+      <Icon size={19} color="#ffffff" />
     </span>
   );
 }
@@ -24,112 +43,199 @@ export function BentoGrid() {
   return (
     <section id="features" className={styles.section}>
       <div data-reveal="up" className={styles.header}>
-        <h2 className={`section-title ${styles.title}`}>Built around how a shop actually runs</h2>
+        <span className="eyebrow">Enterprise POS Architecture</span>
+        <h2 className={`section-title ${styles.title}`}>Built around how a real counter actually operates</h2>
         <p className={`lead ${styles.intro}`}>
-          Every module shares one FIFO stock ledger, so a sale, a return or a goods receipt updates the same numbers.
+          Every module is linked to a single, lightning-fast FIFO stock ledger. A sale, return, supplier goods receipt, or cashier shift updates the exact same numbers instantly without lag.
         </p>
       </div>
 
       <div className={styles.grid}>
-        <article data-reveal="up" className={`${styles.large} ${styles.billing}`}>
-          <SolidIcon icon={ShoppingCart} />
-          <h3 className={styles.titleLarge}>POS Billing</h3>
+        {/* Module 1: High-Speed POS Billing */}
+        <article id="billing" data-reveal="up" className={`${styles.large} ${styles.billing}`}>
+          <div className={styles.cardTop}>
+            <SolidIcon icon={ShoppingCart} />
+            <span className={styles.badgePill}>Counter Speed</span>
+          </div>
+          <h3 className={styles.titleLarge}>High-Velocity POS Billing</h3>
           <p className={styles.billingBody}>
-            Cart, barcode scanning, keyboard shortcuts, split payments and ESC/POS receipts, with FIFO stock deduction on
-            every sale.
+            Engineered for zero-delay queues. Barcode scanner detection, keyboard shortcuts (F1–F12), favorites row, split cash &amp; card payments, and automatic FIFO stock deduction on every bill printed or texted.
           </p>
-          <div aria-hidden="true" className={styles.keypad}>
-            {keypad.map((key) => (
-              <span key={key} className={styles.key}>
-                {key}
+          <div className={styles.keypadPreview}>
+            <div className={styles.keypadDisplay}>
+              <span className={styles.scannerBadge}>
+                <Barcode size={14} />
+                <span>Barcode Scan Ready</span>
               </span>
-            ))}
+              <span className={styles.liveTotal}>$4,740.00</span>
+            </div>
+            <div aria-hidden="true" className={styles.keypad}>
+              {keypad.map((key) => (
+                <span key={key} className={key === "↵" ? styles.keyEnter : styles.key}>
+                  {key}
+                </span>
+              ))}
+            </div>
           </div>
         </article>
 
-        <article data-reveal="up" data-delay="80" className={`${styles.small} ${styles.card}`}>
-          <SoftIcon icon={Wallet} />
-          <h3 className={styles.titleSmall}>Shifts &amp; till</h3>
+        {/* Module 2: Cashier Shift & Till Balancing */}
+        <article id="shifts" data-reveal="up" data-delay="80" className={`${styles.small} ${styles.card}`}>
+          <div className={styles.cardTop}>
+            <SoftIcon icon={Wallet} />
+            <span className={styles.statusLive}>Shift #214</span>
+          </div>
+          <h3 className={styles.titleSmall}>Shifts &amp; Till Control</h3>
           <p className={styles.body}>
-            Cashiers start and end shifts. Cash-in, cash-out and short/excess are recorded at close.
+            Cashiers open and close shifts with blind counts. Cash-in, petty cash payouts, and till short/excess are strictly logged.
           </p>
           <div className={styles.ledger}>
             <span className={styles.ledgerRow}>
-              <span>Expected</span>
-              <span>$12,400</span>
+              <span>Expected in Drawer</span>
+              <span className={styles.monoVal}>$12,400.00</span>
             </span>
             <span className={styles.ledgerRow}>
-              <span>Counted</span>
-              <span>$12,350</span>
+              <span>Counted by Cashier</span>
+              <span className={styles.monoVal}>$12,350.00</span>
             </span>
             <span className={`${styles.ledgerRow} ${styles.ledgerShort}`}>
-              <span>Short</span>
-              <span>−$50</span>
+              <span>Till Discrepancy</span>
+              <span className={styles.shortTag}>-$50.00 Short</span>
             </span>
           </div>
         </article>
 
-        <article data-reveal="up" className={`${styles.small} ${styles.card}`}>
-          <SoftIcon icon={Package} />
-          <h3 className={styles.titleSmall}>Inventory with FIFO batches</h3>
-          <p className={styles.body}>Products, categories and low-stock highlighting, valued batch by batch.</p>
-          <div className={styles.batches}>
-            <span className={styles.batch} style={{ flex: 3, height: "100%", background: "var(--red)" }} />
-            <span className={styles.batch} style={{ flex: 2, height: "70%", background: "#e57373" }} />
-            <span className={styles.batch} style={{ flex: 1, height: "40%", background: "#f3c1c1" }} />
+        {/* Module 3: True FIFO Inventory Valuation */}
+        <article id="inventory" data-reveal="up" className={`${styles.small} ${styles.card}`}>
+          <div className={styles.cardTop}>
+            <SoftIcon icon={Package} />
+            <span className={styles.fifoBadge}>FIFO Logic</span>
+          </div>
+          <h3 className={styles.titleSmall}>Inventory with FIFO Batches</h3>
+          <p className={styles.body}>
+            MariaPoS tracks every product batch by cost and expiry. Sales always consume oldest batches first for accurate gross margin and zero stale stock.
+          </p>
+          <div className={styles.batchContainer}>
+            <div className={styles.batchItem}>
+              <div className={styles.batchMeta}>
+                <span>Batch #B1 (Oldest)</span>
+                <span className={styles.batchDeducted}>Deducting Now</span>
+              </div>
+              <div className={styles.batchTrack}>
+                <div className={styles.batchFillActive} style={{ width: "90%" }} />
+              </div>
+            </div>
+            <div className={styles.batchItem}>
+              <div className={styles.batchMeta}>
+                <span>Batch #B2 (Next)</span>
+                <span>Queued</span>
+              </div>
+              <div className={styles.batchTrack}>
+                <div className={styles.batchFill} style={{ width: "65%" }} />
+              </div>
+            </div>
           </div>
         </article>
 
+        {/* Module 4: Suppliers, GRN & Cheque Reminders */}
         <article data-reveal="up" data-delay="80" className={`${styles.small} ${styles.card}`}>
-          <SoftIcon icon={Truck} />
-          <h3 className={styles.titleSmall}>Suppliers</h3>
+          <div className={styles.cardTop}>
+            <SoftIcon icon={Truck} />
+            <span className={styles.pillAlert}>
+              <span className={styles.pillDot} />4 Cheques Due
+            </span>
+          </div>
+          <h3 className={styles.titleSmall}>Suppliers &amp; GRN Receiving</h3>
           <p className={styles.body}>
-            Purchase orders, goods receiving, split payments, supplier payables and cheque reminders.
+            Purchase orders, goods receiving notes (GRN), supplier payables ledger, and automatic cheque maturity reminders.
           </p>
-          <span className={styles.pill}>
-            <span className={styles.pillDot} />4 cheques due/overdue
-          </span>
+          <div className={styles.supplierMiniCard}>
+            <div className={styles.supplierRow}>
+              <span>Ceylon Pharma Ltd</span>
+              <span className={styles.supplierDue}>Due in 2 days</span>
+            </div>
+            <span className={styles.supplierAmount}>$1,850.00 · Cheque #004921</span>
+          </div>
         </article>
 
-        <article data-reveal="up" data-delay="160" className={`${styles.small} ${styles.card}`}>
-          <SoftIcon icon={Undo2} />
-          <h3 className={styles.titleSmall}>Returns &amp; credit</h3>
+        {/* Module 5: Customer Credit & Returns */}
+        <article data-reveal="up" data-delay="120" className={`${styles.small} ${styles.card}`}>
+          <div className={styles.cardTop}>
+            <SoftIcon icon={Undo2} />
+            <span className={styles.badgePill}>Ledger</span>
+          </div>
+          <h3 className={styles.titleSmall}>Returns, Refunds &amp; Credit</h3>
           <p className={styles.body}>
-            Refunds and exchanges restore stock to the right batch. Customer credit bills track what&apos;s owed and
-            paid.
+            Item returns restore stock back to the correct cost batch. Customer credit bills track pending balances, credit limits, and partial payments.
           </p>
+          <div className={styles.creditPill}>
+            <RotateCcw size={13} color="var(--red)" />
+            <span>Batch-accurate inventory restoration</span>
+          </div>
         </article>
 
-        <article data-reveal="up" className={`${styles.large} ${styles.reports}`}>
+        {/* Module 6: Executive Analytics & Reports */}
+        <article id="reports" data-reveal="up" className={`${styles.large} ${styles.reports}`}>
           <div aria-hidden="true" className={styles.reportsGlow} />
           <div className={styles.reportsCopy}>
-            <SolidIcon icon={TrendingUp} />
-            <h3 className={styles.titleLarge}>Reports &amp; analytics</h3>
+            <div className={styles.cardTop}>
+              <SolidIcon icon={TrendingUp} />
+              <span className={styles.reportTag}>Real-Time P&amp;L</span>
+            </div>
+            <h3 className={styles.titleLarge}>Reports &amp; Business Intelligence</h3>
             <p className={styles.reportsBody}>
-              Sales summary, payment-method breakdown, product-wise sales, profit &amp; loss and inventory valuation.
+              Instant sales summaries, hourly rush peaks, product-wise profit margins, payment mode breakdowns, tax summaries, and one-click PDF &amp; Excel exports.
             </p>
+            <div className={styles.reportStats}>
+              <div className={styles.statBox}>
+                <span className={styles.statLabel}>Today&apos;s Gross Margin</span>
+                <span className={styles.statVal}>34.8%</span>
+              </div>
+              <div className={styles.statBox}>
+                <span className={styles.statLabel}>Fastest Mover</span>
+                <span className={styles.statVal}>3M Plaster</span>
+              </div>
+            </div>
           </div>
-          <div className={styles.chart}>
-            {reportBars.map((height, i) => (
-              <span
-                key={i}
-                data-grow=""
-                className={i === reportBars.length - 1 ? styles.chartBarActive : styles.chartBar}
-                style={{ height: `${height}%` }}
-              />
-            ))}
+          <div className={styles.chartWrapper}>
+            <div className={styles.chartHeader}>
+              <span>Hourly Sales Velocity</span>
+              <span className={styles.chartPeak}>Peak: 17:00–19:00</span>
+            </div>
+            <div className={styles.chart}>
+              {reportBars.map((height, i) => (
+                <div key={i} className={styles.barCol}>
+                  <span
+                    data-grow=""
+                    className={i === reportBars.length - 1 ? styles.chartBarActive : styles.chartBar}
+                    style={{ height: `${height}%` }}
+                  />
+                  <span className={styles.barLabel}>{i + 1}h</span>
+                </div>
+              ))}
+            </div>
           </div>
         </article>
 
+        {/* Module 7: Cashier Permissions & Security */}
         <article data-reveal="up" data-delay="80" className={`${styles.small} ${styles.card}`}>
-          <SoftIcon icon={Users} />
-          <h3 className={styles.titleSmall}>Users, roles &amp; expenses</h3>
+          <div className={styles.cardTop}>
+            <SoftIcon icon={Users} />
+            <span className={styles.badgePill}>Security</span>
+          </div>
+          <h3 className={styles.titleSmall}>Role Security &amp; Expenses</h3>
           <p className={styles.body}>
-            Admin and cashier accounts with role-based permissions, customer records and expense tracking.
+            Cashiers cannot view overall profits or delete historical invoices without manager PIN override. Log petty cash expenses directly from the till.
           </p>
-          <div className={styles.roles}>
-            <span className={styles.role}>Admin</span>
-            <span className={styles.role}>Cashier</span>
+          <div className={styles.rolesContainer}>
+            <div className={styles.roleItem}>
+              <ShieldCheck size={14} color="var(--red)" />
+              <span>Admin: Full access &amp; P&amp;L</span>
+            </div>
+            <div className={styles.roleItem}>
+              <Lock size={14} color="#6b7280" />
+              <span>Cashier: Counter-only billing lock</span>
+            </div>
           </div>
         </article>
       </div>

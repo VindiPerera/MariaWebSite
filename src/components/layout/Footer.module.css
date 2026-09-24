@@ -194,21 +194,27 @@
 }
 
 .logo {
-  display: block;
-  width: 140px;
-  height: 62px;
-  overflow: hidden;
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
   background: #ffffff;
-  border-radius: 14px;
+  border-radius: 12px;
+  width: fit-content;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  margin-bottom: 6px;
+  transition: transform 0.2s ease;
 }
 
-.logo img {
-  position: absolute;
-  width: 160px;
-  height: auto;
-  left: -12px;
-  top: -19px;
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logoImage {
+  height: 36px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .address {
