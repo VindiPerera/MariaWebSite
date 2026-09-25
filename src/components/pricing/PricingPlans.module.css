@@ -40,19 +40,31 @@
 
 .plans {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
   align-items: stretch;
 }
 
 .card {
   border-radius: 24px;
-  padding: 32px;
+  padding: 30px 24px;
   display: flex;
   flex-direction: column;
   position: relative;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cardTrial {
+  background: #ffffff;
+  border: 1.5px solid rgba(34, 197, 94, 0.35);
+  box-shadow: 0 4px 16px -4px rgba(34, 197, 94, 0.08);
+}
+
+.cardTrial:hover {
+  transform: translateY(-4px);
+  border-color: #22c55e;
+  box-shadow: 0 16px 36px -10px rgba(34, 197, 94, 0.18);
 }
 
 .cardLight {
@@ -117,6 +129,18 @@
   padding: 4px 10px;
   border-radius: 9999px;
   letter-spacing: 0.02em;
+}
+
+.badgeGreen {
+  display: inline-block;
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 .badgeDark {
@@ -199,6 +223,13 @@
   color: #ff8a80;
 }
 
+.rateGreen {
+  font-family: var(--font-code);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
 .note {
   font-size: 13px;
   color: #6b7280;
@@ -256,6 +287,17 @@
   flex-shrink: 0;
 }
 
+.checkGreen {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
 .featureText {
   font-size: 13.5px;
   color: #374151;
@@ -279,6 +321,19 @@
   font-size: 14.5px;
   margin-top: auto;
   transition: all 0.25s ease;
+}
+
+.buyBtnTrial {
+  background: #f0fdf4;
+  border: 1.5px solid rgba(34, 197, 94, 0.35);
+  color: #15803d;
+}
+
+.buyBtnTrial:hover {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 8px 20px -4px rgba(22, 163, 74, 0.45);
 }
 
 .buyBtnLight {
@@ -449,10 +504,17 @@
   color: #d1d5db;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1180px) {
+  .plans {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 720px) {
   .plans {
     grid-template-columns: 1fr;
-    max-width: 520px;
+    max-width: 480px;
     margin: 0 auto;
   }
 

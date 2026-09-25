@@ -58,10 +58,13 @@ export function Header() {
             <Phone size={15} color="var(--red)" />
             <span>{site.phone}</span>
           </a>
-          <a href="#trial" className={styles.cta}>
+          <Link href="/sign-in" className={styles.signIn}>
+            Sign in
+          </Link>
+          <Link href="/sign-up" className={styles.cta}>
             <span>Start free trial</span>
             <ArrowRight size={15} />
-          </a>
+          </Link>
           <button
             type="button"
             className={styles.menuButton}
@@ -81,6 +84,9 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <Link href="/sign-in" className={styles.menuLink} onClick={closeMenu}>
+            Sign in
+          </Link>
           <div className={styles.menuActions}>
             <a href={site.phoneHref} className={styles.menuCall}>
               <Phone size={16} />

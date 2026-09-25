@@ -130,6 +130,26 @@
   border-color: rgba(198, 40, 40, 0.15);
 }
 
+.signIn {
+  display: none;
+  white-space: nowrap;
+  padding: 9px 16px;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.signIn:hover {
+  border-color: rgba(198, 40, 40, 0.35);
+  color: var(--red);
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
@@ -236,7 +256,13 @@
   opacity: 0.92;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 901px) {
+  .signIn {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1280px) {
   .phone {
     display: inline-flex;
   }

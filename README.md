@@ -58,6 +58,17 @@ All motion is disabled when the user prefers reduced motion.
 - Trial signup form (`src/components/sections/TrialForm.tsx`): shows the thank-you state only; no backend call.
 - PayHere checkout links (`#checkout-1y` etc.) and the installer download link are placeholders from the design.
 
+## Accounts (sign up / sign in)
+
+`/sign-up` and `/sign-in` create and sign in to MariaPoS cloud portal accounts. The browser only talks to this site's
+`/api/account/*` routes; those call the cloud panel's `/api/website/*` endpoints server-to-server with a shared key,
+so the site must run as a Node server (`npm run start`), not a static export.
+
+| Variable | Example | Purpose |
+| --- | --- | --- |
+| `CLOUD_PANEL_URL` | `https://maria-cloud.jaan.lk` | Cloud panel base URL (defaults to `site.cloudPanelUrl`) |
+| `CLOUD_API_KEY` | long random string | Must equal `WEBSITE_API_KEY` in the cloud panel's `.env` |
+
 ## SEO
 
 - Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://mariapos.jaan.lk`) in production; canonical URLs, the sitemap and structured data all use it.

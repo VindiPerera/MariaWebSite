@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, CheckCircle2, Lock, Send, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import ownerMobileAlerts from "@/assets/images/owner-mobile-alerts.jpg";
+import { licensePrices } from "@/lib/plans";
 import styles from "./PricingPlans.module.css";
 
 const included = [
@@ -24,44 +25,62 @@ type Plan = {
   unit?: string;
   note: string;
   badge?: string;
-  variant: "basic" | "popular" | "best";
+  badgeType?: "red" | "dark" | "green";
+  variant: "trial" | "basic" | "popular" | "best";
   popular?: boolean;
   recommended?: boolean;
   extraFeatures?: string[];
+  ctaText?: string;
 };
 
 const plans: Plan[] = [
   {
+    id: "trial",
+    name: "7-Day Free Trial",
+    price: "Free",
+    pricePerYear: "$0.00 · No card needed",
+    note: "Instant cloud activation. Full feature suite for all your counters.",
+    badge: "Risk-Free Trial",
+    badgeType: "green",
+    variant: "trial",
+    ctaText: "Start 7-Day Free Trial",
+  },
+  {
     id: "1y",
     name: "1-Year License",
-    price: "$147.00",
+    price: licensePrices["1y"],
     pricePerYear: "$147.00 / year",
     unit: "per year",
     note: "Single payment. Full features for 12 months.",
     variant: "basic",
+    ctaText: "Select 1-Year License",
   },
   {
     id: "2y",
     name: "2-Year License",
-    price: "$235.20",
+    price: licensePrices["2y"],
     pricePerYear: "$117.60 / year",
     was: "$294.00",
     note: "Save 20% compared to yearly renewal.",
     badge: "Save 20%",
+    badgeType: "red",
     variant: "popular",
     popular: true,
+    ctaText: "Select 2-Year License",
   },
   {
     id: "3y",
     name: "3-Year License",
-    price: "$286.65",
+    price: licensePrices["3y"],
     pricePerYear: "$95.55 / year",
     was: "$441.00",
     note: "Best value. Only $7.96 per month. Our best-selling plan.",
     badge: "Best Seller · Recommended",
+    badgeType: "dark",
     variant: "best",
     recommended: true,
     extraFeatures: ["Lifetime hardware warranty"],
+    ctaText: "Select 3-Year License",
   },
 ];
 
@@ -79,30 +98,42 @@ export function PricingPlans() {
           </div>
           <h1 className="section-title">One simple license. Every single feature.</h1>
           <p className="lead">
-            No tiered feature lockouts. Every MariaPoS license includes full offline POS billing, FIFO inventory, Telegram sales alerts, and cloud sync. Longer terms save up to 35%.
+            No tiered feature lockouts. Every MariaPoS license includes full offline POS billing, FIFO inventory,
+            Telegram sales alerts, and cloud sync. Longer terms save up to 35%.
           </p>
         </div>
 
         <div className={styles.plans}>
           {plans.map((plan, i) => {
             const isDark = plan.variant === "best";
+            const isTrial = plan.variant === "trial";
             const isSelected = selectedPlan === plan.id;
 
             return (
               <div
                 key={plan.id}
                 data-reveal="up"
-                data-delay={i * 100}
+                data-delay={i * 80}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`${styles.card} ${isDark ? styles.cardDark : styles.cardLight} ${
-                  plan.popular ? styles.cardPopular : ""
-                } ${isSelected ? styles.cardSelected : ""}`}
+                className={`${styles.card} ${
+                  isDark ? styles.cardDark : isTrial ? styles.cardTrial : styles.cardLight
+                } ${plan.popular ? styles.cardPopular : ""} ${isSelected ? styles.cardSelected : ""}`}
               >
                 {plan.recommended && <div className={styles.recommendedRibbon}>Recommended</div>}
 
                 {plan.badge && (
                   <div className={styles.badgeWrapper}>
-                    <span className={isDark ? styles.badgeDark : styles.badgeRed}>{plan.badge}</span>
+                    <span
+                      className={
+                        plan.badgeType === "green"
+                          ? styles.badgeGreen
+                          : plan.badgeType === "dark"
+                          ? styles.badgeDark
+                          : styles.badgeRed
+                      }
+                    >
+                      {plan.badge}
+                    </span>
                   </div>
                 )}
 
@@ -112,7 +143,13 @@ export function PricingPlans() {
                     <span className={isDark ? styles.priceDark : styles.price}>{plan.price}</span>
                     {plan.was && <span className={isDark ? styles.wasDark : styles.was}>{plan.was}</span>}
                   </div>
-                  <span className={isDark ? styles.rateDark : styles.rate}>{plan.pricePerYear}</span>
+                  <span
+                    className={
+                      isDark ? styles.rateDark : isTrial ? styles.rateGreen : styles.rate
+                    }
+                  >
+                    {plan.pricePerYear}
+                  </span>
                   <p className={isDark ? styles.noteDark : styles.note}>{plan.note}</p>
                 </div>
 
@@ -121,7 +158,15 @@ export function PricingPlans() {
                 <div className={styles.featureList}>
                   {included.map((item) => (
                     <div key={item} className={styles.featureRow}>
-                      <span className={isDark ? styles.checkDark : styles.checkLight}>
+                      <span
+                        className={
+                          isDark
+                            ? styles.checkDark
+                            : isTrial
+                            ? styles.checkGreen
+                            : styles.checkLight
+                        }
+                      >
                         <Check size={14} strokeWidth={2.6} />
                       </span>
                       <span className={isDark ? styles.featureTextDark : styles.featureText}>{item}</span>
@@ -139,13 +184,15 @@ export function PricingPlans() {
                   ))}
                 </div>
 
-                <a
-                  href={`#checkout-${plan.id}`}
-                  className={`${styles.buyBtn} ${isDark ? styles.buyBtnDark : styles.buyBtnLight}`}
+                <Link
+                  href={`/sign-up?plan=${plan.id}`}
+                  className={`${styles.buyBtn} ${
+                    isDark ? styles.buyBtnDark : isTrial ? styles.buyBtnTrial : styles.buyBtnLight
+                  }`}
                 >
-                  <span>Select {plan.name}</span>
+                  <span>{plan.ctaText ?? `Select ${plan.name}`}</span>
                   <ArrowRight size={16} />
-                </a>
+                </Link>
               </div>
             );
           })}
@@ -170,7 +217,8 @@ export function PricingPlans() {
             <span className={styles.ownerEyebrow}>Included in Every Plan</span>
             <h3 className={styles.ownerHeading}>Run your store from your pocket, wherever you are</h3>
             <p className={styles.ownerDesc}>
-              No monthly cloud fees or server maintenance charges. Every 1, 2, or 3-year licence includes automated cloud backup, multi-device web reports, and instant Telegram sales alerts pushed directly to your phone.
+              No monthly cloud fees or server maintenance charges. Every trial and multi-year licence includes automated
+              cloud backup, multi-device web reports, and instant Telegram sales alerts pushed directly to your phone.
             </p>
             <div className={styles.ownerPerks}>
               <div className={styles.ownerPerk}>
@@ -192,12 +240,12 @@ export function PricingPlans() {
         <div data-reveal="up" className={styles.securityBanner}>
           <div className={styles.securityLeft}>
             <ShieldCheck size={20} color="#1faa55" />
-            <span>Processed securely by PayHere · Visa, Mastercard, AMEX, FriMi &amp; Genie supported</span>
+            <span>Processed securely via global payment gateway · Visa, Mastercard, AMEX &amp; Mobile Pay supported</span>
           </div>
           <div className={styles.linksRow}>
-            <a href="#trial" className={styles.footLink}>
+            <Link href="/sign-up?plan=trial" className={styles.footLink}>
               Try 7 days free first →
-            </a>
+            </Link>
             <span className={styles.dotSep}>•</span>
             <Link href="/contact" className={styles.footLink}>
               Multi-till / Multi-branch pricing
