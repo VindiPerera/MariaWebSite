@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Download, Mail, MapPin, Monitor, Phone } from "lucide-react";
+import { FacebookIcon } from "@/components/ui/FacebookIcon";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { footerColumns, legalLinks, site } from "@/lib/site";
 import logo from "@/assets/images/marialogo.png";
@@ -63,6 +64,10 @@ export function Footer() {
             <a href={site.phoneHref} className={styles.brandLink}>
               <Phone size={16} color="var(--coral)" />
               {site.phone}
+            </a>
+            <a href={site.facebookHref} target="_blank" rel="noopener" className={styles.brandLink}>
+              <FacebookIcon size={16} color="var(--coral)" />
+              Facebook
             </a>
           </div>
 

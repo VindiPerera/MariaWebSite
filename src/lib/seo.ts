@@ -47,6 +47,7 @@ export const organizationSchema = {
   image: absoluteUrl("/opengraph-image"),
   email: site.email,
   telephone: site.phoneIntl,
+  sameAs: [site.facebookHref],
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",

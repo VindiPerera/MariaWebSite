@@ -20,8 +20,31 @@ export function ContactSection() {
   const [businessType, setBusinessType] = useState(businessTypes[0]);
   const [channel, setChannel] = useState<"whatsapp" | "call" | "email">("whatsapp");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const data = new FormData(e.currentTarget);
+    const name = data.get("name")?.toString().trim() ?? "";
+    const business = data.get("business")?.toString().trim() ?? "";
+    const phone = data.get("phone")?.toString().trim() ?? "";
+    const email = data.get("email")?.toString().trim() ?? "";
+
+    const channelLabel = channel === "whatsapp" ? "WhatsApp Message" : channel === "call" ? "Phone Call" : "Email";
+
+    const lines = [
+      "Hi MariaPoS, I'd like to book a demo.",
+      "",
+      `Name: ${name}`,
+      `Business/Shop: ${business}`,
+      `Phone/WhatsApp: ${phone}`,
+      `Email: ${email}`,
+      `Shop category: ${businessType}`,
+      `Preferred callback: ${channelLabel}`,
+    ];
+
+    const message = encodeURIComponent(lines.join("\n"));
+    window.open(`${site.whatsappHref}?text=${message}`, "_blank", "noopener");
+
     setFormSent(true);
   };
 
