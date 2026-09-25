@@ -83,7 +83,10 @@ export function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <span>© 2026 {site.company} All rights reserved.</span>
+          <span>
+            © 2026 {site.company} All rights reserved. <span className={styles.dotSep}>|</span> Powered by Thejan
+            Bathiya
+          </span>
           <div className={styles.legal}>
             {legalLinks.map((link) => (
               <Link key={link.href} href={link.href}>

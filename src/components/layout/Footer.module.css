@@ -294,6 +294,10 @@
   flex-wrap: wrap;
 }
 
+.dotSep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
 .legal a {
   color: #bdbdbd;
 }
