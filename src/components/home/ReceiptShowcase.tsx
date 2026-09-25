@@ -218,9 +218,9 @@ Total Balance:                    $ 1.00
                 />
                 <div className={styles.storeName}>The Aiko Coffee Bar</div>
                 <div className={styles.storeAddress}>
-                  488/14 B, Purahala Lane, Maithreepala Senanayake Mw, Anuradhapura
+                  488 Central Avenue, Suite 14B
                 </div>
-                <div className={styles.storeTel}>Tel: 0763257434 / 0712208128</div>
+                <div className={styles.storeTel}>Tel: +1 (555) 234-5678</div>
               </div>
 
               <div className={styles.doubleDivider} />
@@ -266,29 +266,29 @@ Total Balance:                    $ 1.00
                 <div className={styles.tableRow}>
                   <span className={styles.colItem}>Avocado Smoothie</span>
                   <span className={styles.colQty}>3</span>
-                  <span className={styles.colPrice}>Rs 100.00</span>
-                  <span className={styles.colTotal}>Rs 300.00</span>
+                  <span className={styles.colPrice}>$3.00</span>
+                  <span className={styles.colTotal}>$9.00</span>
                 </div>
 
                 <div className={styles.tableRow}>
                   <span className={styles.colItem}>Avocado</span>
                   <span className={styles.colQty}>3</span>
-                  <span className={styles.colPrice}>Rs 100.00</span>
-                  <span className={styles.colTotal}>Rs 300.00</span>
+                  <span className={styles.colPrice}>$2.00</span>
+                  <span className={styles.colTotal}>$6.00</span>
                 </div>
 
                 <div className={styles.tableRow}>
                   <span className={styles.colItem}>African Tea</span>
                   <span className={styles.colQty}>1</span>
-                  <span className={styles.colPrice}>Rs 100.00</span>
-                  <span className={styles.colTotal}>Rs 100.00</span>
+                  <span className={styles.colPrice}>$2.50</span>
+                  <span className={styles.colTotal}>$2.50</span>
                 </div>
 
                 <div className={styles.tableRow}>
                   <span className={styles.colItem}>Banana</span>
                   <span className={styles.colQty}>1</span>
-                  <span className={styles.colPrice}>Rs 100.00</span>
-                  <span className={styles.colTotal}>Rs 100.00</span>
+                  <span className={styles.colPrice}>$1.50</span>
+                  <span className={styles.colTotal}>$1.50</span>
                 </div>
               </div>
 
@@ -305,14 +305,14 @@ Total Balance:                    $ 1.00
               >
                 <div className={styles.totalRow}>
                   <span>Subtotal:</span>
-                  <span>Rs 800.00</span>
+                  <span>$19.00</span>
                 </div>
 
                 <div className={styles.doubleDivider} />
 
                 <div className={styles.grandTotalRow}>
                   <span>TOTAL:</span>
-                  <span>Rs 800.00</span>
+                  <span>$19.00</span>
                 </div>
 
                 <div className={styles.doubleDivider} />
@@ -323,11 +323,11 @@ Total Balance:                    $ 1.00
                 </div>
                 <div className={styles.paymentRow}>
                   <span>Paid Amount:</span>
-                  <span>Rs 1,000.00</span>
+                  <span>$20.00</span>
                 </div>
                 <div className={styles.paymentRow} style={{ fontWeight: 700 }}>
                   <span>Total Balance:</span>
-                  <span>Rs 200.00</span>
+                  <span>$1.00</span>
                 </div>
               </div>
 
