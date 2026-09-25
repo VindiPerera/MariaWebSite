@@ -24,6 +24,8 @@ type Plan = {
   badge?: string;
   variant: "basic" | "popular" | "best";
   popular?: boolean;
+  recommended?: boolean;
+  extraFeatures?: string[];
 };
 
 const plans: Plan[] = [
@@ -53,9 +55,11 @@ const plans: Plan[] = [
     price: "$286.65",
     pricePerYear: "$95.55 / year",
     was: "$441.00",
-    note: "Best value. Only $7.96 per month.",
-    badge: "Best Value · Save 35%",
+    note: "Best value. Only $7.96 per month. Our best-selling plan.",
+    badge: "Best Seller · Recommended",
     variant: "best",
+    recommended: true,
+    extraFeatures: ["Lifetime hardware warranty"],
   },
 ];
 
@@ -92,6 +96,8 @@ export function PricingPlans() {
                   plan.popular ? styles.cardPopular : ""
                 } ${isSelected ? styles.cardSelected : ""}`}
               >
+                {plan.recommended && <div className={styles.recommendedRibbon}>Recommended</div>}
+
                 {plan.badge && (
                   <div className={styles.badgeWrapper}>
                     <span className={isDark ? styles.badgeDark : styles.badgeRed}>{plan.badge}</span>
@@ -117,6 +123,16 @@ export function PricingPlans() {
                         <Check size={14} strokeWidth={2.6} />
                       </span>
                       <span className={isDark ? styles.featureTextDark : styles.featureText}>{item}</span>
+                    </div>
+                  ))}
+                  {plan.extraFeatures?.map((item) => (
+                    <div key={item} className={styles.featureRow}>
+                      <span className={isDark ? styles.checkDark : styles.checkLight}>
+                        <ShieldCheck size={14} strokeWidth={2.6} />
+                      </span>
+                      <span className={isDark ? styles.featureTextDark : styles.featureText}>
+                        <strong>{item}</strong>
+                      </span>
                     </div>
                   ))}
                 </div>

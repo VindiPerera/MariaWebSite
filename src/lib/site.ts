@@ -51,6 +51,7 @@ export const navLinks: NavLink[] = [
   { label: "Industries", href: "/industries" },
   { label: "Product", href: "/product" },
   { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -93,6 +94,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
     title: "Company",
     links: [
+      { label: "About Us", href: "/about" },
       { label: "Contact", href: "/contact" },
       { label: "Book a demo", href: "/contact#demo" },
       { label: "Hardware & Setup", href: "/product#hardware-ready" },
