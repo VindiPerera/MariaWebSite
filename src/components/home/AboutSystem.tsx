@@ -33,7 +33,7 @@ const purposes: { title: string; body: string; icon: LucideIcon; metric: string 
     metric: "Accurate FIFO Batches",
   },
   {
-    title: "Account for every rupee",
+    title: "Account for every transaction",
     body: "Shifts, till movements, customer credit, supplier payables and expenses are all recorded in one ledger.",
     icon: Wallet,
     metric: "Shift Float Balancing",
@@ -82,8 +82,8 @@ export function AboutSystem() {
             A complete shop management system, not just a billing screen
           </h2>
           <p className="lead">
-            MariaPoS is a <strong>point of sale (POS) and inventory management system</strong> for Windows, built in
-            Colombo by JAAN Network for Sri Lankan retailers. It replaces the cash book, stock book, credit book and
+            MariaPoS is a <strong>point of sale (POS) and inventory management system</strong> for Windows, built by
+            JAAN Network for retail counters worldwide. It replaces the cash book, stock book, credit book and
             supplier file with one fast system that runs at the counter, even without internet.
           </p>
           <p className={styles.body}>

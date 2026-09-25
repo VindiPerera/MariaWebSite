@@ -30,38 +30,38 @@ const perks = [
 const liveOrders = [
   {
     branch: "Branch 02 (Counter A)",
-    item: "3M 1*10 Plaster ×2, 4Ever Gel ×1",
-    amount: "Rs. 1,200.00",
+    item: "Surgical Tape ×2, Hydrating Gel ×1",
+    amount: "$120.00",
     time: "Just now",
     stockStatus: "FIFO Batch #B24 deducted",
   },
   {
     branch: "Branch 01 (Express Till)",
-    item: "Highland Milk 1L ×3, Ceylon Tea 400g",
-    amount: "Rs. 1,840.00",
+    item: "Organic Milk 1L ×3, Premium Tea 400g",
+    amount: "$184.00",
     time: "1m ago",
     stockStatus: "FIFO Batch #B19 deducted",
   },
   {
     branch: "Main Store (Till #03)",
-    item: "Panadol Actifast ×10, Vitamin C Pack",
-    amount: "Rs. 950.00",
+    item: "Pain Relief Tabs ×10, Vitamin C Pack",
+    amount: "$95.00",
     time: "2m ago",
     stockStatus: "FIFO Batch #B31 deducted",
   },
 ];
 
 const sparkBars = [
-  { val: 32, label: "09h", rev: "Rs. 1,420" },
-  { val: 48, label: "10h", rev: "Rs. 2,150" },
-  { val: 42, label: "11h", rev: "Rs. 1,890" },
-  { val: 65, label: "12h", rev: "Rs. 3,100" },
-  { val: 54, label: "13h", rev: "Rs. 2,640" },
-  { val: 78, label: "14h", rev: "Rs. 3,850" },
-  { val: 52, label: "15h", rev: "Rs. 2,490" },
-  { val: 88, label: "16h", rev: "Rs. 4,320" },
-  { val: 72, label: "17h", rev: "Rs. 3,670" },
-  { val: 98, label: "18h", rev: "Rs. 4,740" },
+  { val: 32, label: "09h", rev: "$1,420" },
+  { val: 48, label: "10h", rev: "$2,150" },
+  { val: 42, label: "11h", rev: "$1,890" },
+  { val: 65, label: "12h", rev: "$3,100" },
+  { val: 54, label: "13h", rev: "$2,640" },
+  { val: 78, label: "14h", rev: "$3,850" },
+  { val: 52, label: "15h", rev: "$2,490" },
+  { val: 88, label: "16h", rev: "$4,320" },
+  { val: 72, label: "17h", rev: "$3,670" },
+  { val: 98, label: "18h", rev: "$4,740" },
 ];
 
 export function Hero() {
@@ -116,11 +116,11 @@ export function Hero() {
 
           <h1 data-reveal="up" data-delay="80" className={styles.title}>
             Bill in seconds. <br />
-            Know <span className={styles.titleAccent}>every rupee &amp; batch</span> on your shelf.
+            Know <span className={styles.titleAccent}>every dollar &amp; batch</span> on your shelf.
           </h1>
 
           <p data-reveal="up" data-delay="160" className={styles.subtitle}>
-            Engineered in Colombo for high-rush retail, pharmacies and supermarkets. MariaPoS deducts stock FIFO on
+            Engineered for high-rush retail, pharmacies, supermarkets and global storefronts. MariaPoS deducts stock FIFO on
             every barcode scan, closes cashier shifts against the till, and sends instant digital eBills —{" "}
             <strong>even 100% offline</strong>.
           </p>
@@ -261,7 +261,7 @@ export function Hero() {
               <span className={styles.salesGrowth}>+14.2%</span>
             </div>
             <div className={styles.salesAmount}>
-              {hoveredBar !== null ? sparkBars[hoveredBar].rev : "Rs. 4,740.00"}
+              {hoveredBar !== null ? sparkBars[hoveredBar].rev : "$4,740.00"}
             </div>
             <div className={styles.sparklineContainer}>
               {sparkBars.map((bar, i) => (
@@ -284,7 +284,7 @@ export function Hero() {
             </div>
             <div className={styles.smsDetails}>
               <span className={styles.smsHeading}>SMS eBill Sent</span>
-              <span className={styles.smsSub}>077 •••• 412 · 18 SMS Credits Left</span>
+              <span className={styles.smsSub}>Mobile eBill Delivered · Receipt Saved</span>
             </div>
           </div>
 
@@ -295,7 +295,7 @@ export function Hero() {
             </div>
             <div className={styles.stockDetails}>
               <span className={styles.stockHeading}>FIFO Depletion</span>
-              <span className={styles.stockSub}>Batch #B24 (Cost Rs. 380) Oldest First</span>
+              <span className={styles.stockSub}>Batch #B24 (Cost $38.00) Oldest First</span>
             </div>
           </div>
         </div>

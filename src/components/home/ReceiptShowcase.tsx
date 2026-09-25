@@ -23,7 +23,7 @@ const billHighlights = [
   {
     id: "header",
     title: "Branded Header & Contacts",
-    desc: "Your shop logo, custom English / Sinhala / Tamil store name, address, and hotlines at the top of every bill.",
+    desc: "Your shop logo, custom store name, address, and hotlines in any language or currency at the top of every bill.",
     icon: Store,
   },
   {
@@ -62,8 +62,8 @@ export function ReceiptShowcase() {
   const handleCopyBill = () => {
     const billText = `MariaPOS — Made to Bill
 The Aiko Coffee Bar
-488/14 B, Purahala Lane, Maithreepala Senanayake Mw, Anuradhapura
-Tel: 0763257434 / 0712208128
+488 Central Avenue, Suite 14B
+Tel: +1 (555) 234-5678
 ========================================
 Invoice No: INV202609248673
 Date: 2026-09-24 16:16:06
@@ -71,18 +71,18 @@ Customer: Walk-in Customer
 Cashier: System Administrator
 ----------------------------------------
 Item               Qty   Price      Total
-Avocado Smoothie     3  Rs 100.00  Rs 300.00
-Avocado              3  Rs 100.00  Rs 300.00
-African Tea          1  Rs 100.00  Rs 100.00
-Banana               1  Rs 100.00  Rs 100.00
+Avocado Smoothie     3   $3.00      $9.00
+Avocado              3   $2.00      $6.00
+African Tea          1   $2.50      $2.50
+Banana               1   $1.50      $1.50
 ----------------------------------------
-Subtotal:                       Rs 800.00
+Subtotal:                         $19.00
 ========================================
-TOTAL:                          Rs 800.00
+TOTAL:                            $19.00
 ========================================
 Payment Method: Cash
-Paid Amount:                    Rs 1,000.00
-Total Balance:                  Rs   200.00
+Paid Amount:                      $20.00
+Total Balance:                    $ 1.00
 ----------------------------------------
      Thank you for your business!
   Powered By MariaPos - mariapos.com`;

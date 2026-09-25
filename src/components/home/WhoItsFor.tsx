@@ -27,7 +27,7 @@ export function WhoItsFor() {
       <div data-reveal="up" className="section-intro">
         <span className="eyebrow">Who can use MariaPoS</span>
         <h2 id="who-title" className="section-title">
-          Built for Sri Lankan retail, from a single counter to multiple branches
+          Built for modern retail, from a single counter to multi-store chains
         </h2>
         <p className="lead">
           If you sell products over a counter, MariaPoS fits. These are the kinds of businesses it is built for,

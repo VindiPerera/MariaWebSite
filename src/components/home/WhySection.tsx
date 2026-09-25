@@ -49,7 +49,7 @@ export function WhySection() {
           <h2 className="section-title">Why retailers switch to MariaPoS</h2>
         </div>
         <p className={`lead ${styles.intro}`}>
-          Built in Colombo for counters that cannot stop: supermarkets, grocery, pharmacies, hardware and fashion retail.
+          Built for high-volume retail counters that cannot stop: supermarkets, grocery, pharmacies, hardware and fashion retail.
         </p>
       </div>
 
