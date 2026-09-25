@@ -23,13 +23,19 @@ src/
     globals.css             # Design tokens + shared helpers (.eyebrow, .section-title, .icon-tile…)
     page.tsx                # /
     features/ product/ hardware/ pricing/ contact/
+    industries/[slug]/      # Industry landing pages (data: lib/industries.ts)
+    pos-system/[city]/      # City landing pages for local SEO (data: lib/locations.ts)
+    privacy-policy/ refund-policy/ terms-and-conditions/
+    sitemap.ts robots.ts manifest.ts opengraph-image.tsx
   components/
     layout/                 # Header (scroll state, mobile menu), Footer
     sections/               # TrialCta + TrialForm (shared by every page)
     motion/MotionProvider   # Scroll-reveal / float / dash animations (data-* attributes)
     home/ features/ product/ hardware/ pricing/ contact/   # Page sections
     ui/                     # Small shared pieces (WhatsApp icon)
-  lib/site.ts               # Contact details, nav + footer links
+  lib/site.ts               # Site URL, contact details, keywords, nav + footer links
+  lib/seo.ts                # pageMetadata() helper + schema.org JSON-LD builders
+  lib/featureCatalog.ts     # Full feature list shown on /features
   assets/images/            # Images (served through next/image)
 design/                     # Original Claude Design (.dc.html) source, for reference only
 ```
@@ -50,4 +56,10 @@ All motion is disabled when the user prefers reduced motion.
 ## Not wired up yet
 
 - Trial signup form (`src/components/sections/TrialForm.tsx`): shows the thank-you state only; no backend call.
-- PayHere checkout links (`#checkout-1y` etc.), the installer download link and the Terms / Privacy / Refund pages are placeholders from the design.
+- PayHere checkout links (`#checkout-1y` etc.) and the installer download link are placeholders from the design.
+
+## SEO
+
+- Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://mariapos.jaan.lk`) in production; canonical URLs, the sitemap and structured data all use it.
+- Every page uses `pageMetadata()` from `lib/seo.ts` for title, description, keywords, canonical and Open Graph tags.
+- Add a city or industry by adding an entry to `lib/locations.ts` or `lib/industries.ts`; the page, sitemap entry and internal links are generated automatically.

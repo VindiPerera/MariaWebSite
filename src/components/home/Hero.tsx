@@ -2,7 +2,21 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, MessageSquare, Package, Play, Send, ShieldCheck, Sparkles, TrendingUp, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Barcode,
+  Check,
+  CheckCircle2,
+  ChevronRight,
+  MessageSquare,
+  Package,
+  Play,
+  Send,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 import posBilling from "@/assets/images/pos-billing.png";
 import styles from "./Hero.module.css";
 
@@ -17,31 +31,44 @@ const liveOrders = [
   {
     branch: "Branch 02 (Counter A)",
     item: "3M 1*10 Plaster ×2, 4Ever Gel ×1",
-    amount: "$1,200.00",
+    amount: "Rs. 1,200.00",
     time: "Just now",
     stockStatus: "FIFO Batch #B24 deducted",
   },
   {
     branch: "Branch 01 (Express Till)",
     item: "Highland Milk 1L ×3, Ceylon Tea 400g",
-    amount: "$1,840.00",
+    amount: "Rs. 1,840.00",
     time: "1m ago",
     stockStatus: "FIFO Batch #B19 deducted",
   },
   {
     branch: "Main Store (Till #03)",
     item: "Panadol Actifast ×10, Vitamin C Pack",
-    amount: "$950.00",
+    amount: "Rs. 950.00",
     time: "2m ago",
     stockStatus: "FIFO Batch #B31 deducted",
   },
 ];
 
-const sparkBars = [32, 48, 42, 65, 54, 78, 52, 88, 72, 98];
+const sparkBars = [
+  { val: 32, label: "09h", rev: "Rs. 1,420" },
+  { val: 48, label: "10h", rev: "Rs. 2,150" },
+  { val: 42, label: "11h", rev: "Rs. 1,890" },
+  { val: 65, label: "12h", rev: "Rs. 3,100" },
+  { val: 54, label: "13h", rev: "Rs. 2,640" },
+  { val: 78, label: "14h", rev: "Rs. 3,850" },
+  { val: 52, label: "15h", rev: "Rs. 2,490" },
+  { val: 88, label: "16h", rev: "Rs. 4,320" },
+  { val: 72, label: "17h", rev: "Rs. 3,670" },
+  { val: 98, label: "18h", rev: "Rs. 4,740" },
+];
 
 export function Hero() {
   const [orderIndex, setOrderIndex] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hoveredBar, setHoveredBar] = useState<number | null>(null);
+  const [activeHotkey, setActiveHotkey] = useState<string | null>(null);
   const visualRef = useRef<HTMLDivElement>(null);
 
   // Auto-cycle live orders every 4.5 seconds for engaging dynamic animation
@@ -73,6 +100,8 @@ export function Hero() {
       <div aria-hidden="true" className={styles.grid} />
       <div aria-hidden="true" className={styles.ambientGlow} />
       <div aria-hidden="true" className={styles.glowLeft} />
+      <div aria-hidden="true" className={styles.orbOne} />
+      <div aria-hidden="true" className={styles.orbTwo} />
 
       <div className={styles.inner}>
         {/* Left Column: Value proposition & conversion */}
@@ -91,7 +120,9 @@ export function Hero() {
           </h1>
 
           <p data-reveal="up" data-delay="160" className={styles.subtitle}>
-            Engineered in Colombo for high-rush retail, pharmacies and supermarkets. MariaPoS deducts stock FIFO on every barcode scan, closes cashier shifts against the till, and sends instant digital eBills — <strong>even 100% offline</strong>.
+            Engineered in Colombo for high-rush retail, pharmacies and supermarkets. MariaPoS deducts stock FIFO on
+            every barcode scan, closes cashier shifts against the till, and sends instant digital eBills —{" "}
+            <strong>even 100% offline</strong>.
           </p>
 
           <div data-reveal="up" data-delay="240" className={styles.actions}>
@@ -101,8 +132,34 @@ export function Hero() {
             </a>
             <a href="/features" className={styles.secondary}>
               <Sparkles size={17} color="var(--red)" />
-              <span>Explore Features</span>
+              <span>Explore 60+ Features</span>
             </a>
+          </div>
+
+          {/* Cashier Speed Hotkeys Demonstration */}
+          <div data-reveal="up" data-delay="280" className={styles.hotkeyBar}>
+            <span className={styles.hotkeyLabel}>⚡ Cashier Hotkeys:</span>
+            <button
+              type="button"
+              onClick={() => setActiveHotkey("F2")}
+              className={`${styles.hotkeyBtn} ${activeHotkey === "F2" ? styles.hotkeyActive : ""}`}
+            >
+              [F2] Search
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveHotkey("F5")}
+              className={`${styles.hotkeyBtn} ${activeHotkey === "F5" ? styles.hotkeyActive : ""}`}
+            >
+              [F5] Wholesale
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveHotkey("F12")}
+              className={`${styles.hotkeyBtn} ${activeHotkey === "F12" ? styles.hotkeyActive : ""}`}
+            >
+              [F12] Quick Pay
+            </button>
           </div>
 
           <div data-reveal="up" data-delay="320" className={styles.perks}>
@@ -162,7 +219,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Floating Card 1: Live Interactive Order Notification */}
+          {/* Floating Card 1: Live Interactive Order Notification with Carousel Dots */}
           <div className={`${styles.floatCard} ${styles.orderCard}`}>
             <div className={styles.orderInner}>
               <div className={styles.orderIconBox}>
@@ -178,11 +235,23 @@ export function Hero() {
                   <span className={styles.orderAmount}>{currentOrder.amount}</span>
                   <span className={styles.orderBatchTag}>{currentOrder.stockStatus}</span>
                 </div>
+
+                <div className={styles.orderDots}>
+                  {liveOrders.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setOrderIndex(idx)}
+                      className={`${styles.orderDot} ${orderIndex === idx ? styles.orderDotActive : ""}`}
+                      aria-label={`Show order ${idx + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Floating Card 2: Real-time Sales Graph with Sparkline */}
+          {/* Floating Card 2: Real-time Sales Graph with Sparkline and Tooltips */}
           <div className={`${styles.floatCard} ${styles.salesCard}`}>
             <div className={styles.salesHeader}>
               <div className={styles.salesTitleWrap}>
@@ -191,13 +260,18 @@ export function Hero() {
               </div>
               <span className={styles.salesGrowth}>+14.2%</span>
             </div>
-            <div className={styles.salesAmount}>$4,740.00</div>
+            <div className={styles.salesAmount}>
+              {hoveredBar !== null ? sparkBars[hoveredBar].rev : "Rs. 4,740.00"}
+            </div>
             <div className={styles.sparklineContainer}>
-              {sparkBars.map((height, i) => (
+              {sparkBars.map((bar, i) => (
                 <div
                   key={i}
                   className={i === sparkBars.length - 1 ? styles.sparkBarActive : styles.sparkBar}
-                  style={{ height: `${height}%` }}
+                  style={{ height: `${bar.val}%` }}
+                  onMouseEnter={() => setHoveredBar(i)}
+                  onMouseLeave={() => setHoveredBar(null)}
+                  title={`${bar.label}: ${bar.rev}`}
                 />
               ))}
             </div>
@@ -221,7 +295,7 @@ export function Hero() {
             </div>
             <div className={styles.stockDetails}>
               <span className={styles.stockHeading}>FIFO Depletion</span>
-              <span className={styles.stockSub}>Batch #B24 (Cost $380) Oldest First</span>
+              <span className={styles.stockSub}>Batch #B24 (Cost Rs. 380) Oldest First</span>
             </div>
           </div>
         </div>

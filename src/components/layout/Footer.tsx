@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Download, Mail, MapPin, Monitor, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { footerColumns, site } from "@/lib/site";
+import { footerColumns, legalLinks, site } from "@/lib/site";
 import logo from "@/assets/images/marialogo.png";
 import styles from "./Footer.module.css";
 
@@ -85,9 +85,11 @@ export function Footer() {
         <div className={styles.bottom}>
           <span>© 2026 {site.company} All rights reserved.</span>
           <div className={styles.legal}>
-            <a href="#terms">Terms</a>
-            <a href="#privacy">Privacy</a>
-            <a href="#refunds">Refund policy</a>
+            {legalLinks.map((link) => (
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

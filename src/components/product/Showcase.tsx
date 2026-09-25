@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
 import { Check, CheckCircle2, ChevronRight, Cpu, Monitor, Printer, QrCode, Shield, Sparkles } from "lucide-react";
 import posBilling from "@/assets/images/pos-billing.png";
 import reports from "@/assets/images/reports.png";
@@ -202,6 +203,24 @@ export function Showcase() {
                 <div className={styles.hwBody}>
                   <h3 className={styles.hwTitle}>{item.title}</h3>
                   <p className={styles.hwDesc}>{item.desc}</p>
+                  {item.badge.includes("Auto-Cut") && (
+                    <Link
+                      href="/#bill-design"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "4px",
+                        fontSize: "13px",
+                        fontWeight: 600,
+                        color: "var(--red)",
+                        marginTop: "8px",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <span>Preview 58mm / 80mm Bill Design</span>
+                      <ChevronRight size={14} />
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

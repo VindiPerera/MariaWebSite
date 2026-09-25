@@ -42,6 +42,37 @@
   pointer-events: none;
 }
 
+.orbOne {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: 15%;
+  left: 35%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 40, 40, 0.08), transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  animation: floatOrb 9s ease-in-out infinite alternate;
+}
+
+.orbTwo {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  bottom: 10%;
+  right: 20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 138, 128, 0.08), transparent 70%);
+  filter: blur(45px);
+  pointer-events: none;
+  animation: floatOrb 11s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-24px) scale(1.12); }
+}
+
 @keyframes pulseGlow {
   0% {
     transform: scale(0.95);
@@ -217,6 +248,52 @@
   border-color: rgba(198, 40, 40, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.12);
+}
+
+.hotkeyBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.hotkeyLabel {
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.hotkeyBtn {
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-bottom: 2px solid #9ca3af;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hotkeyBtn:hover {
+  border-color: var(--red);
+  color: var(--red);
+  transform: translateY(-1px);
+}
+
+.hotkeyActive {
+  background: var(--red);
+  color: #ffffff !important;
+  border-color: var(--red-dark);
+  border-bottom-color: #5f0f0f;
 }
 
 .perks {
@@ -475,6 +552,29 @@
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 600;
+}
+
+.orderDots {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+.orderDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #d1d5db;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.orderDotActive {
+  width: 14px;
+  background: var(--red);
 }
 
 /* Card 2: Sales Summary Card */

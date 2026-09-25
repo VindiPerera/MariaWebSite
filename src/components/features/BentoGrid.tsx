@@ -1,243 +1,166 @@
+"use client";
+
 import {
-  Barcode,
-  Calendar,
   CheckCircle2,
+  CreditCard,
   DollarSign,
-  FileSpreadsheet,
-  Lock,
   Package,
+  Printer,
   Receipt,
   RotateCcw,
+  Send,
   ShieldCheck,
   ShoppingCart,
+  Sparkles,
   TrendingUp,
   Truck,
   Undo2,
-  Users,
   Wallet,
-  Zap,
   type LucideIcon,
 } from "lucide-react";
+import { FeatureVisualPreview } from "./FeatureVisualPreview";
 import styles from "./BentoGrid.module.css";
 
-const keypad = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", "00", "↵"];
-const reportBars = [38, 52, 44, 70, 58, 82, 66, 92];
-
-function SoftIcon({ icon: Icon }: { icon: LucideIcon }) {
-  return (
-    <span className={styles.softIcon}>
-      <Icon size={19} color="var(--red)" />
-    </span>
-  );
+interface MainFeature {
+  title: string;
+  icon: LucideIcon;
+  previewKey: string;
+  desc: string;
+  why: string;
 }
 
-function SolidIcon({ icon: Icon }: { icon: LucideIcon }) {
-  return (
-    <span className={styles.solidIcon}>
-      <Icon size={19} color="#ffffff" />
-    </span>
-  );
-}
+const mainFeatures: MainFeature[] = [
+  {
+    title: "High-Velocity POS Billing",
+    icon: ShoppingCart,
+    previewKey: "barcode & name search billing",
+    desc: "Scan barcodes or search items by typing, use F1–F12 hotkeys, toggle wholesale rates, and bill weighted goods with zero queue latency.",
+    why: "Faster checkout at peak hours and fewer wrong items keyed in by hand.",
+  },
+  {
+    title: "Shifts & Till Control",
+    icon: Wallet,
+    previewKey: "shift open & close",
+    desc: "Cashiers open and close shifts with blind counts. Cash-in, petty cash payouts, and drawer short/excess are strictly recorded.",
+    why: "Cash shortages are caught the same day and tied to the responsible cashier.",
+  },
+  {
+    title: "Inventory with FIFO Batches",
+    icon: Package,
+    previewKey: "fifo batch tracking",
+    desc: "Every goods delivery creates a batch with its own cost and expiry. Sales consume oldest batches first for accurate gross margin.",
+    why: "Accurate profit on every sale, zero expired stock, and reliable inventory valuation.",
+  },
+  {
+    title: "Suppliers & Purchasing",
+    icon: Truck,
+    previewKey: "cheque maturity reminders",
+    desc: "Purchase orders, goods receiving notes (GRN), supplier payables ledger, and automatic reminders for maturing post-dated cheques.",
+    why: "Pay suppliers on time, avoid double payments, and never bounce a cheque.",
+  },
+  {
+    title: "Returns, Refunds & Credit",
+    icon: Undo2,
+    previewKey: "sales history & bill reprint",
+    desc: "Find the original bill by invoice number, restock items back into the exact original cost batch, and refund cash or adjust store credit.",
+    why: "Only genuine purchases are refunded, and stock valuation stays 100% accurate.",
+  },
+  {
+    title: "Payments & Split Tender",
+    icon: CreditCard,
+    previewKey: "cash, card, bank transfer & cheque",
+    desc: "Record cash, card, LankaQR, bank transfer and cheques on every bill. Split one bill across multiple tender methods with change calculation.",
+    why: "Removes counting mistakes at busy counters and eliminates voiding bills when customers split payment.",
+  },
+  {
+    title: "Customer Credit & Loyalty",
+    icon: Sparkles,
+    previewKey: "loyalty points",
+    desc: "Attach shoppers by phone number (F6), track outstanding credit books and settlements, and award loyalty points on purchases.",
+    why: "Turns one-time shoppers into regulars and replaces forgotten paper credit books with a single digital ledger.",
+  },
+  {
+    title: "Expenses & Petty Cash",
+    icon: DollarSign,
+    previewKey: "expense",
+    desc: "Record electricity, store rent, transport, and daily petty cash expenses directly from the till drawer with category tags.",
+    why: "Profit & loss reports reflect real operating costs, not just counter sales revenue.",
+  },
+  {
+    title: "SMS Receipts & Telegram Push",
+    icon: Send,
+    previewKey: "telegram order alerts",
+    desc: "Send paperless eBills to customer phones at checkout, and push real-time sales notifications with line items to the owner's Telegram.",
+    why: "Customers keep permanent proof for returns, owners monitor branches live, and you save on thermal paper roll costs.",
+  },
+  {
+    title: "Hardware & Printing Setup",
+    icon: Printer,
+    previewKey: "thermal receipt printers",
+    desc: "Plug-and-play USB barcode scanners, 58mm/80mm thermal receipt printers, barcode label printers, and automatic cash drawer kick.",
+    why: "Works out of the box with standard counter equipment Sri Lankan shops already own.",
+  },
+  {
+    title: "Reports & Business Intelligence",
+    icon: TrendingUp,
+    previewKey: "profit & loss",
+    desc: "13+ exportable reports covering sales velocity, hourly rush peaks, product margins, tax collections, shrinkage, and P&L.",
+    why: "Instant business figures for partners, banks and tax filings without waiting for an external accountant.",
+  },
+  {
+    title: "Role Security & Permissions",
+    icon: ShieldCheck,
+    previewKey: "admin & cashier roles",
+    desc: "Separate admin and cashier accounts with granular permission switches and manager PIN override at the counter.",
+    why: "Cashiers focus on billing while profits, historical edits, and discount rights stay strictly with the owner.",
+  },
+];
 
 export function BentoGrid() {
   return (
-    <section id="features" className={styles.section}>
+    <section id="features" className={styles.section} aria-labelledby="features-main-title">
       <div data-reveal="up" className={styles.header}>
         <span className="eyebrow">Enterprise POS Architecture</span>
-        <h2 className={`section-title ${styles.title}`}>Built around how a real counter actually operates</h2>
+        <h1 id="features-main-title" className={`section-title ${styles.title}`}>
+          Core POS capabilities engineered for counter speed
+        </h1>
         <p className={`lead ${styles.intro}`}>
-          Every module is linked to a single, lightning-fast FIFO stock ledger. A sale, return, supplier goods receipt, or cashier shift updates the exact same numbers instantly without lag.
+          Every module is linked to a single, lightning-fast FIFO stock ledger. All 12 core capabilities below operate
+          cohesively so cashiers bill without lag and owners monitor every rupee.
         </p>
       </div>
 
       <div className={styles.grid}>
-        {/* Module 1: High-Speed POS Billing */}
-        <article id="billing" data-reveal="up" className={`${styles.large} ${styles.billing}`}>
-          <div className={styles.cardTop}>
-            <SolidIcon icon={ShoppingCart} />
-            <span className={styles.badgePill}>Counter Speed</span>
-          </div>
-          <h3 className={styles.titleLarge}>High-Velocity POS Billing</h3>
-          <p className={styles.billingBody}>
-            Engineered for zero-delay queues. Barcode scanner detection, keyboard shortcuts (F1–F12), favorites row, split cash &amp; card payments, and automatic FIFO stock deduction on every bill printed or texted.
-          </p>
-          <div className={styles.keypadPreview}>
-            <div className={styles.keypadDisplay}>
-              <span className={styles.scannerBadge}>
-                <Barcode size={14} />
-                <span>Barcode Scan Ready</span>
-              </span>
-              <span className={styles.liveTotal}>$4,740.00</span>
-            </div>
-            <div aria-hidden="true" className={styles.keypad}>
-              {keypad.map((key) => (
-                <span key={key} className={key === "↵" ? styles.keyEnter : styles.key}>
-                  {key}
-                </span>
-              ))}
-            </div>
-          </div>
-        </article>
-
-        {/* Module 2: Cashier Shift & Till Balancing */}
-        <article id="shifts" data-reveal="up" data-delay="80" className={`${styles.small} ${styles.card}`}>
-          <div className={styles.cardTop}>
-            <SoftIcon icon={Wallet} />
-            <span className={styles.statusLive}>Shift #214</span>
-          </div>
-          <h3 className={styles.titleSmall}>Shifts &amp; Till Control</h3>
-          <p className={styles.body}>
-            Cashiers open and close shifts with blind counts. Cash-in, petty cash payouts, and till short/excess are strictly logged.
-          </p>
-          <div className={styles.ledger}>
-            <span className={styles.ledgerRow}>
-              <span>Expected in Drawer</span>
-              <span className={styles.monoVal}>$12,400.00</span>
-            </span>
-            <span className={styles.ledgerRow}>
-              <span>Counted by Cashier</span>
-              <span className={styles.monoVal}>$12,350.00</span>
-            </span>
-            <span className={`${styles.ledgerRow} ${styles.ledgerShort}`}>
-              <span>Till Discrepancy</span>
-              <span className={styles.shortTag}>-$50.00 Short</span>
-            </span>
-          </div>
-        </article>
-
-        {/* Module 3: True FIFO Inventory Valuation */}
-        <article id="inventory" data-reveal="up" className={`${styles.small} ${styles.card}`}>
-          <div className={styles.cardTop}>
-            <SoftIcon icon={Package} />
-            <span className={styles.fifoBadge}>FIFO Logic</span>
-          </div>
-          <h3 className={styles.titleSmall}>Inventory with FIFO Batches</h3>
-          <p className={styles.body}>
-            MariaPoS tracks every product batch by cost and expiry. Sales always consume oldest batches first for accurate gross margin and zero stale stock.
-          </p>
-          <div className={styles.batchContainer}>
-            <div className={styles.batchItem}>
-              <div className={styles.batchMeta}>
-                <span>Batch #B1 (Oldest)</span>
-                <span className={styles.batchDeducted}>Deducting Now</span>
-              </div>
-              <div className={styles.batchTrack}>
-                <div className={styles.batchFillActive} style={{ width: "90%" }} />
-              </div>
-            </div>
-            <div className={styles.batchItem}>
-              <div className={styles.batchMeta}>
-                <span>Batch #B2 (Next)</span>
-                <span>Queued</span>
-              </div>
-              <div className={styles.batchTrack}>
-                <div className={styles.batchFill} style={{ width: "65%" }} />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        {/* Module 4: Suppliers, GRN & Cheque Reminders */}
-        <article data-reveal="up" data-delay="80" className={`${styles.small} ${styles.card}`}>
-          <div className={styles.cardTop}>
-            <SoftIcon icon={Truck} />
-            <span className={styles.pillAlert}>
-              <span className={styles.pillDot} />4 Cheques Due
-            </span>
-          </div>
-          <h3 className={styles.titleSmall}>Suppliers &amp; GRN Receiving</h3>
-          <p className={styles.body}>
-            Purchase orders, goods receiving notes (GRN), supplier payables ledger, and automatic cheque maturity reminders.
-          </p>
-          <div className={styles.supplierMiniCard}>
-            <div className={styles.supplierRow}>
-              <span>Ceylon Pharma Ltd</span>
-              <span className={styles.supplierDue}>Due in 2 days</span>
-            </div>
-            <span className={styles.supplierAmount}>$1,850.00 · Cheque #004921</span>
-          </div>
-        </article>
-
-        {/* Module 5: Customer Credit & Returns */}
-        <article data-reveal="up" data-delay="120" className={`${styles.small} ${styles.card}`}>
-          <div className={styles.cardTop}>
-            <SoftIcon icon={Undo2} />
-            <span className={styles.badgePill}>Ledger</span>
-          </div>
-          <h3 className={styles.titleSmall}>Returns, Refunds &amp; Credit</h3>
-          <p className={styles.body}>
-            Item returns restore stock back to the correct cost batch. Customer credit bills track pending balances, credit limits, and partial payments.
-          </p>
-          <div className={styles.creditPill}>
-            <RotateCcw size={13} color="var(--red)" />
-            <span>Batch-accurate inventory restoration</span>
-          </div>
-        </article>
-
-        {/* Module 6: Executive Analytics & Reports */}
-        <article id="reports" data-reveal="up" className={`${styles.large} ${styles.reports}`}>
-          <div aria-hidden="true" className={styles.reportsGlow} />
-          <div className={styles.reportsCopy}>
-            <div className={styles.cardTop}>
-              <SolidIcon icon={TrendingUp} />
-              <span className={styles.reportTag}>Real-Time P&amp;L</span>
-            </div>
-            <h3 className={styles.titleLarge}>Reports &amp; Business Intelligence</h3>
-            <p className={styles.reportsBody}>
-              Instant sales summaries, hourly rush peaks, product-wise profit margins, payment mode breakdowns, tax summaries, and one-click PDF &amp; Excel exports.
-            </p>
-            <div className={styles.reportStats}>
-              <div className={styles.statBox}>
-                <span className={styles.statLabel}>Today&apos;s Gross Margin</span>
-                <span className={styles.statVal}>34.8%</span>
-              </div>
-              <div className={styles.statBox}>
-                <span className={styles.statLabel}>Fastest Mover</span>
-                <span className={styles.statVal}>3M Plaster</span>
-              </div>
-            </div>
-          </div>
-          <div className={styles.chartWrapper}>
-            <div className={styles.chartHeader}>
-              <span>Hourly Sales Velocity</span>
-              <span className={styles.chartPeak}>Peak: 17:00–19:00</span>
-            </div>
-            <div className={styles.chart}>
-              {reportBars.map((height, i) => (
-                <div key={i} className={styles.barCol}>
-                  <span
-                    data-grow=""
-                    className={i === reportBars.length - 1 ? styles.chartBarActive : styles.chartBar}
-                    style={{ height: `${height}%` }}
-                  />
-                  <span className={styles.barLabel}>{i + 1}h</span>
+        {mainFeatures.map((feature, i) => {
+          const Icon = feature.icon;
+          return (
+            <article
+              key={feature.title}
+              data-reveal="up"
+              data-delay={(i % 3) * 60}
+              className={styles.card}
+            >
+              <div className={styles.cardTopRow}>
+                <div className={styles.titleWrap}>
+                  <span className={styles.iconBox}>
+                    <Icon size={18} color="var(--red)" />
+                  </span>
+                  <h3 className={styles.cardTitle}>{feature.title}</h3>
                 </div>
-              ))}
-            </div>
-          </div>
-        </article>
+                <FeatureVisualPreview featureName={feature.previewKey} />
+              </div>
 
-        {/* Module 7: Cashier Permissions & Security */}
-        <article data-reveal="up" data-delay="80" className={`${styles.small} ${styles.card}`}>
-          <div className={styles.cardTop}>
-            <SoftIcon icon={Users} />
-            <span className={styles.badgePill}>Security</span>
-          </div>
-          <h3 className={styles.titleSmall}>Role Security &amp; Expenses</h3>
-          <p className={styles.body}>
-            Cashiers cannot view overall profits or delete historical invoices without manager PIN override. Log petty cash expenses directly from the till.
-          </p>
-          <div className={styles.rolesContainer}>
-            <div className={styles.roleItem}>
-              <ShieldCheck size={14} color="var(--red)" />
-              <span>Admin: Full access &amp; P&amp;L</span>
-            </div>
-            <div className={styles.roleItem}>
-              <Lock size={14} color="#6b7280" />
-              <span>Cashier: Counter-only billing lock</span>
-            </div>
-          </div>
-        </article>
+              <p className={styles.desc}>{feature.desc}</p>
+
+              <div className={styles.why}>
+                <CheckCircle2 size={16} color="var(--red)" />
+                <span>
+                  <strong>Why it matters:</strong> {feature.why}
+                </span>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
