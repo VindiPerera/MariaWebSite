@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "MariaPoS — POS System Sri Lanka",
+    name: "MariaPoS — Point of Sale & Inventory Software",
     short_name: "MariaPoS",
-    description: "Offline-first POS system and billing software for Sri Lankan shops.",
+    description: "Offline-first Windows POS system and inventory management software for retail counters.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

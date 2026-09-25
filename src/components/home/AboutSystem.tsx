@@ -46,7 +46,13 @@ const purposes: { title: string; body: string; icon: LucideIcon; metric: string 
   },
 ];
 
-const flow: { title: string; body: string; icon: LucideIcon; status: string; badgeColor: string }[] = [
+const flow: {
+  title: string;
+  body: string;
+  icon: LucideIcon;
+  status: string;
+  badgeColor: string;
+}[] = [
   {
     title: "At the counter",
     body: "MariaPoS desktop app on Windows. Works fully offline with an encrypted local database.",
@@ -103,30 +109,33 @@ export function AboutSystem() {
               <Zap size={14} color="#ffffff" />
               <span>Three-Tier Synchronized Architecture</span>
             </div>
+            <span className={styles.flowStageCounter}>Stage 0{activeStep + 1} of 03</span>
           </div>
 
-          {flow.map(({ title, body, icon: Icon, status }, i) => {
-            const isSelected = activeStep === i;
-            return (
-              <div
-                key={title}
-                onClick={() => setActiveStep(i)}
-                className={`${styles.flowStep} ${isSelected ? styles.flowStepActive : ""}`}
-              >
-                <span className={styles.flowIcon}>
-                  <Icon size={20} color="#ffffff" />
-                </span>
-                <div className={styles.flowStepContent}>
-                  <div className={styles.flowMeta}>
-                    <span className={styles.flowIndex}>Stage 0{i + 1}</span>
-                    <span className={styles.flowStatus}>{status}</span>
+          <div className={styles.flowStepList}>
+            {flow.map(({ title, body, icon: Icon, status }, i) => {
+              const isSelected = activeStep === i;
+              return (
+                <div
+                  key={title}
+                  onClick={() => setActiveStep(i)}
+                  className={`${styles.flowStep} ${isSelected ? styles.flowStepActive : ""}`}
+                >
+                  <span className={styles.flowIcon}>
+                    <Icon size={18} color="#ffffff" />
+                  </span>
+                  <div className={styles.flowStepContent}>
+                    <div className={styles.flowMeta}>
+                      <span className={styles.flowIndex}>Stage 0{i + 1}</span>
+                      <span className={styles.flowStatus}>{status}</span>
+                    </div>
+                    <h3 className={styles.flowTitle}>{title}</h3>
+                    <p className={styles.flowBody}>{body}</p>
                   </div>
-                  <h3 className={styles.flowTitle}>{title}</h3>
-                  <p className={styles.flowBody}>{body}</p>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 

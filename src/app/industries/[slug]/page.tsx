@@ -50,7 +50,7 @@ export default async function IndustryPage({ params }: Props) {
             name: industry.keyword,
             serviceType: "Point of Sale software",
             provider: { "@id": organizationId },
-            areaServed: { "@type": "Country", name: "Sri Lanka" },
+            areaServed: { "@type": "AdministrativeArea", name: "Worldwide" },
             description: industry.intro,
           },
         ]}

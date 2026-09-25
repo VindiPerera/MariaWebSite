@@ -4,12 +4,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Contact MariaPoS — POS System Sales & Support in Colombo, Sri Lanka",
+  title: "Contact MariaPoS — POS System Sales & Global Support",
   description:
-    "Contact the MariaPoS team at JAAN Network, 46 Hudson Road, Colombo. Call or WhatsApp 076 593 3255 for a POS demo, pricing, hardware advice and technical support anywhere in Sri Lanka.",
+    "Contact the MariaPoS team at JAAN Network. Call or WhatsApp 076 593 3255 for a live POS demo, pricing, hardware advice and 24/7 technical support.",
   path: "/contact",
   absoluteTitle: true,
-  keywords: ["POS system supplier Colombo", "POS company Sri Lanka", "POS support Sri Lanka", "POS demo Sri Lanka"],
+  keywords: ["POS system support", "POS software demo", "contact POS company", "POS technical support"],
 });
 
 export default function ContactPage() {

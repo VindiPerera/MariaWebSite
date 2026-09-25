@@ -44,13 +44,6 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
-  // Local SEO: tells search engines where the business is based.
-  other: {
-    "geo.region": "LK-11",
-    "geo.placename": "Colombo, Sri Lanka",
-    "geo.position": `${site.geo.latitude};${site.geo.longitude}`,
-    ICBM: `${site.geo.latitude}, ${site.geo.longitude}`,
-  },
 };
 
 export const viewport: Viewport = {

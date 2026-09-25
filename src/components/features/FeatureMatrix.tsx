@@ -48,7 +48,7 @@ export function FeatureMatrix() {
           <span className="eyebrow">Direct Comparison</span>
           <h2 className="section-title">Built differently from old, clunky retail software</h2>
           <p className="lead">
-            See why Sri Lankan retail, pharmacy, and grocery counters choose MariaPoS for peak hours.
+            See why retail, pharmacy, and grocery counters worldwide choose MariaPoS for peak hours.
           </p>
         </div>
 

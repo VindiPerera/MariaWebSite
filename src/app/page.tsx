@@ -1,18 +1,18 @@
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
+import { BrandPromoter } from "@/components/home/BrandPromoter";
 import { AboutSystem } from "@/components/home/AboutSystem";
 import { ReceiptShowcase } from "@/components/home/ReceiptShowcase";
 import { WhySection } from "@/components/home/WhySection";
 import { WhoItsFor } from "@/components/home/WhoItsFor";
 import { Benefits } from "@/components/home/Benefits";
-import { ExploreSection } from "@/components/home/ExploreSection";
 import { FaqBlock } from "@/components/sections/FaqBlock";
 import { TrialCta } from "@/components/sections/TrialCta";
 
 const homeFaqs = [
   {
     q: "What is MariaPoS?",
-    a: "MariaPoS is a POS (point of sale) and inventory management system for Windows, made in Sri Lanka by JAAN Network (PVT) Ltd. It handles billing, FIFO stock, suppliers, customer credit, shifts, expenses and reports, and syncs to a cloud panel.",
+    a: "MariaPoS is a POS (point of sale) and inventory management system for Windows, developed by JAAN Network (PVT) Ltd. It handles billing, FIFO stock, suppliers, customer credit, shifts, expenses and reports, and syncs to a cloud panel.",
   },
   {
     q: "Which businesses can use MariaPoS?",
@@ -41,12 +41,12 @@ export default function HomePage() {
     <main id="top">
       <Hero />
       <TrustBar />
+      <BrandPromoter />
       <AboutSystem />
       <ReceiptShowcase />
       <WhySection />
       <WhoItsFor />
       <Benefits />
-      <ExploreSection />
       <FaqBlock title="POS system questions, answered" faqs={homeFaqs} />
       <TrialCta />
     </main>

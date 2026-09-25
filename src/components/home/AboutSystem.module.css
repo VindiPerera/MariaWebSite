@@ -65,7 +65,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .ecosystemBadge {
@@ -81,6 +81,19 @@
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+.flowStageCounter {
+  font-family: var(--font-code);
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.flowStepList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .flowStep {

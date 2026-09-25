@@ -24,7 +24,7 @@ src/
     page.tsx                # /
     features/ product/ hardware/ pricing/ contact/
     industries/[slug]/      # Industry landing pages (data: lib/industries.ts)
-    pos-system/[city]/      # City landing pages for local SEO (data: lib/locations.ts)
+    pos-system/[country]/[region]/  # Country + state/province landing pages (data: lib/geo.ts)
     privacy-policy/ refund-policy/ terms-and-conditions/
     sitemap.ts robots.ts manifest.ts opengraph-image.tsx
   components/
@@ -62,4 +62,4 @@ All motion is disabled when the user prefers reduced motion.
 
 - Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://mariapos.jaan.lk`) in production; canonical URLs, the sitemap and structured data all use it.
 - Every page uses `pageMetadata()` from `lib/seo.ts` for title, description, keywords, canonical and Open Graph tags.
-- Add a city or industry by adding an entry to `lib/locations.ts` or `lib/industries.ts`; the page, sitemap entry and internal links are generated automatically.
+- Add a country or state/region in `lib/geo.ts` (Sri Lankan cities come from `lib/locations.ts`), or an industry in `lib/industries.ts`; pages, sitemap entries and internal links are generated automatically.

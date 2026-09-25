@@ -8,7 +8,7 @@ export const metadata = pageMetadata({
   description:
     "Take a tour of MariaPoS: the POS billing screen, reports dashboard, SMS e-bills and supported hardware including barcode scanners, thermal receipt printers, cash drawers and touch POS terminals.",
   path: "/product",
-  keywords: ["POS software screenshots", "POS hardware Sri Lanka", "touch POS system", "thermal receipt printer POS"],
+  keywords: ["POS software screenshots", "POS hardware compatibility", "touch POS system", "thermal receipt printer POS"],
 });
 
 export default function ProductPage() {

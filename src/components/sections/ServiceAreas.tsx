@@ -1,40 +1,41 @@
 import Link from "next/link";
-import { MapPin } from "lucide-react";
-import { locations, provinces } from "@/lib/locations";
+import { Globe2 } from "lucide-react";
+import { continents, countries } from "@/lib/geo";
 import styles from "./ServiceAreas.module.css";
 
 type Props = {
-  /** Slug of the current city page, left out of the list. */
+  /** Slug of the current country page, left out of the list. */
   exclude?: string;
   title?: string;
 };
 
-export function ServiceAreas({ exclude, title = "POS system for shops across Sri Lanka" }: Props) {
+/** Worldwide directory of country landing pages, grouped by continent. */
+export function ServiceAreas({ exclude, title = "POS system for shops worldwide" }: Props) {
   return (
     <section className={styles.section} aria-labelledby="service-areas-title">
       <div data-reveal="up" className={styles.head}>
-        <span className="eyebrow">Island-wide service</span>
+        <span className="eyebrow">Worldwide</span>
         <h2 id="service-areas-title" className={styles.title}>
           {title}
         </h2>
         <p className={styles.lead}>
-          MariaPoS is a Windows download, so any shop in any of the nine provinces can start today, with help from our
-          Colombo team by phone and WhatsApp. Find MariaPoS in your city:
+          MariaPoS is a Windows download with remote setup and support, so shops in any country can start today. Find
+          MariaPoS in your country:
         </p>
       </div>
 
       <div className={styles.provinces}>
-        {provinces.map((province) => (
-          <div key={province} className={styles.province}>
-            <h3 className={styles.provinceName}>{province} Province</h3>
+        {continents.map((continent) => (
+          <div key={continent} className={styles.province}>
+            <h3 className={styles.provinceName}>{continent}</h3>
             <ul className={styles.cities}>
-              {locations
-                .filter((l) => l.province === province && l.slug !== exclude)
-                .map((l) => (
-                  <li key={l.slug}>
-                    <Link href={`/pos-system/${l.slug}`} className={styles.city}>
-                      <MapPin size={13} />
-                      POS system {l.name}
+              {countries
+                .filter((c) => c.continent === continent && c.slug !== exclude)
+                .map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/pos-system/${c.slug}`} className={styles.city}>
+                      <Globe2 size={13} />
+                      POS system {c.name}
                     </Link>
                   </li>
                 ))}

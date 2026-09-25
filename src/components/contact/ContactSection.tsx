@@ -33,7 +33,7 @@ export function ContactSection() {
       <div className={styles.inner}>
         <div data-reveal="up" className="section-intro">
           <span className="eyebrow">Direct Contact &amp; Support</span>
-          <h1 className={styles.title}>Talk directly with the MariaPoS team in Colombo</h1>
+          <h1 className={styles.title}>Talk directly with the MariaPoS team</h1>
           <p className={styles.subtitle}>
             Have questions about barcode scanners, multi-branch cloud sync, or setting up your till? We&apos;re here to help you get running in minutes.
           </p>

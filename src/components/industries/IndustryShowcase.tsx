@@ -50,45 +50,45 @@ const tradeScenarios: Record<
     modeTitle: "Pharmacy Batch & Expiry Mode",
     description: "Every item billed automatically consumes the oldest non-expired batch with distributor traceability.",
     items: [
-      { name: "Panadol Actifast 500mg (Card)", unit: "10 Tabs", price: 240, badge: "Exp: 2028 · Batch #P92", qty: 2 },
-      { name: "Amoxicillin 250mg Susp.", unit: "Bottle", price: 680, badge: "Exp: 2027 · Batch #A14", qty: 1 },
-      { name: "3M Micropore Surgical Tape", unit: "Roll", price: 420, badge: "Exp: 2029 · Batch #M08", qty: 1 },
+      { name: "Paracetamol 500mg (Card)", unit: "10 Tabs", price: 12.0, badge: "Exp: 2028 · Batch #P92", qty: 2 },
+      { name: "Amoxicillin 250mg Susp.", unit: "Bottle", price: 24.5, badge: "Exp: 2027 · Batch #A14", qty: 1 },
+      { name: "3M Surgical Medical Tape", unit: "Roll", price: 8.5, badge: "Exp: 2029 · Batch #M08", qty: 1 },
     ],
     actionHotkey: "[F4] Drug Batch Lookup",
     hotkeyDesc: "Check strip vs box price instantly",
-    receiptSummary: "Cheque #004921 due in 48h to Hemas Pharma",
+    receiptSummary: "Invoice #004921 dispatched with distributor traceability",
   },
   "supermarket-grocery": {
     modeTitle: "Supermarket Rapid Checkout Mode",
     description: "Decimal weights, loose produce pricing, and barcode queue busting at peak rush hours.",
     items: [
-      { name: "Samba Rice (Kiri Samba)", unit: "5.450 kg", price: 1253.5, badge: "Scale Weigh @ Rs. 230/kg", qty: 1 },
-      { name: "Highland Fresh Milk 1L", unit: "Tetra Pack", price: 380, badge: "Barcode Scan (EAN-13)", qty: 2 },
-      { name: "Munchee Super Cream Cracker", unit: "490g Pack", price: 410, badge: "Promo 5% Applied", qty: 1 },
+      { name: "Organic Basmati Rice", unit: "5.0 kg", price: 18.5, badge: "Scale Weigh @ $3.70/kg", qty: 1 },
+      { name: "Fresh Whole Milk 1L", unit: "Carton", price: 3.5, badge: "Barcode Scan (EAN-13)", qty: 2 },
+      { name: "Whole Grain Crackers", unit: "490g Pack", price: 4.2, badge: "Promo 5% Applied", qty: 1 },
     ],
     actionHotkey: "[F12] Instant Pay & SMS",
     hotkeyDesc: "Send digital receipt to customer's mobile",
-    receiptSummary: "eBill SMS dispatched to 077 •••• 412 (18 credits left)",
+    receiptSummary: "eBill SMS dispatched to customer mobile",
   },
   "hardware-store": {
     modeTitle: "Hardware & Contractor Trade Mode",
     description: "Sell by metre, box or kg, with one-key toggle between retail and trade contractor pricing.",
     items: [
-      { name: "National PVC Pipe 1 inch", unit: "12 Metres", price: 1840, badge: "Trade Rate (Wholesale)", qty: 3 },
-      { name: "Tokyo Super Cement 50kg", unit: "Bag", price: 2350, badge: "Heavy Goods Batch #C4", qty: 10 },
-      { name: "Brass Wood Screws 1.5 in", unit: "Box of 100", price: 650, badge: "Bin Label Scanned", qty: 2 },
+      { name: "PVC Pressure Pipe 1 inch", unit: "12 Metres", price: 28.5, badge: "Trade Rate (Wholesale)", qty: 3 },
+      { name: "Portland Cement 50kg", unit: "Bag", price: 14.5, badge: "Heavy Goods Batch #C4", qty: 10 },
+      { name: "Brass Wood Screws 1.5 in", unit: "Box of 100", price: 6.5, badge: "Bin Label Scanned", qty: 2 },
     ],
     actionHotkey: "[F5] Toggle Wholesale Rate",
     hotkeyDesc: "Switches entire cart to contractor discount",
-    receiptSummary: "Trade Credit: Rs. 25,000 added to Bandara Contractors",
+    receiptSummary: "Trade Credit: $250.00 added to Metro Contractors",
   },
   "clothing-textile": {
-    modeTitle: "Fashion & Avurudu Season Rush Mode",
+    modeTitle: "Fashion & Retail Seasonal Rush Mode",
     description: "Promo coupon validation, invoice-based garment exchanges, and customer loyalty reward points.",
     items: [
-      { name: "Pure Linen Men's Shirt (L)", unit: "Garment", price: 4200, badge: "Barcode Tag #L-812", qty: 1 },
-      { name: "Printed Silk Saree Fabric", unit: "3.5 Metres", price: 5600, badge: "Decimal Length Billed", qty: 1 },
-      { name: "Avurudu Special Promo", unit: "Code: NEW2026", price: -1000, badge: "Validated -10%", qty: 1 },
+      { name: "Pure Linen Men's Shirt (L)", unit: "Garment", price: 45.0, badge: "Barcode Tag #L-812", qty: 1 },
+      { name: "Premium Silk Fabric", unit: "3.5 Metres", price: 56.0, badge: "Decimal Length Billed", qty: 1 },
+      { name: "Seasonal Promo Voucher", unit: "Code: SAVE2026", price: -10.0, badge: "Validated -10%", qty: 1 },
     ],
     actionHotkey: "[F7] Apply Promo Voucher",
     hotkeyDesc: "Applies verified discount to bill",
@@ -98,9 +98,9 @@ const tradeScenarios: Record<
     modeTitle: "Quick-Service Counter Rush Mode",
     description: "High-speed on-screen keypad, blind shift changeover, and instant cash drawer triggers.",
     items: [
-      { name: "Spicy Fish Bun (Kimbula)", unit: "Piece", price: 120, badge: "Quick Key #1", qty: 4 },
-      { name: "Iced Caramel Milk Coffee", unit: "Cup", price: 450, badge: "Quick Key #4", qty: 2 },
-      { name: "Chocolate Fudge Slice", unit: "Portion", price: 380, badge: "Fresh Daily Batch", qty: 1 },
+      { name: "Artisan Butter Croissant", unit: "Piece", price: 3.5, badge: "Quick Key #1", qty: 4 },
+      { name: "Iced Caramel Latte", unit: "Cup", price: 4.75, badge: "Quick Key #4", qty: 2 },
+      { name: "Chocolate Fudge Brownie", unit: "Portion", price: 3.8, badge: "Fresh Daily Batch", qty: 1 },
     ],
     actionHotkey: "[ENTER] Auto Drawer Kick",
     hotkeyDesc: "Cash drawer opens, change calculated",
@@ -110,12 +110,12 @@ const tradeScenarios: Record<
     modeTitle: "Auto Spare Parts & Workshop Mode",
     description: "Search by OEM part number or scan barcode, and assign trade invoices to mechanics on credit.",
     items: [
-      { name: "Toyota Shock Absorber Front", unit: "OE 48510-09", price: 14500, badge: "Landed FIFO Cost Rs. 11,200", qty: 2 },
-      { name: "Denso Iridium Spark Plug", unit: "Pack of 4", price: 6800, badge: "Genuine Japan Stock", qty: 1 },
+      { name: "Front Strut Shock Absorber", unit: "OE 48510-09", price: 145.0, badge: "Landed FIFO Cost $112.00", qty: 2 },
+      { name: "Denso Iridium Spark Plug", unit: "Pack of 4", price: 48.0, badge: "OEM Stock", qty: 1 },
     ],
     actionHotkey: "[F2] Part Number Search",
     hotkeyDesc: "Look up interchange numbers across vehicles",
-    receiptSummary: "Ledger updated for Jayalath Auto Care on credit",
+    receiptSummary: "Trade account ledger updated for Express Auto Care",
   },
 };
 
@@ -196,7 +196,7 @@ export function IndustryShowcase({ slug, name, short }: IndustryShowcaseProps) {
                     <div className={styles.itemPriceCol}>
                       <span className={styles.qtyMultiplier}>×{item.qty}</span>
                       <span className={styles.itemPrice}>
-                        Rs. {(item.price * item.qty).toLocaleString()}
+                        ${(item.price * item.qty).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -206,7 +206,7 @@ export function IndustryShowcase({ slug, name, short }: IndustryShowcaseProps) {
               <div className={styles.cartFooter}>
                 <div className={styles.totalRow}>
                   <span className={styles.totalLabel}>Grand Total (Net)</span>
-                  <span className={styles.grandTotal}>Rs. {total.toLocaleString()}</span>
+                  <span className={styles.grandTotal}>${total.toFixed(2)}</span>
                 </div>
 
                 <div className={styles.actionRow}>

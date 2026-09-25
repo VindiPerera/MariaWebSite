@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "MariaPoS — POS system & billing software for Sri Lankan shops";
+export const alt = "MariaPoS — High-Speed POS & FIFO Inventory Software";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,10 +25,10 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", fontSize: 34, fontWeight: 700, letterSpacing: -1 }}>MariaPoS · Made to Bill</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ display: "flex", fontSize: 72, fontWeight: 800, lineHeight: 1.05, letterSpacing: -2 }}>
-            POS System &amp; Billing Software for Sri Lanka
+            High-Speed POS &amp; Inventory Software
           </div>
           <div style={{ display: "flex", fontSize: 30, opacity: 0.9 }}>
-            Offline-first Windows POS by JAAN Network, Colombo
+            Offline-first Windows POS by JAAN Network
           </div>
         </div>
         <div style={{ display: "flex", gap: 14 }}>

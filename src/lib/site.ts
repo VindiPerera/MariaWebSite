@@ -92,6 +92,18 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     ],
   },
   {
+    title: "POS Worldwide",
+    links: [
+      { label: "POS system USA", href: "/pos-system/united-states" },
+      { label: "POS system UK", href: "/pos-system/united-kingdom" },
+      { label: "POS system India", href: "/pos-system/india" },
+      { label: "POS system Bangladesh", href: "/pos-system/bangladesh" },
+      { label: "POS system UAE", href: "/pos-system/united-arab-emirates" },
+      { label: "POS system Sri Lanka", href: "/pos-system/sri-lanka" },
+      { label: "All countries", href: "/pos-system" },
+    ],
+  },
+  {
     title: "Company",
     links: [
       { label: "About Us", href: "/about" },

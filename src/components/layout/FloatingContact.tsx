@@ -41,7 +41,7 @@ export function FloatingContact() {
                   <span className={styles.popupBadge}>Online</span>
                 </div>
                 <div className={styles.popupSubtitle}>
-                  Lifetime Guarantee &amp; Direct Sri Lanka Support
+                  Lifetime Guarantee &amp; 24/7 Global Support
                 </div>
               </div>
             </div>

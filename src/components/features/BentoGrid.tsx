@@ -69,7 +69,7 @@ const mainFeatures: MainFeature[] = [
     title: "Payments & Split Tender",
     icon: CreditCard,
     previewKey: "cash, card, bank transfer & cheque",
-    desc: "Record cash, card, LankaQR, bank transfer and cheques on every bill. Split one bill across multiple tender methods with change calculation.",
+    desc: "Record cash, card, QR pay, bank transfer and cheques on every bill. Split one bill across multiple tender methods with change calculation.",
     why: "Removes counting mistakes at busy counters and eliminates voiding bills when customers split payment.",
   },
   {
@@ -98,7 +98,7 @@ const mainFeatures: MainFeature[] = [
     icon: Printer,
     previewKey: "thermal receipt printers",
     desc: "Plug-and-play USB barcode scanners, 58mm/80mm thermal receipt printers, barcode label printers, and automatic cash drawer kick.",
-    why: "Works out of the box with standard counter equipment Sri Lankan shops already own.",
+    why: "Works out of the box with standard counter equipment retail shops already own.",
   },
   {
     title: "Reports & Business Intelligence",
@@ -126,7 +126,7 @@ export function BentoGrid() {
         </h1>
         <p className={`lead ${styles.intro}`}>
           Every module is linked to a single, lightning-fast FIFO stock ledger. All 12 core capabilities below operate
-          cohesively so cashiers bill without lag and owners monitor every rupee.
+          cohesively so cashiers bill without lag and owners monitor every transaction.
         </p>
       </div>
 

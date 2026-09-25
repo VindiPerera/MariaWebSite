@@ -89,7 +89,7 @@ export const featureCategories: FeatureCategory[] = [
     id: "payments",
     title: "Payments",
     icon: CreditCard,
-    summary: "Accept the way Sri Lankan customers actually pay, with every rupee traced to its method.",
+    summary: "Accept the way your customers actually pay, with every tender method and dollar traced.",
     features: [
       {
         name: "Cash, card, bank transfer & cheque",
@@ -203,7 +203,7 @@ export const featureCategories: FeatureCategory[] = [
       {
         name: "Cheque maturity reminders",
         what: "Post-dated cheques are listed with due dates and flagged when they are about to mature or overdue.",
-        why: "No bounced or forgotten cheques, a real risk for Sri Lankan retailers.",
+        why: "No bounced or forgotten cheques, protecting vendor relationships and cash flow.",
       },
       {
         name: "Supplier statements",
@@ -239,7 +239,7 @@ export const featureCategories: FeatureCategory[] = [
     id: "shifts-cash",
     title: "Shifts, Till & Cash Control",
     icon: Wallet,
-    summary: "Every cashier, every shift, every rupee in the drawer accounted for.",
+    summary: "Every cashier, every shift, every dollar in the drawer accounted for.",
     features: [
       {
         name: "Shift open & close",
@@ -399,7 +399,7 @@ export const featureCategories: FeatureCategory[] = [
     id: "hardware-printing",
     title: "Hardware & Printing",
     icon: Printer,
-    summary: "Works with the counter equipment Sri Lankan shops already use.",
+    summary: "Works with the counter equipment standard retail stores already use.",
     features: [
       {
         name: "Thermal receipt printers",
@@ -441,7 +441,7 @@ export const featureCategories: FeatureCategory[] = [
       },
       {
         name: "Currency & regional settings",
-        what: "Set the currency symbol (such as Rs.), code, decimal places and receipt width for your shop.",
+        what: "Set your currency symbol (such as $, £, €, or local currency), code, decimal places and receipt width for your shop.",
         why: "Figures appear the way your customers and accountant expect.",
       },
       {

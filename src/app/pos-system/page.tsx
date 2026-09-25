@@ -5,23 +5,25 @@ import { FaqBlock } from "@/components/sections/FaqBlock";
 import { ServiceAreas } from "@/components/sections/ServiceAreas";
 import { TrialCta } from "@/components/sections/TrialCta";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { countries } from "@/lib/geo";
 import { industries } from "@/lib/industries";
-import { locations } from "@/lib/locations";
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import styles from "@/components/landing/Landing.module.css";
 
+const regionCount = countries.reduce((sum, c) => sum + (c.regions?.length ?? 0), 0);
+
 export const metadata = pageMetadata({
-  title: "POS System in Sri Lanka — Billing & Inventory Software for Every City",
-  description:
-    "MariaPoS is a Sri Lankan POS system and billing software available island-wide: Colombo, Kandy, Galle, Jaffna, Kurunegala, Negombo, Matara, Batticaloa, Trincomalee and more. Offline-first, FIFO stock, SMS bills. Free 7-day trial.",
+  title: "POS System Worldwide — POS Software for Shops in Every Country",
+  description: `MariaPoS is offline-first POS and billing software for shops in ${countries.length}+ countries: USA, UK, Canada, Australia, India, Bangladesh, Pakistan, UAE, Saudi Arabia, Malaysia, Nigeria, Kenya, Sri Lanka and more. One-time licence, no monthly fees. Free 7-day trial.`,
   path: "/pos-system",
   keywords: [
-    "best POS system in Sri Lanka",
-    "POS system price in Sri Lanka",
-    "POS machine Sri Lanka",
-    "billing system for shop Sri Lanka",
-    ...locations.slice(0, 12).map((l) => `POS system ${l.name}`),
+    "POS system",
+    "best POS system for small business",
+    "POS software without monthly fee",
+    "offline POS software",
+    "POS system for retail store",
+    ...countries.slice(0, 20).map((c) => `POS system ${c.name}`),
   ],
 });
 
@@ -32,8 +34,8 @@ const steps = [
     icon: Download,
   },
   {
-    title: "Set up with our help",
-    body: "Add products, users and bill settings. Our Colombo team helps by phone and WhatsApp.",
+    title: "Set up remotely with our help",
+    body: "Add products, users, currency, taxes and bill settings. Our team helps over WhatsApp, email and phone.",
     icon: Headphones,
   },
   {
@@ -45,38 +47,40 @@ const steps = [
 
 const faqs = [
   {
-    q: "What is the best POS system for shops in Sri Lanka?",
-    a: "The best POS system is one built for local conditions: it keeps billing during internet outages, handles FIFO stock and supplier cheques, tracks customer credit and sends SMS receipts. MariaPoS is designed in Colombo for exactly these needs.",
+    q: "Which countries can use MariaPoS?",
+    a: "Any country. MariaPoS is a Windows download with configurable currency, tax classes and receipt layout, and setup and support are provided remotely.",
   },
   {
-    q: "Is MariaPoS made in Sri Lanka?",
-    a: `Yes. MariaPoS is developed and supported by ${site.company}, ${site.address}.`,
+    q: "Is there a monthly fee?",
+    a: "No. MariaPoS is a one-time payment for a 1, 2 or 3-year licence with every feature included, and it never renews automatically.",
   },
   {
-    q: "Can I use MariaPoS outside Colombo?",
-    a: "Yes. MariaPoS is a Windows download and works anywhere in Sri Lanka. Support is provided by phone, WhatsApp and email.",
+    q: "Does MariaPoS work without internet?",
+    a: "Yes. Billing, stock and shifts run fully offline, and data syncs to the cloud panel whenever a connection is available.",
   },
   {
-    q: "Does MariaPoS support Sri Lankan payment methods?",
-    a: "Yes. Cash, card, bank transfer (with reference) and cheques (with number, bank and date), plus split payments and customer credit.",
+    q: "Which language is the software in?",
+    a: "The MariaPoS interface is in English.",
   },
 ];
 
-export default function PosSystemSriLankaPage() {
+export default function PosSystemWorldwidePage() {
   return (
     <main id="top">
-      <JsonLd data={breadcrumbSchema([{ name: "POS System Sri Lanka", path: "/pos-system" }])} />
+      <JsonLd data={breadcrumbSchema([{ name: "POS System Worldwide", path: "/pos-system" }])} />
       <LandingHero
-        eyebrow="Made in Sri Lanka"
-        title="POS system & billing software for shops across Sri Lanka"
-        intro="From Colombo to Jaffna, Galle to Trincomalee, MariaPoS gives Sri Lankan shops fast billing, accurate FIFO stock and full cash control, built for local internet, payment and business conditions."
-        crumbs={[{ name: "POS System Sri Lanka", path: "/pos-system" }]}
+        eyebrow={`${countries.length} countries · ${regionCount} states & regions`}
+        title="POS system & billing software for shops worldwide"
+        intro="From New York to Dhaka, Dubai to Lagos, MariaPoS gives independent retailers fast billing, accurate FIFO stock and full cash control, with local currency and tax settings and no monthly fees."
+        crumbs={[{ name: "POS System Worldwide", path: "/pos-system" }]}
       />
+
+      <ServiceAreas title="Find MariaPoS in your country" />
 
       <section className={styles.section}>
         <div className={styles.sectionHead}>
           <span className="eyebrow">Getting started</span>
-          <h2 className={styles.h2}>Start using MariaPoS anywhere in Sri Lanka in three steps</h2>
+          <h2 className={styles.h2}>Start using MariaPoS anywhere in three steps</h2>
         </div>
         <div className={styles.cards3}>
           {steps.map(({ title, body, icon: Icon }, i) => (
@@ -93,8 +97,6 @@ export default function PosSystemSriLankaPage() {
         </div>
       </section>
 
-      <ServiceAreas title="Find MariaPoS in your city" />
-
       <section className={styles.section}>
         <div className={styles.sectionHead}>
           <h2 className={styles.h2}>POS systems by business type</h2>
@@ -102,7 +104,7 @@ export default function PosSystemSriLankaPage() {
         <div className={styles.tags}>
           {industries.map((i) => (
             <Link key={i.slug} href={`/industries/${i.slug}`} className={styles.tag}>
-              {i.keyword}
+              {i.short} POS
             </Link>
           ))}
           <Link href="/features" className={styles.tag}>
@@ -111,7 +113,7 @@ export default function PosSystemSriLankaPage() {
         </div>
       </section>
 
-      <FaqBlock title="POS systems in Sri Lanka: FAQ" faqs={faqs} />
+      <FaqBlock title="POS system FAQ" faqs={faqs} />
       <TrialCta />
     </main>
   );

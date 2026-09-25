@@ -1,32 +1,49 @@
 "use client";
 
 import { useState } from "react";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { Check, CheckCircle2, ChevronRight, Cpu, Monitor, Printer, QrCode, Shield, Sparkles } from "lucide-react";
+import {
+  BellRing,
+  Boxes,
+  Check,
+  ChevronRight,
+  Cpu,
+  Monitor,
+  Printer,
+  Receipt,
+  Send,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import posBilling from "@/assets/images/pos-billing.png";
 import reports from "@/assets/images/reports.png";
 import hwA from "@/assets/images/hw-a.jpeg";
 import hwB from "@/assets/images/hw-b.jpeg";
 import hwC from "@/assets/images/hw-c.jpeg";
+import ownerMobileAlerts from "@/assets/images/owner-mobile-alerts.jpg";
+import warehouseFifoStock from "@/assets/images/warehouse-fifo-stock.jpg";
+import customerSmsReceipt from "@/assets/images/customer-sms-receipt.jpg";
 import styles from "./Showcase.module.css";
 
 const hardwareItems = [
   {
     title: "Counter Touchscreens & Standard Monitors",
-    desc: "Optimized for both capacitive touchscreens and keyboard-driven standard desktop PCs. High contrast, large hit areas for fast billing.",
+    desc: "Optimized for capacitive touchscreens and keyboard-driven standard desktop PCs. High contrast, large hit areas for fast billing.",
     img: hwC,
     badge: "Touch & Desktop",
   },
   {
     title: "Thermal ESC/POS Receipt Printers",
-    desc: "Plug-and-play support for all standard 80mm and 58mm USB/Ethernet thermal printers. Custom receipt headers, Sinhala/Tamil support, and auto-cutter.",
+    desc: "Plug-and-play support for all standard 80mm and 58mm USB/Ethernet thermal printers. Custom receipt headers and auto-cutter.",
     img: hwA,
     badge: "Auto-Cut & RJ11",
   },
   {
     title: "1D / 2D Barcode Scanners & Cash Drawers",
-    desc: "Compatible with any handheld or hands-free omnidirectional USB barcode scanner. Direct RJ11 cash drawer trigger on bill payment.",
+    desc: "Compatible with any handheld or hands-free USB barcode scanner. Direct RJ11 cash drawer trigger on bill payment.",
     img: hwB,
     badge: "Instant USB Scan",
   },
@@ -40,10 +57,14 @@ export function Showcase() {
       {/* Product Hero */}
       <section id="product" className={styles.heroSection}>
         <div data-reveal="up" className={styles.intro}>
-          <span className="eyebrow">The Desktop Engine</span>
+          <div className={styles.eyebrowBadge}>
+            <Zap size={13} />
+            <span>The Desktop Engine</span>
+          </div>
           <h1 className="section-title">Built for high-traffic retail counters</h1>
           <p className="lead">
-            MariaPoS is a native Windows desktop application with zero web lag. It runs directly on your counter PC with a local SQLite database that never stops, even during network dropouts.
+            MariaPoS is a native Windows desktop application with zero web lag. It runs directly on your counter PC with
+            a local SQLite database that never stops, even during network dropouts.
           </p>
 
           <div className={styles.screenTabs}>
@@ -176,6 +197,88 @@ export function Showcase() {
         )}
       </section>
 
+      {/* Real-World Connected Ecosystem: 3 Clean Operational Cards */}
+      <section id="operational-pillars" className={styles.realWorldSection}>
+        <div data-reveal="up" className={styles.intro}>
+          <span className="eyebrow">Connected Operations</span>
+          <h2 className="section-title">Tested and trusted beyond the counter</h2>
+          <p className="lead">
+            MariaPoS connects your checkout tills, warehouse backroom, and pocket into one unified retail management system.
+          </p>
+        </div>
+
+        <div className={styles.operationsGrid}>
+          {/* Card 1: Owner Telegram Alerts */}
+          <div data-reveal="up" className={styles.opCard}>
+            <div className={styles.opImageWrap}>
+              <Image
+                src={ownerMobileAlerts}
+                alt="Owner receiving Telegram sales notification anywhere"
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className={styles.opImg}
+              />
+              <div className={styles.opPill}>
+                <Send size={12} color="#38bdf8" />
+                <span>Telegram Bot Push</span>
+              </div>
+            </div>
+            <div className={styles.opContent}>
+              <h3 className={styles.opTitle}>Instant Telegram Alerts &amp; Cloud Reports</h3>
+              <p className={styles.opDesc}>
+                Receive order totals, items, and cashier shifts on your phone the instant each bill prints, even while away from your shop.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: Warehouse FIFO Stock */}
+          <div data-reveal="up" data-delay="100" className={styles.opCard}>
+            <div className={styles.opImageWrap}>
+              <Image
+                src={warehouseFifoStock}
+                alt="Warehouse inventory barcode scanning and FIFO tracking"
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className={styles.opImg}
+              />
+              <div className={styles.opPill}>
+                <Boxes size={12} color="#22c55e" />
+                <span>FIFO Inventory</span>
+              </div>
+            </div>
+            <div className={styles.opContent}>
+              <h3 className={styles.opTitle}>Strict FIFO Batch Tracking &amp; Inward Intake</h3>
+              <p className={styles.opDesc}>
+                Scan incoming goods, record batch costs, track expiry alarms, and ensure 100% accurate gross profit accounting.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 3: Customer SMS e-Bill */}
+          <div data-reveal="up" data-delay="200" className={styles.opCard}>
+            <div className={styles.opImageWrap}>
+              <Image
+                src={customerSmsReceipt}
+                alt="Customer receiving SMS e-bill on smartphone at counter"
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className={styles.opImg}
+              />
+              <div className={styles.opPill}>
+                <Smartphone size={12} color="#38bdf8" />
+                <span>Paperless Checkout</span>
+              </div>
+            </div>
+            <div className={styles.opContent}>
+              <h3 className={styles.opTitle}>Digital SMS Receipts in 2 Seconds</h3>
+              <p className={styles.opDesc}>
+                Send branded SMS bills with invoice number, items, and warranty link directly to customers while saving paper costs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Hardware Compatible Section */}
       <section id="hardware-ready" className={styles.hardwareSection}>
         <div className={styles.hardwareContainer}>
@@ -196,7 +299,7 @@ export function Showcase() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 400px"
-                    style={{ objectFit: "cover" }}
+                    className={styles.hwImg}
                   />
                   <span className={styles.hwBadge}>{item.badge}</span>
                 </div>
@@ -204,19 +307,7 @@ export function Showcase() {
                   <h3 className={styles.hwTitle}>{item.title}</h3>
                   <p className={styles.hwDesc}>{item.desc}</p>
                   {item.badge.includes("Auto-Cut") && (
-                    <Link
-                      href="/#bill-design"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "4px",
-                        fontSize: "13px",
-                        fontWeight: 600,
-                        color: "var(--red)",
-                        marginTop: "8px",
-                        textDecoration: "none",
-                      }}
-                    >
+                    <Link href="/#bill-design" className={styles.billLink}>
                       <span>Preview 58mm / 80mm Bill Design</span>
                       <ChevronRight size={14} />
                     </Link>

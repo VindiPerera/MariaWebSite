@@ -89,8 +89,8 @@ export function FeatureVisualPreview({ featureName }: Props) {
     return (
       <div className={styles.previewBox}>
         <div className={styles.dualPrice}>
-          <span className={styles.priceRetail}>Retail: Rs. 1,200</span>
-          <span className={styles.priceWholesale}>Wholesale: Rs. 950</span>
+          <span className={styles.priceRetail}>Retail: $12.00</span>
+          <span className={styles.priceWholesale}>Wholesale: $9.50</span>
         </div>
       </div>
     );
@@ -102,7 +102,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
       <div className={styles.previewBox}>
         <div className={styles.weightBadge}>
           <Scale size={13} color="var(--red)" />
-          <span className={styles.monoTag}>2.450 kg × Rs. 380</span>
+          <span className={styles.monoTag}>2.45 kg × $3.80</span>
         </div>
       </div>
     );
@@ -126,7 +126,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
       <div className={styles.previewBox}>
         <div className={styles.promoTicket}>
           <Tag size={12} color="var(--red)" />
-          <span>AVURUDU-2026</span>
+          <span>SUMMER-2026</span>
         </div>
       </div>
     );
@@ -138,7 +138,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
       <div className={styles.previewBox}>
         <div className={styles.priceCheck}>
           <Search size={12} color="#1faa55" />
-          <span>Rs. 450 (18 in Stock)</span>
+          <span>$4.50 (18 in Stock)</span>
         </div>
       </div>
     );
@@ -175,7 +175,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
         <div className={styles.paymentPills}>
           <span className={styles.payCash}>Cash</span>
           <span className={styles.payCard}>Visa</span>
-          <span className={styles.payBank}>LankaQR</span>
+          <span className={styles.payBank}>QR Pay</span>
           <span className={styles.payCheque}>Cheque</span>
         </div>
       </div>
@@ -187,8 +187,8 @@ export function FeatureVisualPreview({ featureName }: Props) {
     return (
       <div className={styles.previewBox}>
         <div className={styles.changeCalc}>
-          <span>Tender: Rs. 5,000</span>
-          <span className={styles.changeResult}>Change: Rs. 260</span>
+          <span>Tender: $50.00</span>
+          <span className={styles.changeResult}>Change: $2.60</span>
         </div>
       </div>
     );
@@ -200,7 +200,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
       <div className={styles.previewBox}>
         <div className={styles.creditDue}>
           <Wallet size={12} color="#d97706" />
-          <span>Customer Due: Rs. 1,450</span>
+          <span>Customer Due: $14.50</span>
         </div>
       </div>
     );
@@ -212,7 +212,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
       <div className={styles.previewBox}>
         <div className={styles.loyaltyStar}>
           <Sparkles size={12} color="#d97706" />
-          <span>+45 Points (Redeem Rs. 45)</span>
+          <span>+45 Points (Redeem $4.50)</span>
         </div>
       </div>
     );
@@ -235,7 +235,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
     return (
       <div className={styles.previewBox}>
         <div className={styles.fifoPipeline}>
-          <span className={styles.fifoBatchOld}>Batch #B1 (Cost Rs. 380)</span>
+          <span className={styles.fifoBatchOld}>Batch #B1 (Cost $3.80)</span>
           <span className={styles.fifoArrow}>→</span>
           <span className={styles.fifoDeductTag}>FIFO Done</span>
         </div>
@@ -285,7 +285,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
       <div className={styles.previewBox}>
         <div className={styles.shiftBalance}>
           <Clock size={12} color="#1faa55" />
-          <span>Float: Rs. 10,000 · Balanced</span>
+          <span>Float: $100.00 · Balanced</span>
         </div>
       </div>
     );
@@ -309,7 +309,7 @@ export function FeatureVisualPreview({ featureName }: Props) {
       <div className={styles.previewBox}>
         <div className={styles.tgAlert}>
           <Send size={12} color="#229ed9" />
-          <span>Telegram: New Sale Rs. 2,400</span>
+          <span>Telegram: New Sale $24.00</span>
         </div>
       </div>
     );
