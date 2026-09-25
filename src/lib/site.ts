@@ -13,6 +13,7 @@ export const site = {
   email: "mariaPOS@gmail.com",
   emailHref: "mailto:mariaPOS@gmail.com",
   demoHref: "mailto:mariaPOS@gmail.com?subject=MariaPoS%20demo",
+  facebookHref: "https://www.facebook.com/mariaposlk",
   address: "46 Hudson Road, Colombo, Sri Lanka",
   streetAddress: "46 Hudson Road",
   city: "Colombo",
