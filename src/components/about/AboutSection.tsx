@@ -9,11 +9,11 @@ export function AboutSection() {
       <div className={styles.inner}>
         <div data-reveal="up" className={`section-intro ${styles.intro}`}>
           <span className="eyebrow">About Us</span>
-          <h1 className="section-title">Built in Colombo, for shops across Sri Lanka.</h1>
+          <h1 className="section-title">The World&apos;s Best Hybrid POS System</h1>
           <p className="lead">
-            MariaPoS is an offline-first Windows point-of-sale system designed for supermarkets, pharmacies, hardware
-            stores and retail shops that need fast billing, accurate FIFO stock and reliable service — with or
-            without the internet.
+            MariaPoS is a true hybrid Windows point-of-sale system designed for supermarkets, pharmacies, retail
+            stores and wholesale businesses. It works seamlessly both online and offline with real-time cloud sync,
+            and is fully compatible with every hardware setup on your counter.
           </p>
         </div>
 
@@ -24,8 +24,8 @@ export function AboutSection() {
             </span>
             <h3 className={styles.storyTitle}>Who we are</h3>
             <p className={styles.storyText}>
-              MariaPoS is developed and supported by {site.company}, based at {site.address}. We build and support
-              the software directly — no resellers in between.
+              MariaPoS is powered by {site.company}, based on the original concept and product architecture of {site.conceptBy}. We build, engineer, and support
+              the software directly — providing global digital assistance via WhatsApp and cloud services.
             </p>
           </div>
 
@@ -35,8 +35,8 @@ export function AboutSection() {
             </span>
             <h3 className={styles.storyTitle}>What we do</h3>
             <p className={styles.storyText}>
-              A single offline-first POS built for real shop counters: barcode billing, FIFO batch inventory, shift
-              &amp; till control, SMS e-bill receipts, Telegram sales alerts and two-way cloud sync.
+              A single hybrid POS built for real shop counters: works seamlessly online and offline, compatible with every hardware device, barcode billing, FIFO batch inventory, shift
+              &amp; till control, SMS e-bills, Telegram sales alerts and two-way cloud sync.
             </p>
           </div>
 
@@ -46,8 +46,7 @@ export function AboutSection() {
             </span>
             <h3 className={styles.storyTitle}>How we support you</h3>
             <p className={styles.storyText}>
-              Every license includes direct phone, WhatsApp and email support from our own team — the people who
-              build MariaPoS are the same people who answer when you call.
+              Every license includes direct WhatsApp and digital support from our own engineering team — reachable anytime via WhatsApp at {site.phone}.
             </p>
           </div>
         </div>
@@ -57,11 +56,10 @@ export function AboutSection() {
             <span className={styles.avatar}>TB</span>
             <div>
               <div className={styles.personName}>Thejan Bathiya</div>
-              <div className={styles.personRole}>Powered by</div>
+              <div className={styles.personRole}>Concept &amp; Product Architecture</div>
             </div>
             <p className={styles.personText}>
-              MariaPoS is powered by Thejan Bathiya — the concept, product direction and engineering behind the
-              system shop owners use every day to bill, track stock and close their till.
+              The creative concept, system design, and engineering direction behind MariaPoS — envisioning a high-speed hybrid POS that works effortlessly both online and offline.
             </p>
           </div>
 
@@ -69,11 +67,10 @@ export function AboutSection() {
             <span className={styles.avatar}>JN</span>
             <div>
               <div className={styles.personName}>{site.company}</div>
-              <div className={styles.personRoleLight}>Company</div>
+              <div className={styles.personRoleLight}>Powered by &amp; Global Operations</div>
             </div>
             <p className={styles.personTextLight}>
-              {site.company} owns and operates MariaPoS end-to-end — from development to sales, installation and
-              ongoing support for every customer in Sri Lanka.
+              {site.company} powers and operates MariaPoS end-to-end — from software infrastructure to deployment, enterprise cloud sync, and 24/7 global customer support.
             </p>
           </div>
         </div>

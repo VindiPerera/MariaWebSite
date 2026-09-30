@@ -40,10 +40,9 @@ export function HardwareSection() {
     <section id="hardware" className={styles.section}>
       <div data-reveal="up" className="section-intro">
         <span className="eyebrow">Hardware</span>
-        <h2 className="section-title">Works with the hardware already on your counter</h2>
+        <h2 className="section-title">Fully compatible with every hardware setup on your counter</h2>
         <p className={`lead ${styles.intro}`}>
-          Tap on a touch screen or click with a mouse. Scan barcodes, print bills and print barcode labels from the same
-          till.
+          MariaPoS is engineered with universal hardware drivers: compatible with every touch screen, monitor, 1D/2D barcode scanner, thermal receipt printer (ESC/POS, USB, Network), digital weighing scale, and cash drawer.
         </p>
       </div>
 

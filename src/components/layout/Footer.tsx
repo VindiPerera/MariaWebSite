@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Download, Mail, MapPin, Monitor, Phone } from "lucide-react";
+import { Download, Mail, MapPin, Monitor, Phone, Sparkles } from "lucide-react";
 import { FacebookIcon } from "@/components/ui/FacebookIcon";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { footerColumns, legalLinks, site } from "@/lib/site";
@@ -17,16 +17,17 @@ export function Footer() {
         <div data-reveal="up" className={styles.top}>
           <div className={styles.heading}>
             <span className={styles.eyebrow}>Talk to us</span>
-            <h2 className={styles.title}>Questions before you start? Call or message us.</h2>
+            <h2 className={styles.title}>Questions before you start? Chat with our team on WhatsApp.</h2>
           </div>
           <div className={styles.contactButtons}>
-            <a href={site.phoneHref} className={styles.callButton}>
-              <Phone size={18} color="var(--red)" />
-              {site.phone}
-            </a>
-            <a href={site.whatsappHref} target="_blank" rel="noopener" className={styles.whatsAppButton}>
+            <a
+              href={site.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.whatsAppButton}
+            >
               <WhatsAppIcon size={18} />
-              WhatsApp us
+              WhatsApp us: {site.phone}
             </a>
           </div>
         </div>
@@ -37,13 +38,17 @@ export function Footer() {
               <Monitor size={22} color="#ffffff" />
             </span>
             <div className={styles.downloadText}>
-              <span className={styles.downloadTitle}>Download MariaPoS for Windows</span>
-              <span>Windows 10+ · Touch &amp; standard screens · Barcode scanners · Receipt printers</span>
+              <span className={styles.downloadTitle}>Download the World&apos;s Best POS Software for Windows</span>
+              <span>Windows 10 &amp; 11 · Fully compatible with every hardware setup · Barcode scanners · Receipt printers</span>
             </div>
           </div>
-          <a href="#download" className={styles.downloadButton}>
+          <a
+            href={site.downloadExeUrl}
+            download="MariaPoS-Setup.exe"
+            className={styles.downloadButton}
+          >
             <Download size={17} />
-            Download installer
+            Download installer (.exe)
           </a>
         </div>
 
@@ -52,20 +57,27 @@ export function Footer() {
             <Link href="/" className={styles.logo} aria-label="MariaPoS">
               <Image src={logo} alt="MariaPoS" height={38} className={styles.logoImage} />
             </Link>
-            <span>{site.tagline}</span>
-            <span className={styles.address}>
-              <MapPin size={16} color="var(--coral)" />
-              {site.address}
+            <span className={styles.bestPosBadge}>
+              <Sparkles size={12} color="#ff6b6b" />
+              The World&apos;s Best POS System
             </span>
+            <span className={styles.brandDesc}>
+              The world&apos;s best hybrid POS system. Works seamlessly both online and offline with real-time cloud sync, fully compatible with every hardware setup on your counter.
+            </span>
+            <a
+              href={site.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.brandLink}
+            >
+              <WhatsAppIcon size={16} />
+              WhatsApp: {site.phone}
+            </a>
             <a href={site.emailHref} className={styles.brandLink}>
               <Mail size={16} color="var(--coral)" />
               {site.email}
             </a>
-            <a href={site.phoneHref} className={styles.brandLink}>
-              <Phone size={16} color="var(--coral)" />
-              {site.phone}
-            </a>
-            <a href={site.facebookHref} target="_blank" rel="noopener" className={styles.brandLink}>
+            <a href={site.facebookHref} target="_blank" rel="noopener noreferrer" className={styles.brandLink}>
               <FacebookIcon size={16} color="var(--coral)" />
               Facebook
             </a>
@@ -89,8 +101,7 @@ export function Footer() {
 
         <div className={styles.bottom}>
           <span>
-            © 2026 {site.company} All rights reserved. <span className={styles.dotSep}>|</span> Powered by Thejan
-            Bathiya
+            © 2026 {site.company} · The World&apos;s Best POS System. All rights reserved. <span className={styles.dotSep}>|</span> Powered by JAAN Network · Concept by Thejan Bathiya
           </span>
           <div className={styles.legal}>
             {legalLinks.map((link) => (

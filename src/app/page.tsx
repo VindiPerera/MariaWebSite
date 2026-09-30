@@ -20,11 +20,11 @@ const homeFaqs = [
   },
   {
     q: "Does MariaPoS work without internet?",
-    a: "Yes. MariaPoS is offline-first. Billing, stock, returns and shifts all work without internet, and data syncs to the cloud automatically when the connection returns.",
+    a: "Yes. MariaPoS is a true hybrid POS system that works seamlessly both online and offline. Billing, FIFO stock deductions, returns and cashier shifts all work uninterrupted without internet, and sync to the cloud automatically in real-time whenever internet is available.",
   },
   {
-    q: "What hardware do I need?",
-    a: "A Windows 10 or 11 PC or touch POS terminal. Optional: a USB barcode scanner, a 58 mm or 80 mm thermal receipt printer, a cash drawer and a barcode label printer.",
+    q: "What hardware is MariaPoS compatible with?",
+    a: "MariaPoS is compatible with every hardware setup on your counter: any Windows 10 or 11 PC or touch terminal, all 1D/2D barcode scanners, 58 mm & 80 mm thermal receipt printers (ESC/POS), digital electronic weighing scales, and standard RJ11 cash drawers.",
   },
   {
     q: "Can I send bills to customers by SMS?",

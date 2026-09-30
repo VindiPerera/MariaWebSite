@@ -86,11 +86,11 @@
 
 .inner {
   position: relative;
-  max-width: var(--max-width);
+  max-width: 1440px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1.08fr;
-  gap: 52px;
+  grid-template-columns: minmax(440px, 1fr) minmax(580px, 1.45fr);
+  gap: 48px;
   align-items: center;
 }
 
@@ -730,7 +730,7 @@
 
 /* ---------- Responsive Layout ---------- */
 
-@media (max-width: 1080px) {
+@media (max-width: 1140px) {
   .inner {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -742,7 +742,7 @@
   }
 
   .visual {
-    max-width: 620px;
+    max-width: 860px;
     margin: 0 auto;
   }
 }

@@ -23,8 +23,8 @@ import styles from "./Hero.module.css";
 const perks = [
   "No credit card required",
   "Full access for 7 days",
-  "Windows 10 & 11 compatible",
-  "Offline-first with cloud sync",
+  "Compatible with every hardware setup",
+  "Hybrid POS — Works Online & Offline",
 ];
 
 const liveOrders = [
@@ -110,19 +110,17 @@ export function Hero() {
             <span className={styles.pulseDot}>
               <span className={styles.pulseRing} />
             </span>
-            <span className={styles.badgeTag}>MariaPoS v2.4</span>
-            <span className={styles.badgeText}>Instant FIFO Billing · SMS Receipts &amp; Telegram Alerts</span>
+            <span className={styles.badgeTag}>★ World&apos;s Best Hybrid POS</span>
+            <span className={styles.badgeText}>Online &amp; Offline Billing · Compatible with Every Hardware</span>
           </div>
 
           <h1 data-reveal="up" data-delay="80" className={styles.title}>
-            Bill in seconds. <br />
-            Know <span className={styles.titleAccent}>every dollar &amp; batch</span> on your shelf.
+            The World&apos;s Best POS Software. <br />
+            Bill in seconds, control <span className={styles.titleAccent}>every dollar &amp; batch</span>.
           </h1>
 
           <p data-reveal="up" data-delay="160" className={styles.subtitle}>
-            Engineered for high-rush retail, pharmacies, supermarkets and global storefronts. MariaPoS deducts stock FIFO on
-            every barcode scan, closes cashier shifts against the till, and sends instant digital eBills —{" "}
-            <strong>even 100% offline</strong>.
+            Engineered as the world&apos;s best hybrid POS system. Works seamlessly <strong>both online and offline</strong> with real-time cloud sync, and is <strong>fully compatible with every hardware setup</strong> (touchscreens, barcode scanners, thermal receipt printers, electronic scales &amp; cash drawers).
           </p>
 
           <div data-reveal="up" data-delay="240" className={styles.actions}>
@@ -211,8 +209,9 @@ export function Hero() {
                   src={posBilling}
                   alt="MariaPoS high-speed billing interface with barcode scanner, cart and quick keypad"
                   className={styles.screenshot}
-                  sizes="(max-width: 1000px) 100vw, 640px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1000px"
                   priority
+                  quality={95}
                 />
                 <div className={styles.scanLine} />
               </div>

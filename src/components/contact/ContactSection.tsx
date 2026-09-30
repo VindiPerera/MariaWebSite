@@ -64,29 +64,35 @@ export function ContactSection() {
 
         {/* Quick Contact Cards */}
         <div className={styles.quickGrid}>
-          <a href={site.phoneHref} data-reveal="up" className={`${styles.card} ${styles.linkCard}`}>
-            <span className="icon-tile">
-              <Phone size={22} />
-            </span>
-            <span className={styles.cardTitle}>Direct Phone Call</span>
-            <span className={styles.cardValue}>{site.phone}</span>
-            <span className={styles.cardHint}>Immediate assistance 9am - 8pm</span>
-          </a>
-
           <a
             href={site.whatsappHref}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             data-reveal="up"
-            data-delay="80"
             className={`${styles.card} ${styles.linkCard} ${styles.whatsAppCard}`}
           >
             <span className={`icon-tile ${styles.whatsAppTile}`}>
-              <WhatsAppIcon size={22} />
+              <WhatsAppIcon size={24} />
             </span>
-            <span className={styles.cardTitle}>WhatsApp Instant Chat</span>
-            <span className={`${styles.cardValue} ${styles.whatsAppValue}`}>{site.phone}</span>
-            <span className={styles.cardHint}>Fastest response &amp; screenshot help</span>
+            <span className={styles.cardTitle}>WhatsApp Support (Only)</span>
+            <span className={`${styles.cardValue} ${styles.whatsAppValue}`}>+94 76 593 3255</span>
+            <span className={styles.cardHint}>Contact via WhatsApp only · Fastest response</span>
+          </a>
+
+          <a
+            href={site.demoHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-reveal="up"
+            data-delay="80"
+            className={`${styles.card} ${styles.linkCard}`}
+          >
+            <span className="icon-tile">
+              <CalendarCheck size={22} color="var(--red)" />
+            </span>
+            <span className={styles.cardTitle}>Live Demo on WhatsApp</span>
+            <span className={styles.cardValue}>Book Interactive Walkthrough</span>
+            <span className={styles.cardHint}>Screen share or video guide via WhatsApp</span>
           </a>
 
           <a href={site.emailHref} data-reveal="up" data-delay="160" className={`${styles.card} ${styles.linkCard}`}>
@@ -95,20 +101,8 @@ export function ContactSection() {
             </span>
             <span className={styles.cardTitle}>Official Email</span>
             <span className={styles.cardValue}>{site.email}</span>
-            <span className={styles.cardHint}>Invoices, licenses &amp; inquiries</span>
+            <span className={styles.cardHint}>Invoices, licenses &amp; global inquiries</span>
           </a>
-
-          <div data-reveal="up" data-delay="240" className={styles.card}>
-            <span className="icon-tile">
-              <MapPin size={22} />
-            </span>
-            <span className={styles.cardTitle}>Head Office</span>
-            <span className={styles.cardText}>
-              JAAN Network (PVT) Ltd
-              <br />
-              {site.address}
-            </span>
-          </div>
         </div>
 
         {/* Interactive Booking / Callback Form */}
@@ -167,12 +161,12 @@ export function ContactSection() {
 
                 <div className={styles.formRow}>
                   <div className={styles.field}>
-                    <label className={styles.label}>Phone / WhatsApp Number</label>
-                    <input required type="tel" placeholder="e.g. 077 123 4567" className={styles.input} />
+                    <label className={styles.label}>WhatsApp Number (+94)</label>
+                    <input required type="tel" placeholder="e.g. +94 77 123 4567" className={styles.input} />
                   </div>
                   <div className={styles.field}>
                     <label className={styles.label}>Email Address</label>
-                    <input required type="email" placeholder="e.g. ruwan@gmail.com" className={styles.input} />
+                    <input required type="email" placeholder="e.g. yourname@gmail.com" className={styles.input} />
                   </div>
                 </div>
 
@@ -192,21 +186,14 @@ export function ContactSection() {
                 </div>
 
                 <div className={styles.field}>
-                  <label className={styles.label}>Preferred Callback Method</label>
+                  <label className={styles.label}>Preferred Contact Method (WhatsApp Contact Only)</label>
                   <div className={styles.channelGroup}>
                     <button
                       type="button"
                       onClick={() => setChannel("whatsapp")}
                       className={`${styles.channelBtn} ${channel === "whatsapp" ? styles.channelActive : ""}`}
                     >
-                      WhatsApp Message
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setChannel("call")}
-                      className={`${styles.channelBtn} ${channel === "call" ? styles.channelActive : ""}`}
-                    >
-                      Phone Call
+                      WhatsApp Message (Recommended)
                     </button>
                     <button
                       type="button"
@@ -220,7 +207,7 @@ export function ContactSection() {
 
                 <button type="submit" className={styles.submitBtn}>
                   <Send size={16} />
-                  <span>Book Demo / Request Call</span>
+                  <span>Book Demo via WhatsApp</span>
                 </button>
               </form>
             )}

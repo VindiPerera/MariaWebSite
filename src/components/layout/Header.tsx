@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Download, Menu, X } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { navLinks, site } from "@/lib/site";
 import logo from "@/assets/images/marialogo.png";
@@ -29,53 +29,70 @@ export function Header() {
 
   return (
     <header className={headerClass}>
-      <nav className={styles.nav}>
+      <div className={styles.headerInner}>
         <Link href="/" aria-label="MariaPoS home" className={styles.brand} onClick={closeMenu}>
           <Image
             src={logo}
             alt="MariaPoS — Made to Bill"
-            height={42}
+            height={54}
             className={styles.brandImage}
             priority
           />
         </Link>
 
-        <div className={styles.links}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.link} ${pathname === link.href ? styles.active : ""}`}
-              aria-current={pathname === link.href ? "page" : undefined}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+        <nav className={styles.nav}>
+          <div className={styles.links}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.link} ${pathname === link.href ? styles.active : ""}`}
+                aria-current={pathname === link.href ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-        <div className={styles.actions}>
-          <a href={site.phoneHref} className={styles.phone}>
-            <Phone size={15} color="var(--red)" />
-            <span>{site.phone}</span>
-          </a>
-          <Link href="/sign-in" className={styles.signIn}>
-            Sign in
-          </Link>
-          <Link href="/sign-up" className={styles.cta}>
-            <span>Start free trial</span>
-            <ArrowRight size={15} />
-          </Link>
-          <button
-            type="button"
-            className={styles.menuButton}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </nav>
+          <div className={styles.actions}>
+            <a
+              href={site.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.whatsAppBtn}
+              title="Chat on WhatsApp (+94 76 593 3255) — WhatsApp only"
+            >
+              <WhatsAppIcon size={15} />
+              <span>{site.phone}</span>
+            </a>
+            <a
+              href={site.downloadExeUrl}
+              download="MariaPoS-Setup.exe"
+              className={styles.downloadBtn}
+              title="Download MariaPoS for Windows (.exe)"
+            >
+              <Download size={14} color="var(--red)" />
+              <span>Download .exe</span>
+            </a>
+            <Link href="/sign-in" className={styles.signIn}>
+              Sign in
+            </Link>
+            <Link href="/sign-up" className={styles.cta}>
+              <span>Start free trial</span>
+              <ArrowRight size={15} />
+            </Link>
+            <button
+              type="button"
+              className={styles.menuButton}
+              aria-label="Menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </nav>
+      </div>
 
       {menuOpen && (
         <div className={styles.menuPanel}>
@@ -84,17 +101,27 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <a
+            href={site.downloadExeUrl}
+            download="MariaPoS-Setup.exe"
+            className={styles.menuDownload}
+            onClick={closeMenu}
+          >
+            <Download size={16} />
+            <span>Download MariaPoS (.exe)</span>
+          </a>
           <Link href="/sign-in" className={styles.menuLink} onClick={closeMenu}>
             Sign in
           </Link>
           <div className={styles.menuActions}>
-            <a href={site.phoneHref} className={styles.menuCall}>
-              <Phone size={16} />
-              Call
-            </a>
-            <a href={site.whatsappHref} target="_blank" rel="noopener" className={styles.menuWhatsApp}>
-              <WhatsAppIcon size={16} />
-              WhatsApp
+            <a
+              href={site.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.menuWhatsAppFull}
+            >
+              <WhatsAppIcon size={17} />
+              <span>WhatsApp Us: {site.phone}</span>
             </a>
           </div>
         </div>
