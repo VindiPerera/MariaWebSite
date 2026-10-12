@@ -11,7 +11,7 @@
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 60%, #fff7f7 100%);
   border: 1px solid #eaeaea;
   box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.07);
-  padding: 56px 64px;
+  padding: 28px 40px;
   overflow: hidden;
 }
 
@@ -61,10 +61,10 @@
 
 .editorialFrame {
   position: absolute;
-  top: 40px;
-  left: 48px;
-  width: 360px;
-  height: 480px;
+  top: 24px;
+  bottom: 24px;
+  left: 40px;
+  width: 460px;
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 20px;
 }
@@ -74,7 +74,7 @@
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: 390px minmax(0, 1fr);
+  grid-template-columns: 460px minmax(0, 1fr);
   gap: 56px;
   align-items: center;
 }
@@ -91,7 +91,8 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
+  padding: 48px 0 40px;
 }
 
 .cutoutContainer {
@@ -105,7 +106,7 @@
 
 .cutoutImg {
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
   height: auto;
   display: block;
   object-fit: contain;
@@ -120,8 +121,8 @@
 /* Floating Quote Badge (like @osamuerais_ in the reference) */
 .quoteBadge {
   position: absolute;
-  top: 10px;
-  left: -20px;
+  top: 8px;
+  left: -8px;
   z-index: 6;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
@@ -174,8 +175,10 @@
 /* Trust Badge at base */
 .trustBadge {
   position: absolute;
-  bottom: 12px;
-  left: 0;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
   z-index: 6;
   background: #ffffff;
   border: 1px solid #e2e8f0;
