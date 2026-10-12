@@ -1,7 +1,10 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 136px 24px 80px;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 104px 32px 32px;
   background: #ffffff;
 }
 
@@ -86,10 +89,11 @@
 
 .inner {
   position: relative;
-  max-width: 1440px;
+  width: 100%;
+  max-width: 1500px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(440px, 1fr) minmax(580px, 1.45fr);
+  grid-template-columns: minmax(440px, 1fr) minmax(560px, 1.15fr);
   gap: 48px;
   align-items: center;
 }
@@ -97,8 +101,8 @@
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  max-width: 560px;
+  gap: 16px;
+  max-width: 620px;
   z-index: 2;
 }
 
@@ -161,7 +165,7 @@
 .title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(38px, 5.2vw, 62px);
+  font-size: clamp(30px, min(3.3vw, 5.6vh), 50px);
   line-height: 1.06;
   letter-spacing: -0.035em;
   color: var(--ink);
@@ -177,8 +181,8 @@
 }
 
 .subtitle {
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: clamp(14px, 1.5vh + 4px, 16px);
+  line-height: 1.55;
   color: #4b5563;
   text-wrap: pretty;
 }
@@ -202,7 +206,7 @@
   white-space: nowrap;
   background: linear-gradient(135deg, #c62828 0%, #a31515 100%);
   color: #ffffff;
-  padding: 16px 28px;
+  padding: 13px 24px;
   border-radius: 14px;
   font-weight: 600;
   font-size: 16px;
@@ -235,7 +239,7 @@
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   color: var(--ink);
-  padding: 15px 24px;
+  padding: 12px 22px;
   border-radius: 14px;
   font-weight: 600;
   font-size: 16px;
@@ -325,7 +329,10 @@
 
 .visual {
   position: relative;
-  padding: 30px 10px 40px;
+  padding: 20px 24px 20px 10px;
+  max-width: min(100%, 780px, calc((100svh - 160px) * 1.45));
+  margin: 0 auto;
+  width: 100%;
   perspective: 1200px;
 }
 
